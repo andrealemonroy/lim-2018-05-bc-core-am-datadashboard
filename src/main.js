@@ -1,4 +1,3 @@
-
 var resulListaAlumnas = document.getElementById("info");
 function mostrarDatos() {
 
@@ -155,3 +154,13 @@ function mostrarQuizzesAlumna(){
 
   
 }
+
+document.getElementById('dashboard').addEventListener('click', () =>{
+    let citys = document.getElementById('citys').style.display;
+    if (citys=='none'){
+        document.getElementById('citys').style.display='block';
+    }
+    else document.getElementById('citys').style.display='none';
+});
+
+

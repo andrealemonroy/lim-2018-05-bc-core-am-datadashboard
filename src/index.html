@@ -1,22 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Data Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <p>Hola Heydi!</p>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Montserrat|Open+Sans|Raleway|Righteous|Comfortaa" rel="stylesheet">
+  <title>Data Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-    <button onclick="mostrarDatos()">Mostrar Datos</button>
-    <div id = "info"></div>
-    <button onclick="mostrarPercent()">Mostrar % Curso general</button>
-    <div id = "info2"></div>
-    <button onclick="mostrarPercentAlumna()">Mostrar percent de la alumna</button>
-    <div id = "PercentAlumna"></div>
-    <button onclick="mostrarQuizzesAlumna()">Mostrar % quizz de la alumna</button>
-    <div id = "quizzesAlumna"></div>
+<body>
+  <header>
+    <h1>
+      <span id="titleOne">Laboratoria</span>
+      <span id="titleTwo">DASHBOARD</span>
+    </h1>
+  </header>
+  <section>
+    <div id="options">
+      <div id="loginInfo">Alejandra Ramirez</div>
+      <nav>
+        <ul id="x">
+          <li id="dashboard" class="nav">DASHBOARD</li>
+          <ul>
+            <div id="citys">
+              <li>Lima</li>
+              <li>Santiago de Chile</li>
+              <li>Ciudad de México</li>
+              <li>Sao Paulo</li>
+            </div>
+          </ul>
+          <li id="courses" class="nav">COHORTS</li>
+          <li id="cohorts" class="nav">CURSOS</li>
+        </ul>
+      </nav>
+    </div>
+    <div id="info">
+      <select id="promo">
+        <option value="1">2018-1</option>
+        <option value="2">2017-2</option>
+        <option value="3">2017-1</option>
+      </select>
+      <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
+      <div id="studentResult"></div>
+      <button onclick="mostrarDatos()">Mostrar Datos</button>
+      <div id = "info"></div>
+      <button onclick="mostrarPercent()">Mostrar % Curso general</button>
+      <div id = "info2"></div>
+      <button onclick="mostrarPercentAlumna()">Mostrar percent de la alumna</button>
+      <div id = "PercentAlumna"></div>
+      <button onclick="mostrarQuizzesAlumna()">Mostrar % quizz de la alumna</button>
+      <div id = "quizzesAlumna"></div>
+      <div id="graphics">
+        <div id="lectures"></div>
+        <div id="quizzes"></div>
+      </div>
+    </div>
+  </section>
+  <script src="main.js"></script>
+  <script src="data.js"></script>
+</body>
 
-    <script src="main.js"></script>
-  </body>
 </html>
+>>>>>>> d3116ad0f36293e13d3d1532c1267d1403c2a582
