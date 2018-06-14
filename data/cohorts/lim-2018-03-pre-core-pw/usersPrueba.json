@@ -24,6 +24,17 @@
         "role": "student"
     },
     {
+        "id": "D7C3l9HJWEXIuK2gD58LlEIHNE33",
+        "signupCohort": "lim-2018-03-pre-core-pw",
+        "timezone": "America/Lima",
+        "aboutMe": {
+            "summary": "Hola me llamo Heydy Mayumy soy una persona que quiere integrarse al mundo de la tecnologia  , me gusta investigar , trabajar en equipo , soy responsable , amigable . Soy una persona muy luchadora me gusta hacer cada cosa o actividasd que hago lo mejor posible. Tengo 24 años .\n"
+        },
+        "name": "Heydy Mayumy",
+        "locale": "es-ES",
+        "role": "student"
+    },
+    {
         "id": "09yoSyUv7IMUUkCV6gm5FUDanLI3",
         "timezone": "America/Lima",
         "name": "Vanessa",
