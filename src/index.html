@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
@@ -43,6 +42,14 @@
       </select>
       <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
       <div id="studentResult"></div>
+      <button onclick="mostrarDatos()">Mostrar Datos</button>
+      <div id = "info"></div>
+      <button onclick="mostrarPercent()">Mostrar % Curso general</button>
+      <div id = "info2"></div>
+      <button onclick="mostrarPercentAlumna()">Mostrar percent de la alumna</button>
+      <div id = "PercentAlumna"></div>
+      <button onclick="mostrarQuizzesAlumna()">Mostrar % quizz de la alumna</button>
+      <div id = "quizzesAlumna"></div>
       <div id="graphics">
         <div id="lectures"></div>
         <div id="quizzes"></div>
@@ -54,3 +61,4 @@
 </body>
 
 </html>
+>>>>>>> d3116ad0f36293e13d3d1532c1267d1403c2a582
