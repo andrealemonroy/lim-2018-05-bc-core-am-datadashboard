@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Data Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <p>Hola Heydi!</p>
-    <script src="main.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Montserrat|Open+Sans|Raleway|Righteous|Comfortaa" rel="stylesheet">
+  <title>Data Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>
+      <span id="titleOne">Laboratoria</span>
+      <span id="titleTwo">DASHBOARD</span>
+    </h1>
+  </header>
+  <section>
+    <div id="options">
+      <div id="loginInfo">Alejandra Ramirez</div>
+      <nav>
+        <ul id="x">
+          <li id="dashboard" class="nav">DASHBOARD</li>
+          <ul>
+            <div id="citys">
+              <li>Lima</li>
+              <li>Santiago de Chile</li>
+              <li>Ciudad de México</li>
+              <li>Sao Paulo</li>
+            </div>
+          </ul>
+          <li id="courses" class="nav">COHORTS</li>
+          <li id="cohorts" class="nav">CURSOS</li>
+        </ul>
+      </nav>
+    </div>
+    <div id="info">
+      <select id="promo">
+        <option value="1">2018-1</option>
+        <option value="2">2017-2</option>
+        <option value="3">2017-1</option>
+      </select>
+      <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
+      <div id="studentResult"></div>
+      <div id="graphics">
+        <div id="lectures"></div>
+        <div id="quizzes"></div>
+      </div>
+    </div>
+  </section>
+  <script src="main.js"></script>
+  <script src="data.js"></script>
+</body>
+
 </html>
