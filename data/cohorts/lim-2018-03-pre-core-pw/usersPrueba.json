@@ -1,0 +1,34 @@
+[
+    {
+        "id":"00hJv4mzvqM3D9kBy3dfxoJyFV82",
+        "signupCohort":"lim-2018-03-pre-core-pw",
+        "timezone":"America/Lima",
+        "name":"Lizeth",
+        "locale":"es-ES",
+        "role":"student"
+    },
+    {
+        "id":"04oXrfTxNUbhGtkxNTfw7fhHVgs1",
+        "name":"Devora Alexandra Miñano Vejarano",
+        "locale":"es-PE",
+        "signupCohort":"lim-2018-03-pre-core-pw",
+        "timezone":"America/Lima",
+        "role":"student"
+    },
+    {
+        "id": "07HI1lPZ4XdOhdQkyzBv3CaVMYq2",
+        "timezone": "America/Lima",
+        "name": "monica jimena",
+        "locale": "es-PE",
+        "signupCohort": "lim-2018-03-pre-core-pw",
+        "role": "student"
+    },
+    {
+        "id": "09yoSyUv7IMUUkCV6gm5FUDanLI3",
+        "timezone": "America/Lima",
+        "name": "Vanessa",
+        "locale": "es-PE",
+        "signupCohort": "lim-2018-03-pre-core-pw",
+        "role": "student"
+    }
+]

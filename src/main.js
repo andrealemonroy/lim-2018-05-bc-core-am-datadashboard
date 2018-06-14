@@ -1,70 +1,116 @@
-var resultado = document.getElementById("info");
 
-function ajax_get_json()
-{
+var resulListaAlumnas = document.getElementById("info");
 
-  var xmlhttp =  new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function(){
+function mostrarDatos() {
 
-      if(resultado.innerHTML === ""){
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function () {
 
-        if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
-            var datos = JSON.parse(xmlhttp.responseText);
+    if (resulListaAlumnas.innerHTML === "") {
 
-            for(var i in datos){
-                resultado.innerHTML += datos[i].name + "<hr/>" ;
-            }
+      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        var datos = JSON.parse(xmlhttp.responseText);
+
+        for (var i in datos) {
+          resulListaAlumnas.innerHTML += datos[i].name + "<hr/>";
         }
       }
     }
+  }
 
-    xmlhttp.open("GET","../data/cohorts/lim-2018-03-pre-core-pw/userPrueba.json",true);
-    xmlhttp.send();
+  xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json", true);
+  xmlhttp.send();
 
 }
 
 
 
 
+var percentXAlumna = document.getElementById("PercentAlumna");
 
-  var resultado2 = document.getElementById("info2");
+function mostrarPercentAlumna(){
 
-  function ajax_get_json2(){
+  var id ='00hJv4mzvqM3D9kBy3dfxoJyFV82';
 
-  var xmlhttp =  new XMLHttpRequest();
+  var xmlhttp = new XMLHttpRequest();
 
-  xmlhttp.onreadystatechange = function(){
+  xmlhttp.onreadystatechange = function () {
 
-    if(resultado2.innerHTML === ""){
+    if (percentXAlumna.innerHTML === "") {
 
-      if(xmlhttp.readyState === 4 && xmlhttp.status === 200){
+      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+
+        var dataPercent = JSON.parse(xmlhttp.responseText);
+
+        for(var i in dataPercent){
+
+          var course = dataPercent[i];
+          console.log(course) ;
+          console.log(i);
+          console.log("idAlumna");
+          
+          if (i == id) {
+            percentXAlumna.innerHTML += "<h5>" + i + "</h5>";
+            for (var j in course){
+              percentXAlumna.innerHTML += j + "- percent :" + course[j].percent + "<br/>";
+            }
+
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json", true);
+  xmlhttp.send();
+
+
+  
+}
+
+
+
+var resultadoPercent = document.getElementById("info2");
+
+function mostrarPercent() {
+
+  var xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.onreadystatechange = function () {
+
+    if (resultadoPercent.innerHTML === "") {
+
+      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 
         var data = JSON.parse(xmlhttp.responseText);
-        var promPercentCurso = 0 ;
-        var w = 0 ;
+        var promPercentCurso = 0;
+        var w = 0;
 
-        for (var i in data){
+        for (var i in data) {
 
-          resultado2.innerHTML += "<h5>" + i + "</h5>" ;
+          resultadoPercent.innerHTML += "<h5>" + i + "</h5>";
 
           var course = data[i];
-          var percentCourse=[];
+          var percentCourse = [];
 
-          for(var j in course){
+          for (var j in course) {
 
-            resultado2.innerHTML += j + "- percent :" + course[j].percent + "<br/>";
+            resultadoPercent.innerHTML += j + "- percent :" + course[j].percent + "<br/>";
 
             percentCourse.push(course[j].percent);
-            promPercentCurso = promPercentCurso+ course[j].percent ;
+            promPercentCurso = promPercentCurso + course[j].percent;
 
           }
 
-          w=w+1;
+          w = w + 1;
 
-          }
+        }
 
-          rpta = promPercentCurso/w;
-          console.log(rpta);
+        rpta = promPercentCurso / w;
+        console.log(rpta);
 
       }
 
@@ -73,8 +119,8 @@ function ajax_get_json()
   }
 
   // xmlhttp.open("GET","progress.json",true);
-  xmlhttp.open("GET","../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json",true);
+  xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json", true);
 
   xmlhttp.send();
 
-  }
+}
