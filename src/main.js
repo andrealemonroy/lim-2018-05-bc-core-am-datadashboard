@@ -1,5 +1,6 @@
-var resulListaAlumnas = document.getElementById("info");
-function mostrarDatos() {
+var resulListaAlumnas = document.getElementById("listStudent");
+
+document.getElementById('mostrarDatos').addEventListener('click', () => {
 
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
@@ -19,13 +20,13 @@ function mostrarDatos() {
   xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json", true);
   xmlhttp.send();
 
-}
+});
 
 var resultadoPercent = document.getElementById("info2");
-function mostrarPercent() {
+
+document.getElementById('mostrarPercent').addEventListener('click', () => {
 
   var xmlhttp = new XMLHttpRequest();
-
   xmlhttp.onreadystatechange = function () {
 
     if (resultadoPercent.innerHTML === "") {
@@ -60,22 +61,16 @@ function mostrarPercent() {
         console.log(rpta);
 
       }
-
     }
-
   }
-
-  // xmlhttp.open("GET","progress.json",true);
   xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json", true);
-
   xmlhttp.send();
 
-}
+});
+var percentXAlumna=document.getElementById('percentAlumna')
+document.getElementById('mostrarPercentAlumna').addEventListener('click', () => {
 
-var percentXAlumna = document.getElementById("PercentAlumna");
-function mostrarPercentAlumna(){
-
-  var id ='00hJv4mzvqM3D9kBy3dfxoJyFV82';
+  var id = '00hJv4mzvqM3D9kBy3dfxoJyFV82';
 
   var xmlhttp = new XMLHttpRequest();
 
@@ -87,13 +82,13 @@ function mostrarPercentAlumna(){
 
         var dataPercent = JSON.parse(xmlhttp.responseText);
 
-        for(var i in dataPercent){
+        for (var i in dataPercent) {
 
           var course = dataPercent[i];
-          
+
           if (i == id) {
             percentXAlumna.innerHTML += "<h5>" + i + "</h5>";
-            for (var j in course){
+            for (var j in course) {
               percentXAlumna.innerHTML += j + "- percent :" + course[j].percent + "<br/>";
             }
 
@@ -109,14 +104,10 @@ function mostrarPercentAlumna(){
   xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json", true);
   xmlhttp.send();
 
+});
 
-  
-}
-
-var  resultadoQuizzesAlumna= document.getElementById("quizzesAlumna");
-function mostrarQuizzesAlumna(){
-
-  var id ='00hJv4mzvqM3D9kBy3dfxoJyFV82';
+var resultadoQuizzesAlumna = document.getElementById("quizzesAlumna");
+function mostrarQuizzesAlumna(callback) {
 
   var xmlhttp = new XMLHttpRequest();
 
@@ -128,19 +119,7 @@ function mostrarQuizzesAlumna(){
 
         var data = JSON.parse(xmlhttp.responseText);
 
-        for(var i in data){
-
-          var coursesByStudent = data[i];
-
-          if (i == id) {
-            resultadoQuizzesAlumna.innerHTML += "<h5>" + i + "</h5>";
-            for (var j in coursesByStudent ){
-              resultadoQuizzesAlumna.innerHTML += " percent :" + coursesByStudent[j].percent + "<br/>";
-              console.log(coursesByStudent[j])
-            }
-          }
-
-        }
+        callback(null, data);
 
       }
 
@@ -151,16 +130,31 @@ function mostrarQuizzesAlumna(){
   xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json", true);
   xmlhttp.send();
 
-
-  
 }
 
-document.getElementById('dashboard').addEventListener('click', () =>{
-    let citys = document.getElementById('citys').style.display;
-    if (citys=='none'){
-        document.getElementById('citys').style.display='block';
-    }
-    else document.getElementById('citys').style.display='none';
+document.getElementById('dashboard').addEventListener('click', () => {
+  let citys = document.getElementById('citys').style.display;
+  if (citys == 'none') {
+    document.getElementById('citys').style.display = 'block';
+  }
+  else document.getElementById('citys').style.display = 'none';
 });
 
-
+function mostrarQuizzesAlumna2(){
+  mostrarQuizzesAlumna((err, data) => {
+    const id='00hJv4mzvqM3D9kBy3dfxoJyFV82';
+    const scores = [];
+    Object.keys(data[id]).map((topic) => {
+      Object.keys(data[id][topic].units).map((leccion) => {
+        Object.keys(data[id][topic].units[leccion].parts).map((lectura) => {
+          if (data[id][topic].units[leccion].parts[lectura].hasOwnProperty('score')) {
+            scores.push(data[id][topic].units[leccion].parts[lectura].score)
+          }
+        });
+      });
+    });
+    const promedio = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+    console.log(promedio);
+  })
+};
+document.getElementById('mostrarQuizzesAlumna2').addEventListener('click', mostrarQuizzesAlumna2);

@@ -7,7 +7,6 @@
   <title>Data Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
   <header>
     <h1>
@@ -42,13 +41,17 @@
       </select>
       <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
       <div id="studentResult"></div>
-      <button onclick="mostrarDatos()">Mostrar Datos</button>
-      <div id = "info"></div>
-      <button onclick="mostrarPercent()">Mostrar % Curso general</button>
+      <button id="mostrarDatos">Mostrar Datos</button>
+      <div id = "listStudent"></div>
+      <button id="mostrarPercent">Mostrar % Curso general</button>
       <div id = "info2"></div>
-      <button onclick="mostrarPercentAlumna()">Mostrar percent de la alumna</button>
-      <div id = "PercentAlumna"></div>
-      <button onclick="mostrarQuizzesAlumna()">Mostrar % quizz de la alumna</button>
+      <button id="mostrarPercentAlumna">Mostrar percent de la alumna</button>
+      <div id = "percentAlumna"></div>
+
+      <!-- <button onclick="mostrarQuizzesAlumna2('00hJv4mzvqM3D9kBy3dfxoJyFV82')">Mostrar % quizz de la alumna</button>
+      <div id = "quizzesAlumna"></div> -->
+
+      <button id="mostrarQuizzesAlumna2">Mostrar % quizz de la alumna</button>
       <div id = "quizzesAlumna"></div>
       <div id="graphics">
         <div id="lectures"></div>
@@ -59,6 +62,4 @@
   <script src="main.js"></script>
   <script src="data.js"></script>
 </body>
-
 </html>
->>>>>>> d3116ad0f36293e13d3d1532c1267d1403c2a582
