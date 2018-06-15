@@ -1,7 +1,18 @@
-var resulListaAlumnas = document.getElementById("listStudent");
+document.getElementById('lima').addEventListener('click', ()=>{
+  let info=document.getElementById('info');
+  let head2=document.getElementById('dash')
+  info.style.display='block';
+  head2.style.display='block';
+  citys.style.display='none';
+})
 
 document.getElementById('mostrarDatos').addEventListener('click', () => {
-
+  var resulListaAlumnas = document.getElementById("listStudent");
+  let listStudentStyle = document.getElementById('listStudent').style.display;
+  if (listStudentStyle == 'none') {
+    document.getElementById('listStudent').style.display = 'block';
+  }
+  else document.getElementById('listStudent').style.display = 'none';
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
 
@@ -16,15 +27,18 @@ document.getElementById('mostrarDatos').addEventListener('click', () => {
       }
     }
   }
-
   xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json", true);
   xmlhttp.send();
 
 });
 
 var resultadoPercent = document.getElementById("info2");
-
 document.getElementById('mostrarPercent').addEventListener('click', () => {
+  let info2Style = document.getElementById('info2').style.display;
+  if (info2Style == 'none') {
+    document.getElementById('info2').style.display = 'block';
+  }
+  else document.getElementById('info2').style.display = 'none';
 
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
@@ -46,10 +60,10 @@ document.getElementById('mostrarPercent').addEventListener('click', () => {
 
           for (var j in course) {
 
-            resultadoPercent.innerHTML += j + "- percent :" + course[j].percent + "<br/>";
+            resultadoPercent.innerHTML += j + "- percent :" + course[j].percent + "<br/>"+ "<hr/>";
 
             percentCourse.push(course[j].percent);
-            promPercentCurso = promPercentCurso + course[j].percent;
+            promPercentCurso = promPercentCurso + course[j].percent+ "<hr/>";
 
           }
 
@@ -67,9 +81,14 @@ document.getElementById('mostrarPercent').addEventListener('click', () => {
   xmlhttp.send();
 
 });
+
 var percentXAlumna=document.getElementById('percentAlumna')
 document.getElementById('mostrarPercentAlumna').addEventListener('click', () => {
-
+  let percentXAlumnaStyle = document.getElementById('percentAlumna').style.display;
+  if (percentXAlumnaStyle == 'none') {
+    document.getElementById('percentAlumna').style.display = 'block';
+  }
+  else document.getElementById('percentAlumna').style.display = 'none';
   var id = '00hJv4mzvqM3D9kBy3dfxoJyFV82';
 
   var xmlhttp = new XMLHttpRequest();
@@ -141,6 +160,11 @@ document.getElementById('dashboard').addEventListener('click', () => {
 });
 
 function mostrarQuizzesAlumna2(){
+  let quizAlumna = document.getElementById('quizzesAlumna').style.display;
+  if (quizAlumna == 'none') {
+    document.getElementById('quizzesAlumna').style.display = 'block';
+  }
+  else document.getElementById('quizzesAlumna').style.display = 'none';
   mostrarQuizzesAlumna((err, data) => {
     const id='00hJv4mzvqM3D9kBy3dfxoJyFV82';
     const scores = [];
@@ -154,7 +178,7 @@ function mostrarQuizzesAlumna2(){
       });
     });
     const promedio = scores.reduce((sum, score) => sum + score, 0) / scores.length;
-    console.log(promedio);
+    document.getElementById('quizzesAlumna').innerHTML=promedio;
   })
 };
 document.getElementById('mostrarQuizzesAlumna2').addEventListener('click', mostrarQuizzesAlumna2);
