@@ -1,6 +1,6 @@
-# Data Dashboard
-
-## Preámbulo
+# Dashboard Laboratoria
+![1er tablero_Scrum](https://fotos.subefotos.com/52021480abcf8acf57db2c3071b0bc57o.png)
+## Preámbulo :
 
 En Laboratoria, las Training Managers (TMs) hacen un gran trabajo al analizar la
 mayor cantidad de datos posibles respecto al progreso de las estudiantes para
@@ -14,15 +14,122 @@ de aprendizaje (lecturas, videos, ejercicios y quizzes) en un sistema que
 llamamos LMS (Learning Management System). El LMS acumula data sobre quién
 leyó qué, qué ejercicios se han completado, los resultados de los quizzes, etc.
 
-A pesar de que la data de progreso del LMS (ej. lecturas leídas, ejercicios
-  completados, nota en quizzes, etc.) no impacta directamente en la evaluación
-  de una estudiante, sí es una pieza de información relevante que las TMs
-  quisieran visualizar para tener un mejor entendimiento de cómo va cada
-  estudiante en su proceso de aprendizaje.
+A pesar de que la data de progreso del LMS (ej. lecturas leídas, ejercicios completados, nota en quizzes, etc.) no impacta directamente en la evaluación de una estudiante, sí es una pieza de información relevante que las TMs quisieran visualizar para tener un mejor entendimiento de cómo va cada estudiante en su proceso de aprendizaje.
 
-Así, el reto de este proyecto es crear una interfaz donde las TMs puedan
+## Problema entregado:
+Crear una interfaz donde las TMs puedan
 _ver_ y _usar_ la data de progreso del LMS. Para ello, proponemos crear un
 **data dashboard** (_tablero de visualización de datos_).
+
+
+
+
+## User Experience Design
+
+### 1) Definición del producto
+
+ A) Pasos
+
+ Reunion de todo el SQUAR **CodeLikeAGirl** para entender el problema presentado.
+ 
+* Hacer el Tablero SCRUM 
+
+     1er Sprint
+
+![1er tablero_Scrum](https://fotos.subefotos.com/18038e4ff6d548572acb77ecbccdf558o.jpg)
+
+
+<!-- * Planificación mediante TRELLO -->
+
+* Diseñar del 1er Prototipo (Baja Fidelidad)
+
+      SCKETCH USANDO PAPEL Y LAPICERO 
+
+![Vista de inicio de boton Dashboard](https://fotos.subefotos.com/a24c6367087fe67bd06b13b7003e39b8o.jpg)
+
+
+* Diseñar del 1er Prototipo (fish)
+ 
+
+      VISTA CUANDO INGRESAMOS A DASHBOARD
+
+
+![Vista de inicio de boton Dashboard](https://fotos.subefotos.com/f28a643efdfaa33c5066d0def3c7ad76o.jpg)
+
+![DashboardMañana](https://fotos.subefotos.com/ebb2f54654ae866cff972b5770f7e0e3o.jpg)
+
+      VISTA CUANDO VISUALIZAMOS EL DASHBOARD DE UNA ALUMNA EN ESPECIFICO
+![DashboarAlumna](https://fotos.subefotos.com/c990fa6c3dda2735b76f32f58534b1edo.jpg)
+
+* Diseñar las preguntas de la entrevista y ENTREVISTAR a Alejandra Ramirez (TM Lima) - Presentación de nuestro 1er prototipo
+
+* Maquetar la pagina con respecto a los requerimientos de la TM Alejandra 
+
+
+B) Quiénes son los principales usuarios de producto ?
+
+* Las Training Manager de todas las sedes de Laboratoria y tambien cualuier mienbro del equipo de Laboratoria que requiera de la información del Dashboard de las alumnnas.
+
+C) Cuáles son los objetivos de estos usuarios en relación con el producto ?
+
+* Poder visualizar de manera sencilla los porcentajes de manera global e individual de las alumnas de un cierto cohort.
+
+* Acceder a la informacion de todos los Cohort de cualquier sede .
+
+D) Cuáles son los datos más relevantes que quieren ver en la interfaz y por qué ? , Cómo los descubriste ?
+
+* % De culminacion de los cursos y promedios de los Quiz :
+
+  De un cohort en general
+
+  De un cohort por turnos
+
+  De una alumna en especifico
+
+* % De culminacion y promedios de los Quiz  de un curso en Especifico
+
+* Lista de Alumnas de un Cohort en Especifico.
+
+Todos los datos anteriores se descubrieron mediante la entrevista ; ya que gracias a esos datos es que ellos pueden tomar desiciones de mejora.
+
+E) Cuándo revisan normalmente estos datos los usuarios ?
+
+* La revision se hace en momentos primordiales como :
+
+  Mitad de cada Proyecto
+
+  Fin de cada Proyecto
+
+  Termino del BOOTCAMP
+
+  Cada que se vea Necesario
+
+F) Cómo crees que el producto les está resolviendo sus problemas?
+
+
+* Informacion detallada y ordenada del avance de cada alumna y de todo un cohort (Por turnos).
+
+* Acceso a un cohort en especifico.
+
+* Uso de la informacion para toma de Desiciones.
+
+
+## Autoras
+
+* **Heydy Carrasco** 
+
+  Lista de mis [Proyectos](https://github.com/HeydyCH?tab=repositories).
+
+* **Andrea Monroy** 
+
+  Lista de mis [Proyectos](https://github.com/andrealemonroy?tab=repositories).
+
+
+------------------------------------------------------------------
+--------------------------------------------------------------
+-------------------------------------------------------------
+-----
+
 
 ## Introducción
 
@@ -39,15 +146,6 @@ que les permiten entender mejor su negocio y tomar decisiones apropiadas.
 En este proyecto tendrás tu primer acercamiento a transformar data en
 información creando tu primer **data dashboard**.
 
-Si pensamos en un _dashboard_ podemos pensar en el tablero de control de un auto
-o el de un avión. Un espacio desde el cual un usuario puede tener acceso a la
-información y controles más relevantes, en este caso, del vehículo que está
-utilizando. El _dashboard_ de un auto le permite a quien conduce saber a qué
-velocidad está yendo, qué cambio/velocidad está utilizando, cuánto combustible
-tiene disponible, cuál es la temperatura del motor, cuántas revoluciones por
-minuto dan las ruedas, cuánta distancia ha recorrido, etc.
-
-![car dashboard](https://img.buzzfeed.com/buzzfeed-static/static/2017-02/7/12/enhanced/buzzfeed-prod-fastlane-03/original-17515-1486490056-3.jpg?crop=2041:1068;80,248)
 
 ## Aplicaciones en el mundo real
 
@@ -70,6 +168,11 @@ Seguramente, a lo largo de tu carrera como diseñadora o desarrolladora, te
 tocará crear un _data dashboard_. Quizás sea para visualizar la data de un
 negocio de delivery de comida, o las rutas históricas de un negocio de
 transporte, o simplemente los indicadores clave de tu propio emprendimiento ;)
+
+
+
+
+
 
 ## Objetivos de aprendizaje
 
