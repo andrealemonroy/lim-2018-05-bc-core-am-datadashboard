@@ -11,10 +11,12 @@
   <header>
     <h1>
       <span id="titleOne">Laboratoria</span>
-      <span id="titleTwo">DASHBOARD</span>
+      <span id="titleTwo"><span id="dash">DASHBOARD</span></span>
     </h1>
   </header>
+
   <section>
+
     <div id="options">
       <div id="loginInfo">Alejandra Ramirez</div>
       <nav>
@@ -22,7 +24,7 @@
           <li id="dashboard" class="nav">DASHBOARD</li>
           <ul>
             <div id="citys">
-              <li>Lima</li>
+              <li id="lima">Lima</li>
               <li>Santiago de Chile</li>
               <li>Ciudad de México</li>
               <li>Sao Paulo</li>
@@ -33,25 +35,28 @@
         </ul>
       </nav>
     </div>
+
     <div id="info">
+
       <select id="promo">
         <option value="1">2018-1</option>
         <option value="2">2017-2</option>
         <option value="3">2017-1</option>
       </select>
+
       <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
       <div id="studentResult"></div>
-      <button id="mostrarDatos">Mostrar Datos</button>
+      <button class="align" id="mostrarDatos">ESTUDIANTES</button>
       <div id = "listStudent"></div>
-      <button id="mostrarPercent">Mostrar % Curso general</button>
+      <button class="align" id="mostrarPercent">COMPLETITUD GENERAL</button>
       <div id = "info2"></div>
-      <button id="mostrarPercentAlumna">Mostrar percent de la alumna</button>
-      <div id = "percentAlumna"></div>
+      <button class="align" id="mostrarPercentAlumna">COMPLETITUD POR ALUMNA</button>
+      <div  id = "percentAlumna"></div>
 
       <!-- <button onclick="mostrarQuizzesAlumna2('00hJv4mzvqM3D9kBy3dfxoJyFV82')">Mostrar % quizz de la alumna</button>
       <div id = "quizzesAlumna"></div> -->
 
-      <button id="mostrarQuizzesAlumna2">Mostrar % quizz de la alumna</button>
+      <button class="align" id="mostrarQuizzesAlumna2">QUIZ POR ALUMNA</button>
       <div id = "quizzesAlumna"></div>
       <div id="graphics">
         <div id="lectures"></div>
