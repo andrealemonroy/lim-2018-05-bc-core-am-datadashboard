@@ -1,184 +1,146 @@
-document.getElementById('lima').addEventListener('click', ()=>{
-  let info=document.getElementById('info');
-  let head2=document.getElementById('dash')
-  info.style.display='block';
-  head2.style.display='block';
-  citys.style.display='none';
+document.getElementById('lima').addEventListener('click', () => {
+  let info = document.getElementById('info');
+  let head2 = document.getElementById('dash')
+  info.style.display = 'block';
+  head2.style.display = 'block';
+  citys.style.display = 'none';
 })
 
-document.getElementById('mostrarDatos').addEventListener('click', () => {
-  var resulListaAlumnas = document.getElementById("listStudent");
-  let listStudentStyle = document.getElementById('listStudent').style.display;
-  if (listStudentStyle == 'none') {
-    document.getElementById('listStudent').style.display = 'block';
-  }
-  else document.getElementById('listStudent').style.display = 'none';
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function () {
-
-    if (resulListaAlumnas.innerHTML === "") {
-
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        var datos = JSON.parse(xmlhttp.responseText);
-
-        for (var i in datos) {
-          resulListaAlumnas.innerHTML += datos[i].name + "<hr/>";
-        }
-      }
+// Función para hacer las conexiones  XHR 
+const getData = (url, callback) => {
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var data = JSON.parse(xhr.responseText);
+      callback(null, data);
     }
   }
-  xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json", true);
-  xmlhttp.send();
-
-});
-
-var resultadoPercent = document.getElementById("info2");
-document.getElementById('mostrarPercent').addEventListener('click', () => {
-  let info2Style = document.getElementById('info2').style.display;
-  if (info2Style == 'none') {
-    document.getElementById('info2').style.display = 'block';
-  }
-  else document.getElementById('info2').style.display = 'none';
-
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function () {
-
-    if (resultadoPercent.innerHTML === "") {
-
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-
-        var data = JSON.parse(xmlhttp.responseText);
-        var promPercentCurso = 0;
-        var w = 0;
-
-        for (var i in data) {
-
-          resultadoPercent.innerHTML += "<h5>" + i + "</h5>";
-
-          var course = data[i];
-          var percentCourse = [];
-
-          for (var j in course) {
-
-            resultadoPercent.innerHTML += j + "- percent :" + course[j].percent + "<br/>"+ "<hr/>";
-
-            percentCourse.push(course[j].percent);
-            promPercentCurso = promPercentCurso + course[j].percent+ "<hr/>";
-
-          }
-
-          w = w + 1;
-
-        }
-
-        rpta = promPercentCurso / w;
-        console.log(rpta);
-
-      }
-    }
-  }
-  xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json", true);
-  xmlhttp.send();
-
-});
-
-var percentXAlumna=document.getElementById('percentAlumna')
-document.getElementById('mostrarPercentAlumna').addEventListener('click', () => {
-  let percentXAlumnaStyle = document.getElementById('percentAlumna').style.display;
-  if (percentXAlumnaStyle == 'none') {
-    document.getElementById('percentAlumna').style.display = 'block';
-  }
-  else document.getElementById('percentAlumna').style.display = 'none';
-  var id = '00hJv4mzvqM3D9kBy3dfxoJyFV82';
-
-  var xmlhttp = new XMLHttpRequest();
-
-  xmlhttp.onreadystatechange = function () {
-
-    if (percentXAlumna.innerHTML === "") {
-
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-
-        var dataPercent = JSON.parse(xmlhttp.responseText);
-
-        for (var i in dataPercent) {
-
-          var course = dataPercent[i];
-
-          if (i == id) {
-            percentXAlumna.innerHTML += "<h5>" + i + "</h5>";
-            for (var j in course) {
-              percentXAlumna.innerHTML += j + "- percent :" + course[j].percent + "<br/>";
-            }
-
-          }
-        }
-
-      }
-
-    }
-
-  }
-
-  xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json", true);
-  xmlhttp.send();
-
-});
-
-var resultadoQuizzesAlumna = document.getElementById("quizzesAlumna");
-function mostrarQuizzesAlumna(callback) {
-
-  var xmlhttp = new XMLHttpRequest();
-
-  xmlhttp.onreadystatechange = function () {
-
-    if (resultadoQuizzesAlumna.innerHTML === "") {
-
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-
-        var data = JSON.parse(xmlhttp.responseText);
-
-        callback(null, data);
-
-      }
-
-    }
-
-  }
-
-  xmlhttp.open("GET", "../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json", true);
-  xmlhttp.send();
-
+  xhr.send();
 }
 
+// Función para obtener los datos de todas las estudiantes y listarlos
+getStudents = () => {
+  getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json', (err, data) => {
+    let resulListsAlumnas = document.getElementById("listStudents");
+    let listStudentsStyle = document.getElementById('listStudents').style.display;
+    if (listStudentsStyle == 'block') {
+      document.getElementById('listStudents').style.display = 'none';
+    } else {
+      if (resulListsAlumnas.innerHTML === "") {
+        for (var i in data) {
+          resulListsAlumnas.innerHTML += data[i].name + "<hr/>";
+        }
+      }
+      document.getElementById('listStudents').style.display = 'block';
+    }
+  });
+}
+
+// Función para mostrar el % de todos los cursos aprendidos de todos las estudiantes
+getPercent = () => {
+  getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
+    let resulPercentAlumnas = document.getElementById('percentStudents');
+    let percentStudentsStyle = document.getElementById('percentStudents').style.display;
+    if (percentStudentsStyle == 'block') {
+      document.getElementById('percentStudents').style.display = 'none';
+    }
+    else {
+      if (resulPercentAlumnas.innerHTML === "") {
+        var promPercentCourse = 0;
+        var w = 0;
+        for (var i in data) {
+          resulPercentAlumnas.innerHTML += "<h5>" + i + "</h5>";
+          var course = data[i];
+          var percentCourse = [];
+          for (var j in course) {
+            resulPercentAlumnas.innerHTML += j + "- percent :" + course[j].percent + "<br/>" + "<hr/>";
+            percentCourse.push(course[j].percent);
+            promPercentCourse = promPercentCourse + course[j].percent + "<hr/>";
+          }
+          w = w + 1;
+        }
+      }
+      document.getElementById('percentStudents').style.display = 'block';
+    }
+  });
+}
+
+// Función para mostrar el % de todos los cursos aprendidos por Alumna
+getPercentByStudent = () => {
+  getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
+    let resulPercentByAlumna = document.getElementById('percentByStudent');
+    let percentByStudentStyle = document.getElementById('percentByStudent').style.display;
+    let id = '00hJv4mzvqM3D9kBy3dfxoJyFV82';
+    if (percentByStudentStyle == 'block') {
+      document.getElementById('percentByStudent').style.display = 'none';
+    } else {
+      if (resulPercentByAlumna.innerHTML === "") {
+        for (var i in data) {
+          let course = data[i];
+          if (i == id) {
+            resulPercentByAlumna.innerHTML += "<h5>" + i + "</h5>";
+            for (var j in course) {
+              resulPercentByAlumna.innerHTML += j + "- percent :" + course[j].percent + "<br/>";
+            }
+          }
+        }
+      }
+      document.getElementById('percentByStudent').style.display = 'block';
+    }
+  });
+}
+
+getQuizByStudent = () => {
+  getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
+
+    let resultQuizByAlumna = document.getElementById("quizByStudent"); 
+    let quizByStudentStyle = document.getElementById('quizByStudent').style.display;
+
+    // let id = '00hJv4mzvqM3D9kBy3dfxoJyFV82';
+
+    if (quizByStudentStyle == 'block') {
+      document.getElementById('quizByStudent').style.display = 'none';
+    } else {
+      if (resultQuizByAlumna.innerHTML === "") {
+
+        const id = '00hJv4mzvqM3D9kBy3dfxoJyFV82';
+        const scores = [];
+
+        let courses = data[id];
+        let units = data[id][topic].units
+        let parts_units = data[id][topic].units[leccion].parts ;
+
+        Object.keys(courses).map((topic) => {
+          Object.keys(units).map((leccion) => {
+            Object.keys(parts_units).map((lectura) => {
+              if (parts_units[lectura].hasOwnProperty('score')) {
+                scores.push(parts_unit[lectura].score)
+              }
+            });
+          });
+        });
+        const promedio = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+        document.getElementById('quizByStudent').innerHTML = promedio;
+
+      }
+      document.getElementById('quizByStudent').style.display = 'block';
+    }
+  });
+}
+
+document.getElementById('mostrarDatos').addEventListener('click', getStudents);
+document.getElementById('mostrarPercent').addEventListener('click', getPercent);
+document.getElementById('mostrarPercentAlumna').addEventListener('click', getPercentByStudent);
+document.getElementById('mostrarQuizzesAlumna').addEventListener('click', getQuizByStudent);
+
+// Función para mostrar lista de dashboard
 document.getElementById('dashboard').addEventListener('click', () => {
   let citys = document.getElementById('citys').style.display;
-  if (citys == 'none') {
+  if (citys == 'block') {
+    document.getElementById('citys').style.display = 'none';
+  }
+  else {
     document.getElementById('citys').style.display = 'block';
   }
-  else document.getElementById('citys').style.display = 'none';
 });
-
-function mostrarQuizzesAlumna2(){
-  let quizAlumna = document.getElementById('quizzesAlumna').style.display;
-  if (quizAlumna == 'none') {
-    document.getElementById('quizzesAlumna').style.display = 'block';
-  }
-  else document.getElementById('quizzesAlumna').style.display = 'none';
-  mostrarQuizzesAlumna((err, data) => {
-    const id='00hJv4mzvqM3D9kBy3dfxoJyFV82';
-    const scores = [];
-    Object.keys(data[id]).map((topic) => {
-      Object.keys(data[id][topic].units).map((leccion) => {
-        Object.keys(data[id][topic].units[leccion].parts).map((lectura) => {
-          if (data[id][topic].units[leccion].parts[lectura].hasOwnProperty('score')) {
-            scores.push(data[id][topic].units[leccion].parts[lectura].score)
-          }
-        });
-      });
-    });
-    const promedio = scores.reduce((sum, score) => sum + score, 0) / scores.length;
-    document.getElementById('quizzesAlumna').innerHTML=promedio;
-  })
-};
-document.getElementById('mostrarQuizzesAlumna2').addEventListener('click', mostrarQuizzesAlumna2);
