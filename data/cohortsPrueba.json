@@ -1,0 +1,58 @@
+[
+    {
+        "id": "aqp-2018-03-jp-core-talento",
+        "start": "2018-03-28",
+        "coursesIndex": {},
+        "end": "2018-04-30",
+        "usersCount": 7
+    },
+    {
+        "id": "cdmx-2016-01-bc-core-egresadas20161bootcamp",
+        "end": "2016-06-30",
+        "usersCount": 30,
+        "start": "2016-01-01",
+        "coursesIndex": {
+            "basic-programming": {
+                "title": "Programación básica"
+            },
+            "interactive-site": {
+                "title": "Creando un sitio web interactivo con JavaScript"
+            },
+            "spa": {
+                "title": "Construye una Single Page App (SPA) multi-usuario consumiendo data remota"
+            },
+            "intro": {
+                "title": "Introducción a la programación (con JavaScript)"
+            }
+        }
+    },
+    {
+        "id": "gdl-2018-03-bc-js-front-end-developer",
+        "usersCount": 38,
+        "start": "2018-03-05",
+        "coursesIndex": {
+            "intro": {
+                "title": "Introducción a la programación (con JavaScript)"
+            },
+            "basic-programming": {
+                "title": "Programación básica"
+            },
+            "interactive-site": {
+                "title": "Creando un sitio web interactivo con JavaScript"
+            }
+        },
+        "end": "2018-08-15"
+    },
+    {
+        "id": "lim-2018-03-pre-core-pw",
+        "usersCount": 740,
+        "publicAdmission": true,
+        "start": "2018-03-13",
+        "coursesIndex": {
+            "intro": {
+                "title": "Introducción a la programación (con JavaScript)"
+            }
+        },
+        "end": "2018-03-31"
+    }
+]

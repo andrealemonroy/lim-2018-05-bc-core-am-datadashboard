@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Montserrat|Open+Sans|Raleway|Righteous|Comfortaa" rel="stylesheet">
-  <title>Data Dashboard</title>
+  <title> Data Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -46,18 +46,22 @@
 
       <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
       <div id="studentResult"></div>
-      <button class="align" id="mostrarDatos">ESTUDIANTES</button>
-      <div id = "listStudent"></div>
+
+      <button class="align" id="mostrarDatos">LISTA DE ESTUDIANTES</button>
+      <div id = "listStudents"></div>
+
       <button class="align" id="mostrarPercent">COMPLETITUD GENERAL</button>
-      <div id = "info2"></div>
+      <div id = "percentStudents"></div>
+
+      
       <button class="align" id="mostrarPercentAlumna">COMPLETITUD POR ALUMNA</button>
-      <div  id = "percentAlumna"></div>
+      <div  id = "percentByStudent"></div>
 
       <!-- <button onclick="mostrarQuizzesAlumna2('00hJv4mzvqM3D9kBy3dfxoJyFV82')">Mostrar % quizz de la alumna</button>
       <div id = "quizzesAlumna"></div> -->
 
-      <button class="align" id="mostrarQuizzesAlumna2">QUIZ POR ALUMNA</button>
-      <div id = "quizzesAlumna"></div>
+      <button class="align" id="mostrarQuizzesAlumna">QUIZ POR ALUMNA</button>
+      <div id = "quizByStudent"></div>
       <div id="graphics">
         <div id="lectures"></div>
         <div id="quizzes"></div>
