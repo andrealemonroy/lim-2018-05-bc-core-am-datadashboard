@@ -94,7 +94,7 @@ getPercentByStudent = () => {
 getQuizByStudent = () => {
   getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
 
-    let resultQuizByAlumna = document.getElementById("quizByStudent"); 
+    let resultQuizByAlumna = document.getElementById("quizByStudent");
     let quizByStudentStyle = document.getElementById('quizByStudent').style.display;
 
     // let id = '00hJv4mzvqM3D9kBy3dfxoJyFV82';
@@ -108,13 +108,13 @@ getQuizByStudent = () => {
         const scores = [];
 
         let courses = data[id];
-        let units = data[id][topic].units
-        let parts_units = data[id][topic].units[leccion].parts ;
 
         Object.keys(courses).map((topic) => {
-          Object.keys(units).map((leccion) => {
-            Object.keys(parts_units).map((lectura) => {
-              if (parts_units[lectura].hasOwnProperty('score')) {
+          let unit = data[id][topic].units;
+          Object.keys(unit).map((leccion) => {
+            let parts_unit = data[id][topic].units[leccion].parts;
+            Object.keys(parts_unit).map((lectura) => {
+              if (parts_unit[lectura].hasOwnProperty('score')) {
                 scores.push(parts_unit[lectura].score)
               }
             });
@@ -129,11 +129,50 @@ getQuizByStudent = () => {
   });
 }
 
+getExercisesByStudent = () => {
+  getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
+    let resultExerciseByStudent = document.getElementById("resultExerciseByStudent")
+    let resultTwo = document.getElementById("resultNo")
+    if (resultExerciseByStudent.innerHTML === "") {
+      let scores = [];
+      for (var id in data) {
+        let course = data[id];
+          Object.keys(course).map((topic) => {
+            let unit = data[id][topic].units;
+            Object.keys(unit).map((leccion) => {
+              let parts_unit = data[id][topic].units[leccion].parts;
+              Object.keys(parts_unit).map((lectura) => {
+                if (parts_unit[lectura].hasOwnProperty('exercises')) {
+                  let exercises = data[id][topic].units[leccion].parts[lectura].exercises;
+                  Object.keys(exercises).map((complete) => {
+                    if (exercises[complete].hasOwnProperty('completed')) {
+                      scores.push(exercises[complete].completed) ;
+                      // console.log(id + " - " + scores);
+                    }
+                  })
+                  console.log(id + " - " + scores);
+                }
+              })
+            })
+          })
+          // if (scores>0){
+          //   resultExerciseByStudent.innerHTML=id+"sí hizo!"
+          // }
+          // else{
+          //   resultExerciseByStudent.innerHTML=id+"no hizo!"
+          // }
+          console.log("---------------------------");
+          scores = [] ;
+        }
+      }
+  })
+}
+
 document.getElementById('mostrarDatos').addEventListener('click', getStudents);
 document.getElementById('mostrarPercent').addEventListener('click', getPercent);
 document.getElementById('mostrarPercentAlumna').addEventListener('click', getPercentByStudent);
 document.getElementById('mostrarQuizzesAlumna').addEventListener('click', getQuizByStudent);
-
+document.getElementById('exercisesByStudent').addEventListener('click', getExercisesByStudent);
 // Función para mostrar lista de dashboard
 document.getElementById('dashboard').addEventListener('click', () => {
   let citys = document.getElementById('citys').style.display;
@@ -144,3 +183,4 @@ document.getElementById('dashboard').addEventListener('click', () => {
     document.getElementById('citys').style.display = 'block';
   }
 });
+
