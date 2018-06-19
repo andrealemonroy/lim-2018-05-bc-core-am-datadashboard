@@ -17,6 +17,7 @@ const getData = (url, callback) => {
     }
   }
   xhr.send();
+}
 
 // Función para obtener los datos de todas las estudiantes y listarlos
 getStudents = () => {
@@ -108,21 +109,12 @@ getQuizByStudent = () => {
         const scores = [];
 
         let courses = data[id];
-<<<<<<< HEAD
         Object.keys(courses).map((topic) => {
           let unit = data[id][topic].units;
           Object.keys(unit).map((leccion) => {
             let parts_unit = data[id][topic].units[leccion].parts ;
             Object.keys(parts_unit).map((lectura) => {
               
-=======
-
-        Object.keys(courses).map((topic) => {
-          let unit = data[id][topic].units;
-          Object.keys(unit).map((leccion) => {
-            let parts_unit = data[id][topic].units[leccion].parts;
-            Object.keys(parts_unit).map((lectura) => {
->>>>>>> 71645ed1defe91df623b9f2ab724ce2b37ced785
               if (parts_unit[lectura].hasOwnProperty('score')) {
                 scores.push(parts_unit[lectura].score)
               }
