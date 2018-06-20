@@ -14,11 +14,11 @@
       <span id="titleTwo"><span id="dash">DASHBOARD</span></span>
     </h1>
   </header>
-
   <section>
-
     <div id="options">
+      <img id="imgUser" src="https://fotos.subefotos.com/42a631acc3f5c4f673e1004fa6855de1o.jpg" alt="Foto_alejandra"  >
       <div id="loginInfo">Alejandra Ramirez</div>
+      <span id="ocupationUser">TM</span>
       <nav>
         <ul id="x">
           <li id="dashboard" class="nav">DASHBOARD</li>
@@ -30,8 +30,8 @@
               <li>Sao Paulo</li>
             </div>
           </ul>
-          <li id="courses" class="nav">COHORTS</li>
-          <li id="cohorts" class="nav">CURSOS</li>
+          <li id="cohorts" class="nav">COHORTS</li>
+          <li id="courses" class="nav">CURSOS</li>
         </ul>
       </nav>
     </div>
@@ -44,8 +44,8 @@
         <option value="3">2017-1</option>
       </select>
 
-      <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
-      <div id="studentResult"></div>
+      <!-- <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
+      <div id="studentResult"></div> -->
 
       <button class="align" id="mostrarDatos">LISTA DE ESTUDIANTES</button>
       <div id = "listStudents"></div>
@@ -53,18 +53,50 @@
       <button class="align" id="mostrarPercent">COMPLETITUD GENERAL</button>
       <div id = "percentStudents"></div>
 
-      
       <button class="align" id="mostrarPercentAlumna">COMPLETITUD POR ALUMNA</button>
       <div  id = "percentByStudent"></div>
 
-      <!-- <button onclick="mostrarQuizzesAlumna2('00hJv4mzvqM3D9kBy3dfxoJyFV82')">Mostrar % quizz de la alumna</button>
-      <div id = "quizzesAlumna"></div> -->
       <button class="align" id="exercisesByStudent">EXERCISES</button>
       <div id="resultExerciseByStudent"></div>
       <div id="resultNo"></div>
 
       <button class="align" id="mostrarQuizzesAlumna">QUIZ POR ALUMNA</button>
       <div id = "quizByStudent"></div>
+
+      <button class="align" id="mostrar">muestra</button>
+      <div id = "prueba"></div>
+
+      <!-- <button class="align" id="mostrar2">prueba</button>
+      <div id = "prueba2"></div> -->
+
+      <div id = "prueba3"></div>
+
+      <div class="images_desp">
+        <figure>
+            <center><label for="" class="titulo">Exercises</label></center>
+            <!-- <a href=""><img src="imagen2.png" alt=""></a> -->
+            <img src="imagen2.png" alt="">
+            <hr><p>El porcentaje es : </p><hr>
+            <center><a href="prueba2.html">Ver Detalles</a></center>
+            <button class="align" id="mostrar2">prueba</button>
+        </figure>
+        <figure>
+            <center><label for="" class="titulo">Quiz</label></center>
+            <a href=""><img src="imagen2.png" alt=""></a>
+            <hr><p>El porcentaje es : </p><hr>
+        </figure>
+        <figure>
+            <center><label for="" class="titulo">Lectura</label></center>
+            <a href=""><img src="imagen2.png" alt=""></a>
+            <hr><p>El porcentaje es : </p><hr>
+          </figure>
+        <figure>
+              <center><label for="" class="titulo">Lectura</label></center>
+              <a href=""><img src="imagen2.png" alt=""></a>
+              <hr><p>El porcentaje es : </p><hr>
+        </figure>
+      </div>
+      <div id = "prueba2"></div>
       <div id="graphics">
         <div id="lectures"></div>
         <div id="quizzes"></div>

@@ -1,7 +1,9 @@
+/* Encabezado */
 
 header {
     overflow: hidden;
 }
+
 h1{
     width:100%;
     position: relative;
@@ -20,6 +22,7 @@ h1{
     height:3.1vh;
 
 }
+
 #titleTwo{
     width:76%;
     height:3.1vh;
@@ -36,14 +39,35 @@ h1{
     display:none;
 }
 
- #options{
+/*  >> SECTION */
+
+/* Division de Nombre y Ocupacion de User */
+
+#options{
     width:20%;
     height:30vh;
     font-family:Righteous;
     text-align: left;
     position: static;
     float: left;
-} 
+}
+
+#imgUser{
+     width:30px;
+     height:30px;
+     border-radius: 50% ;
+     margin: 10px 0px 10px 5px;
+}
+
+#loginInfo , #ocupationUser{
+    background-color:#ffffff;
+    float:left;
+    width:90%;
+    padding: 5%;
+}
+
+/* Division de botones */
+
 #courses, #cohorts, #dashboard{
     background-color: #f1f1f1;
     font-size:1.5vw;
@@ -51,27 +75,25 @@ h1{
     height: 30%;
     padding:5% 0;
     text-align: center;
-
 }
+
 ul li:hover {background: #555;}
-
-#loginInfo{
-    background-color:#ffffff;
-    float:left;
-    width:90%;
-    padding: 5%;
-}
 
 #citys{
     display:none;
-
 }
+
 ul{
     list-style-type: none;
     margin:0;
     padding:0;
-
 }
+
+
+/* ------- Pantalla que ira cambiando ----------  */
+
+/* Desplegable de promociones Laboratoria*/
+
 #info{
     width:80%;
     height:100%;
@@ -79,19 +101,21 @@ ul{
     float:right;
     display:none;
 }
-.align{
-    float: unset;
-    width:20%;
-    text-align:center;
-    display:block;
-}
+
 #promo{
     width:10%;
     margin:1%;
 }
-#student{
-    width:20%;
+
+/* Botones */
+
+.align{
+    float: unset;
+    width:50%;
+    text-align:center;
+    display:block;
 }
+
 button {
     transition-duration: 0.4s;
     background-color: #ffffff;
@@ -100,11 +124,44 @@ button {
     font-family: Raleway;
     font-size:1vw;
     margin-top:1vh;
-    
-
 }
 
 button:hover {
     background-color: rgb(248, 205, 126);
     color: white;
+}
+
+/* #student{
+    width:20%;
+} */
+
+
+/* Css de los graficos  */
+
+.images_desp{
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+}
+
+.images_desp figure{
+    margin: 0px 20px;
+    width: 20%;
+    padding: 15px;
+    border: 1px solid rgb(161, 161, 161);
+    border-radius: 3px;
+
+}
+
+.images_desp figure img{
+    height: 200px;
+    width: 100%;
+    margin:0 auto;
+}
+
+.titulo{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 25px;
+    text-align:center;
 }
