@@ -232,11 +232,8 @@ document.getElementById('mostrarDatos').addEventListener('click', getStudents);
 document.getElementById('mostrarPercent').addEventListener('click', getPercent);
 document.getElementById('mostrarPercentAlumna').addEventListener('click', getPercentByStudent);
 document.getElementById('mostrarQuizzesAlumna').addEventListener('click', getQuizByStudent);
-
 document.getElementById('mostrar').addEventListener('click', getPrueba);
 document.getElementById('mostrar2').addEventListener('click', getPrueba2);
-
-
 document.getElementById('exercisesByStudent').addEventListener('click', getExercisesByStudent);
 
 // Función para mostrar lista de dashboard
