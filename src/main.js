@@ -1,8 +1,10 @@
 document.getElementById('lima').addEventListener('click', () => {
   let info = document.getElementById('info');
-  let head2 = document.getElementById('dash')
+  let head2 = document.getElementById('dash');
+  let cohort = document.getElementById('cohortsH')
   info.style.display = 'block';
   head2.style.display = 'block';
+  cohort.style.display = 'block';
   citys.style.display = 'none';
 })
 
@@ -164,6 +166,7 @@ getPrueba = () => {
 
 getPrueba2 = () => {
 
+ 
   getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json', (err, dataUsers) => {
 
     getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, dataProgress) =>{
@@ -173,14 +176,12 @@ getPrueba2 = () => {
       // users = dataUsers ;
       // progress = dataProgress ;
 
-      courses = "andrea";
+      courses = "";
       let resultprueba3 = document.getElementById('prueba3'); 
 
       let result = computeUsersStats(dataUsers, dataProgress, courses);
 
       resultprueba3.innerHTML = "<h5>" + result + "</h5>";
-
-
 
     });
 
@@ -189,6 +190,7 @@ getPrueba2 = () => {
 }
 
 getExercisesByStudent = () => {
+
   getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
     let resultExerciseByStudent = document.getElementById("resultExerciseByStudent")
     let resultTwo = document.getElementById("resultNo")
@@ -228,13 +230,18 @@ getExercisesByStudent = () => {
 }
 
 
-document.getElementById('mostrarDatos').addEventListener('click', getStudents);
-document.getElementById('mostrarPercent').addEventListener('click', getPercent);
-document.getElementById('mostrarPercentAlumna').addEventListener('click', getPercentByStudent);
-document.getElementById('mostrarQuizzesAlumna').addEventListener('click', getQuizByStudent);
-document.getElementById('mostrar').addEventListener('click', getPrueba);
-document.getElementById('mostrar2').addEventListener('click', getPrueba2);
-document.getElementById('exercisesByStudent').addEventListener('click', getExercisesByStudent);
+// document.getElementById('mostrarDatos').addEventListener('click', getStudents);
+// document.getElementById('mostrarPercent').addEventListener('click', getPercent);
+// document.getElementById('mostrarPercentAlumna').addEventListener('click', getPercentByStudent);
+// document.getElementById('mostrarQuizzesAlumna').addEventListener('click', getQuizByStudent);
+// document.getElementById('mostrar').addEventListener('click', getPrueba);
+document.getElementById('mostrar2').addEventListener('click', ()=>{
+  getPrueba2();
+  let imageCircle = document.getElementById('imageCircle');
+    imageCircle.style.display='none';
+});
+
+// document.getElementById('exercisesByStudent').addEventListener('click', getExercisesByStudent);
 
 // Función para mostrar lista de dashboard
 document.getElementById('dashboard').addEventListener('click', () => {

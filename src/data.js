@@ -21,8 +21,9 @@ window.computeUsersStats = (users, progress, courses) => {
         }
         document.getElementById('prueba2').style.display = 'block';
     }
-    resu= " // " + courses ;
+    resu= courses ;
     return resu ;
+    
 }
 
 window.sortUsers = (users, orderBy, orderDirection) => {
