@@ -433,7 +433,7 @@
             "percent": 100
         }
     },
-    "D7C3l9HJWEXIuK2gD58LlEIHNE33": {
+    "D7C3l9HJWEXIuK2gD58LlEIHNE33": { 
         "intro": {
             "percent": 100,
             "totalDuration": 465,
@@ -578,6 +578,151 @@
             "completedUnits": 3,
             "completedDuration": 465,
             "totalUnits": 3
+        }
+    },
+    "vZdgUsguQbOz0g8TOQPLIVoLwX22": {
+        "intro": {
+            "units": {
+                "01-introduction": {
+                    "completedDuration": 90,
+                    "percent": 100,
+                    "parts": {
+                        "02-why-learn-to-code": {
+                            "duration": 20,
+                            "completed": 1,
+                            "type": "read",
+                            "completedAt": "2018-03-25T00:40:53.664Z"
+                        },
+                        "01-growth-mindset": {
+                            "type": "read",
+                            "completedAt": "2018-03-25T00:28:47.464Z",
+                            "duration": 20,
+                            "completed": 1
+                        },
+                        "00-welcome-and-orientation": {
+                            "type": "read",
+                            "completedAt": "2018-03-25T00:10:23.557Z",
+                            "duration": 10,
+                            "completed": 1
+                        },
+                        "04-quiz": {
+                            "duration": 20,
+                            "completed": 1,
+                            "score": 90,
+                            "type": "quiz",
+                            "completedAt": "2018-03-25T01:27:35.721Z"
+                        },
+                        "03-your-first-website": {
+                            "duration": 20,
+                            "completed": 1,
+                            "type": "read",
+                            "completedAt": "2018-03-25T01:09:07.871Z"
+                        }
+                    },
+                    "totalParts": 5,
+                    "completedParts": 5,
+                    "totalDuration": 90
+                },
+                "03-ux-design": {
+                    "parts": {
+                        "01-ux-design": {
+                            "type": "read",
+                            "completedAt": "2018-03-31T19:55:21.286Z",
+                            "duration": 15,
+                            "completed": 1
+                        },
+                        "03-quiz": {
+                            "score": 63,
+                            "type": "quiz",
+                            "completedAt": "2018-04-03T04:22:37.592Z",
+                            "duration": 30,
+                            "completed": 1
+                        },
+                        "00-development-team": {
+                            "type": "read",
+                            "completedAt": "2018-03-31T19:55:08.305Z",
+                            "duration": 15,
+                            "completed": 1
+                        },
+                        "02-ux-design-vs-ui-design": {
+                            "duration": 30,
+                            "completed": 1,
+                            "type": "read",
+                            "completedAt": "2018-03-31T20:02:57.287Z"
+                        }
+                    },
+                    "totalParts": 4,
+                    "completedParts": 4,
+                    "totalDuration": 90,
+                    "completedDuration": 90,
+                    "percent": 100
+                },
+                "02-variables-and-data-types": {
+                    "percent": 93,
+                    "parts": {
+                        "01-variables": {
+                            "duration": 60,
+                            "completed": 1,
+                            "type": "read",
+                            "completedAt": "2018-03-27T23:01:29.485Z"
+                        },
+                        "02-self-learning-MDN": {
+                            "type": "read",
+                            "completedAt": "2018-03-28T00:22:41.691Z",
+                            "duration": 30,
+                            "completed": 1
+                        },
+                        "03-comments": {
+                            "duration": 15,
+                            "completed": 1,
+                            "type": "read",
+                            "completedAt": "2018-03-28T12:11:25.407Z"
+                        },
+                        "06-exercises": {
+                            "duration": 30,
+                            "completed": 0.5,
+                            "exercises": {
+                                "01-coin-convert": {
+                                    "completed": 0
+                                },
+                                "02-restaurant-bill": {
+                                    "completedAt": "2018-04-03T22:29:01.795Z",
+                                    "completed": 1
+                                }
+                            },
+                            "type": "practice"
+                        },
+                        "00-values-data-types-and-operators": {
+                            "type": "read",
+                            "completedAt": "2018-03-26T18:03:46.996Z",
+                            "duration": 60,
+                            "completed": 1
+                        },
+                        "05-quiz": {
+                            "score": 42,
+                            "type": "quiz",
+                            "completedAt": "2018-03-31T19:10:01.197Z",
+                            "duration": 30,
+                            "completed": 1
+                        },
+                        "04-guided-exercises": {
+                            "type": "practice",
+                            "completedAt": "2018-03-30T15:18:06.688Z",
+                            "duration": 60,
+                            "completed": 1
+                        }
+                    },
+                    "totalParts": 7,
+                    "completedParts": 6.5,
+                    "totalDuration": 285,
+                    "completedDuration": 270
+                }
+            },
+            "completedUnits": 2.93,
+            "completedDuration": 450,
+            "totalUnits": 3,
+            "percent": 98,
+            "totalDuration": 465
         }
     },
     "09yoSyUv7IMUUkCV6gm5FUDanLI3": {

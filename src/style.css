@@ -94,6 +94,16 @@ ul{
 
 /* Desplegable de promociones Laboratoria*/
 
+#options{
+    width:20%;
+    height:30vh;
+    font-family:Righteous;
+    text-align: left;
+    position: static;
+    float: left;
+}
+
+
 #info{
     width:80%;
     height:100%;
@@ -165,3 +175,24 @@ button:hover {
     font-size: 25px;
     text-align:center;
 }
+
+
+.tableauStudents{
+    height: 120px;
+    width: 100%;
+    }
+    
+    .listStudents{
+    height: 100px;
+    width: 64%;
+    float:left;
+    margin:2% ;
+    margin: 2% 2% 2% 4% ;
+    }
+    
+    .averageExercises{
+    height: 100px;
+    width: 24%;
+    float:left;
+    margin: 2% 4% 2% 2% ;
+    }

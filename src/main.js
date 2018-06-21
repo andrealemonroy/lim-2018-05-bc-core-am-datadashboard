@@ -29,7 +29,7 @@ getStudents = () => {
     } else {
       if (resulListsAlumnas.innerHTML === "") {
         for (var i in data) {
-          resulListsAlumnas.innerHTML += data[i].name + "<hr/>";
+          resulListsAlumnas.innerHTML += data[i].name + " -- > " + data[i].role + "<hr/>";
         }
       }
       document.getElementById('listStudents').style.display = 'block';
@@ -39,7 +39,7 @@ getStudents = () => {
 
 // Función para mostrar el % de todos los cursos aprendidos de todos las estudiantes
 getPercent = () => {
-  getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
+  getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, data) => {
     let resulPercentAlumnas = document.getElementById('percentStudents');
     let percentStudentsStyle = document.getElementById('percentStudents').style.display;
 
@@ -179,9 +179,6 @@ getPrueba2 = () => {
       let result = computeUsersStats(dataUsers, dataProgress, courses);
 
       resultprueba3.innerHTML = "<h5>" + result + "</h5>";
-
-
-
     });
 
   });
@@ -191,39 +188,38 @@ getPrueba2 = () => {
 getExercisesByStudent = () => {
   getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
     let resultExerciseByStudent = document.getElementById("resultExerciseByStudent")
-    let resultTwo = document.getElementById("resultNo")
     if (resultExerciseByStudent.innerHTML === "") {
-      let scores = [];
-      for (var id in data) {
-        let course = data[id];
-          Object.keys(course).map((topic) => {
-            let unit = data[id][topic].units;
-            Object.keys(unit).map((leccion) => {
-              let parts_unit = data[id][topic].units[leccion].parts;
-              Object.keys(parts_unit).map((lectura) => {
-                if (parts_unit[lectura].hasOwnProperty('exercises')) {
-                  let exercises = data[id][topic].units[leccion].parts[lectura].exercises;
-                  Object.keys(exercises).map((complete) => {
-                    if (exercises[complete].hasOwnProperty('completed')) {
-                      scores.push(exercises[complete].completed) ;
-                      // console.log(id + " - " + scores);
-                    }
-                  })
-                  console.log(id + " - " + scores);
-                }
+      const exer = [];
+        for (var id in data) {
+          let course = data[id];
+
+          console.log(course);
+          // try {
+            Object.keys(course).map((topic) => {
+              let unit = data[id][topic].units;
+              Object.keys(unit).map((leccion) => {
+                let parts_unit = data[id][topic].units[leccion].parts;
+                Object.keys(parts_unit).map((lectura) => {
+                  if (parts_unit[lectura].hasOwnProperty('exercises')) {
+                    exer.push(data[id][topic].units[leccion].parts[lectura].completed);
+                    console.log(data[id][topic].units[leccion].parts[lectura].completed);
+                  }
+                })
               })
             })
-          })
-          // if (scores>0){
-          //   resultExerciseByStudent.innerHTML=id+"sí hizo!"
+            console.log("---------------------------");
+            
+          // } catch (error) {
+          //   console.log("no se "); 
           // }
-          // else{
-          //   resultExerciseByStudent.innerHTML=id+"no hizo!"
-          // }
-          console.log("---------------------------");
-          scores = [] ;
+          
+
+
         }
-      }
+        const promedio = exer.reduce((sum, exer) => sum + exer, 0) /exer.length;
+        console.log("El promedio de las estudiantes es : " + promedio);
+
+    }
   })
 }
 
