@@ -7,7 +7,7 @@ window.computeUsersStats = (users, progress, courses) => {
         document.getElementById('prueba2').style.display = 'none';
     } else {
         if (resultprueba2.innerHTML === "") {
-            resultprueba2.innerHTML += "<h5>" + "ALUMNAS" + "  PROM EXERCISES" + "<hr/>" + "</h5>";
+            resultprueba2.innerHTML += "<h5>" + "ALUMNAS" + "<hr/>" + "</h5>";
             const exer = [];
             for (var i in dataUsers) {
                 for (var j in dataProgress) {
@@ -16,7 +16,7 @@ window.computeUsersStats = (users, progress, courses) => {
 
                         var course = dataProgress[j];
                         console.log(course);
-                        resultprueba2.innerHTML += dataUsers[i].name ;
+                        // resultprueba2.innerHTML += dataUsers[i].name + "<hr/>"  ;
                         if( dataProgress[j] != undefined ){
                             for (var k in course) {
                                 var a = 0 ;
@@ -32,7 +32,7 @@ window.computeUsersStats = (users, progress, courses) => {
                                                 a = dataProgress[j][topic].units[leccion].parts[lectura].completed;
                                                 exer.push(a); 
                                                 console.log(a);
-                                                resultprueba2.innerHTML += "  su percent es :  " + course[k].percent +
+                                                resultprueba2.innerHTML += dataUsers[i].name + "  su percent es :  " + course[k].percent +
                                                 "  su prom exercises es :  " + a + "<hr/>";
                                
                                             }
@@ -64,8 +64,9 @@ window.computeUsersStats = (users, progress, courses) => {
         }
         document.getElementById('prueba2').style.display = 'block';
     }
-    resu = " // " + courses;
-    return resu;
+    resu= courses ;
+    return resu ;
+    
 }
 
 window.sortUsers = (users, orderBy, orderDirection) => {

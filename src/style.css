@@ -1,47 +1,69 @@
-/* Encabezado */
 
-header {
-    overflow: hidden;
+
+body{
+    margin-left:0;
+    top:0;
 }
 
+/* ENCABEZADO */
+
+header {
+    top:0;
+}
 h1{
     width:100%;
     position: relative;
     margin-top:0;
 }
-
 #titleOne{
     width:16%;
-    background-color:#f1f1f1;
+    background-color:#FFFFFF;
     padding:2%;
-    text-align:center;
-    font-family: Montserrat;
     float:left;
     position:relative;
-    font-size:2vw;
-    height:3.1vh;
+    height:3.5vh;
 
 }
-
+#logoLaboratoria{
+    width:15vw;
+    position: relative;
+    margin-top:0;
+    float:left;
+}
 #titleTwo{
     width:76%;
-    height:3.1vh;
+    height:3.5vh;
     float:right;
-    background-color:rgb(250, 191, 83);
+    background-color:rgb(255, 229, 33);
     padding:2%;
     font-family: Raleway;
     text-align:left;
     position:relative;
     font-size:2vw;
+    
 }
-
-#dash{
+#dash, #cohortsH{
     display:none;
+    
+}
+#dash{
+    width:98%;
+    float:left;
+    position:relative;
+    text-align: left;
+}
+#cohortsH{
+    width:25vw;
+    float:right;
+    text-align: right;
+    margin-top:0;
+    padding:0;
+    position: relative;
 }
 
-/*  >> SECTION */
+/*  SECTION */
 
-/* Division de Nombre y Ocupacion de User */
+/* >> Division OPTIONS */
 
 #options{
     width:20%;
@@ -51,38 +73,42 @@ h1{
     position: static;
     float: left;
 }
+#loginInfo{
 
-#imgUser{
-     width:30px;
-     height:30px;
-     border-radius: 50% ;
-     margin: 10px 0px 10px 5px;
+    padding:5vh 0;
+    margin-right:3vw;
+    margin-left:1vw;
+    font-size:1vw;
 }
-
-#loginInfo , #ocupationUser{
-    background-color:#ffffff;
+#imgUser {
+    border-radius: 6vw 10vh;
+    width: 4.4vw;
+    height:8vh;
     float:left;
-    width:90%;
-    padding: 5%;
+    margin-left:1vw;
 }
-
-/* Division de botones */
-
+#loginName{
+    background-color:#ffffff;
+    float:right;
+}
+nav{
+    margin-top:9vh;;
+}
+#courses:hover{background:rgb(255,229,33);}
+#cohorts:hover{background:rgb(255,229,33);}
+#dashboard:hover{background:rgb(255,229,33);}
 #courses, #cohorts, #dashboard{
     background-color: #f1f1f1;
     font-size:1.5vw;
     width:100%;
-    height: 30%;
-    padding:5% 0;
+    padding:2vh 0;
+    margin-top:1vh;
     text-align: center;
 }
-
 ul li:hover {background: #555;}
-
 #citys{
     display:none;
 }
-
 ul{
     list-style-type: none;
     margin:0;
@@ -91,18 +117,7 @@ ul{
 
 
 /* ------- Pantalla que ira cambiando ----------  */
-
-/* Desplegable de promociones Laboratoria*/
-
-#options{
-    width:20%;
-    height:30vh;
-    font-family:Righteous;
-    text-align: left;
-    position: static;
-    float: left;
-}
-
+/* Division INFO */
 
 #info{
     width:80%;
@@ -110,21 +125,68 @@ ul{
     text-align: left;
     float:right;
     display:none;
+    margin-bottom: 2%;
 }
 
-#promo{
+/* #promo{
     width:10%;
     margin:1%;
+} */
+
+/* #student{
+    width:20%;
+} */
+
+
+/* Css de los graficos  */
+
+#imageCircle{
+    position: absolute;
+    margin:1vh;
+    margin-bottom:3%;
+    margin-left: 22%;
+    margin-top:3%;
+    width:80%;
 }
+
+.titulo{
+    font-family: Montserrat;
+    font-weight: bold;
+    position:relative;
+}
+
+#graphic{
+    width:280px;
+    height:280px;
+
+}
+#mostrar2{
+    font-family: Righteous;
+    font-size:bold;
+    height:2vh;
+    display:block;
+    color:#161616;
+    background-color:#FFFFFF;
+    width:7vw;
+    height:4vh;
+    float:right;
+    border-color:rgb(250, 224, 26);
+}
+
 
 /* Botones */
 
-.align{
-    float: unset;
-    width:50%;
+/* #buttons{
+    display:none;
+    align-content: center;
+} */
+
+/* .align{
+    width:20%;
     text-align:center;
     display:block;
-}
+    position: relative;
+} */
 
 button {
     transition-duration: 0.4s;
@@ -136,53 +198,28 @@ button {
     margin-top:1vh;
 }
 
-button:hover {
-    background-color: rgb(248, 205, 126);
-    color: white;
+#resultTitle{
+    position: relative;
+    font-family: Righteous;
 }
 
-/* #student{
-    width:20%;
-} */
-
-
-/* Css de los graficos  */
-
-.images_desp{
-    display: flex;
-    justify-content: space-around;
-    margin: 40px 0;
+#prueba2{
+    position: absolute;
 }
 
-.images_desp figure{
-    margin: 0px 20px;
-    width: 20%;
-    padding: 15px;
-    border: 1px solid rgb(161, 161, 161);
-    border-radius: 3px;
-
+#promExercises{
+    position: absolute;
 }
 
-.images_desp figure img{
-    height: 200px;
-    width: 100%;
-    margin:0 auto;
-}
+/* Tabla de lista de estudiantes */
 
-.titulo{
-    font-family: Montserrat;
-    font-weight: bold;
-    font-size: 25px;
-    text-align:center;
-}
-
-
-.tableauStudents{
+#tableauStudents{
     height: 120px;
     width: 100%;
-    }
+    /* position: absolute; */
+}
     
-    .listStudents{
+.listStudents{
     height: 100px;
     width: 64%;
     float:left;
@@ -190,9 +227,28 @@ button:hover {
     margin: 2% 2% 2% 4% ;
     }
     
-    .averageExercises{
+.averageExercises{
     height: 100px;
     width: 24%;
     float:left;
     margin: 2% 4% 2% 2% ;
-    }
+}
+
+/* Pie de Pagina */
+
+footer {
+    position:fixed;
+    bottom:0;
+    top:94%;
+    width:100%;
+    height:4vh;   /* Height of the footer */
+    background: #000000;
+    text-align: center;
+    text-align-last: center;
+    padding-top:2vh;
+    font-family: Montserrat;
+    color: #ffffff;
+    font-size:80%;
+    margin-left:0;
+
+}
