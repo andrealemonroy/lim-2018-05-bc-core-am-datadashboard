@@ -3,10 +3,17 @@ window.computeUsersStats = (users, progress, courses) => {
     dataProgress = progress;
     let resultprueba2 = document.getElementById('prueba2');
     let prueba2Style = document.getElementById('prueba2').style.display;
+    let resultExercises = document.getElementById('promExercises');
+    let resultTotalExercises = document.getElementById('promTotalExercises');
+    
+
     if (prueba2Style == 'block') {
         document.getElementById('prueba2').style.display = 'none';
+        document.getElementById('promExercises').style.display = 'none';
+
     } else {
         if (resultprueba2.innerHTML === "") {
+            resultExercises.innerHTML = "<h5>" + "PROMEDIO DE EXERCISES" + "<hr/>" + "</h5>";
             resultprueba2.innerHTML += "<h5>" + "ALUMNAS" + "<hr/>" + "</h5>";
             const exer = [];
             for (var i in dataUsers) {
@@ -16,7 +23,7 @@ window.computeUsersStats = (users, progress, courses) => {
 
                         var course = dataProgress[j];
                         console.log(course);
-                        // resultprueba2.innerHTML += dataUsers[i].name + "<hr/>"  ;
+                        resultprueba2.innerHTML += dataUsers[i].name + "<hr/>"  ;
                         if( dataProgress[j] != undefined ){
                             for (var k in course) {
                                 var a = 0 ;
@@ -32,8 +39,9 @@ window.computeUsersStats = (users, progress, courses) => {
                                                 a = dataProgress[j][topic].units[leccion].parts[lectura].completed;
                                                 exer.push(a); 
                                                 console.log(a);
-                                                resultprueba2.innerHTML += dataUsers[i].name + "  su percent es :  " + course[k].percent +
-                                                "  su prom exercises es :  " + a + "<hr/>";
+                                                // resultExercises.innerHTML +=  "  su percent es :  " + course[k].percent +
+                                                // "  su prom exercises es :  " + a + "<hr/>";
+                                                resultExercises.innerHTML += a*100 +"%" + "<hr/>";
                                
                                             }
                                         })
@@ -61,6 +69,7 @@ window.computeUsersStats = (users, progress, courses) => {
             }
             const promedio = exer.reduce((sum, exer) => sum + exer, 0) /exer.length;
             console.log("El promedio de las estudiantes es : " + promedio);
+            resultTotalExercises.innerHTML += "El promedio de las estudiantes es : " + promedio*100 + "%";
         }
         document.getElementById('prueba2').style.display = 'block';
     }
