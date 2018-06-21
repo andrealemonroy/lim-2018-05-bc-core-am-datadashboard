@@ -165,10 +165,7 @@ getPrueba = () => {
 }
 
 getPrueba2 = () => {
-
- 
   getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json', (err, dataUsers) => {
-
     getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, dataProgress) =>{
 
       // let resultprueba2 = document.getElementById('prueba2'); 
@@ -176,12 +173,13 @@ getPrueba2 = () => {
       // users = dataUsers ;
       // progress = dataProgress ;
 
-      courses = "";
-      let resultprueba3 = document.getElementById('prueba3'); 
+      //       courses = "";
+      //       let resultprueba3 = document.getElementById('prueba3'); 
+      // resultprueba3.innerHTML = "<h5>" + result + "</h5>";
 
       let result = computeUsersStats(dataUsers, dataProgress, courses);
 
-      // resultprueba3.innerHTML = "<h5>" + result + "</h5>";
+     
     });
 
   });
