@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
   <header>
     <h1>
       <span id="titleOne">
@@ -20,7 +21,9 @@
       </span>
     </h1>
   </header>
+
   <section>
+
     <div id="options">
       <div id="loginInfo">
         <img id="imgUser" src="https://fotos.subefotos.com/42a631acc3f5c4f673e1004fa6855de1o.jpg" alt="Foto_alejandra">
@@ -56,6 +59,7 @@
 
       <!-- <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
       <div id="studentResult"></div> -->
+
       <!-- <div id="buttons">
         <button class="align" id="mostrarDatos">LISTA DE ESTUDIANTES</button>
         <div id="listStudents"></div>
@@ -76,61 +80,43 @@
         <button class="align" id="mostrar">muestra</button>
         <div id="prueba"></div>
       </div> -->
-      <!-- <button class="align" id="mostrar2">prueba</button>
-      <div id = "prueba2"></div> -->
-
+      
+     
+      
       <!-- <div id="prueba3"></div> -->
 
       <div id="imageCircle">
-        <figure>
-          <center>
-            <label for="" class="titulo">Exercises</label>
-          </center>
-          <img id="graphic" src="chartcircle.png" alt="grafico">
-          <hr>
-          <p id="resultTitle">Porcentaje de alumnas que terminó los ejercicios : </p>
-          <hr>
-          <!-- <center>
-            <a href="prueba2.html">Ver Detalles</a>
-          </center> -->
- 
-          <!-- </figure>
-        <figure>
-          <center>
-            <label for="" class="titulo">Quiz</label>
-          </center>
-          <a href="">
-            <img src="imagen2.png" alt="">
-          </a>
-          <hr>
-          <p>El porcentaje es : </p>
-          <hr>
-        </figure> -->
-          <!-- <figure>
-            <center><label for="" class="titulo">Lectura</label></center>
-            <a href=""><img src="imagen2.png" alt=""></a>
-            <hr><p>El porcentaje es : </p><hr>
+          <figure>
+            <center>
+              <label for="" class="titulo">Exercises</label>
+            </center>
+            <img id="graphic" src="chartcircle.png" alt="grafico">
+            <hr>
+            <p id="resultTitle">Porcentaje de alumnas <br> que terminó los ejercicios : 40 % </p>
+            <hr>
           </figure>
-        <figure>
-              <center><label for="" class="titulo">Lectura</label></center>
-              <a href=""><img src="imagen2.png" alt=""></a>
-              <hr><p>El porcentaje es : </p><hr>
-        </figure> -->
-        <button id="mostrar2">VER DETALLE</button>
+          
       </div>
 
-      <div id="prueba2"></div>
+      <button  id="mostrar2">VER DETALLE</button>
+      <!-- <div id = "prueba2"></div> -->
 
-      <!-- <div id="graphics">
-        <div id="lectures"></div>
-        <div id="quizzes"></div>
-      </div> -->
+      <div class="tableauStudents">
+        <div class="listStudents" id = "prueba2"></div>
+        <div class="averageExercises" id ="promExercises" >
+        </div>
+        <!-- <div style="clear:both"></div> -->
+      </div>
+
     </div>
 
   </section>
+
   <footer>Made By Andrea & Heydy</footer>
+
   <script src="main.js"></script>
   <script src="data.js"></script>
+
 </body>
 
 </html>

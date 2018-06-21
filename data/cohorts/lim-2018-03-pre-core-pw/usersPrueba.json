@@ -35,6 +35,14 @@
         "role": "student"
     },
     {
+        "id": "vZdgUsguQbOz0g8TOQPLIVoLwX22",
+        "signupCohort": "lim-2018-03-pre-core-pw",
+        "timezone": "America/Lima",
+        "name": "Margot Imelda Rivera Baldeón",
+        "locale": "es-PE",
+        "role": "student"
+    },
+    {
         "id": "09yoSyUv7IMUUkCV6gm5FUDanLI3",
         "timezone": "America/Lima",
         "name": "Vanessa",
