@@ -30,6 +30,7 @@ getStudents = () => {
       document.getElementById('listStudents').style.display = 'none';
     } else {
       if (resulListsAlumnas.innerHTML === "") {
+        
         for (var i in data) {
           resulListsAlumnas.innerHTML += data[i].name + " -- > " + data[i].role + "<hr/>";
         }

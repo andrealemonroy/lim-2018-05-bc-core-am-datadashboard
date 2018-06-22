@@ -15,16 +15,18 @@ window.computeUsersStats = (users, progress, courses) => {
         if (resultprueba2.innerHTML === "") {
             resultExercises.innerHTML = "<h5>" + "PROMEDIO DE EXERCISES" + "<hr/>" + "</h5>";
             resultprueba2.innerHTML += "<h5>" + "ALUMNAS" + "<hr/>" + "</h5>";
+           
             const exer = [];
             for (var i in dataUsers) {
                 for (var j in dataProgress) {
 
                     if (dataUsers[i].id === j) {
-
                         var course = dataProgress[j];
                         console.log(course);
+
                         resultprueba2.innerHTML += dataUsers[i].name + "<hr/>"  ;
                         if( dataProgress[j] != undefined ){
+
                             for (var k in course) {
                                 var a = 0 ;
                                  // empieza
@@ -69,7 +71,7 @@ window.computeUsersStats = (users, progress, courses) => {
             }
             const promedio = exer.reduce((sum, exer) => sum + exer, 0) /exer.length;
             console.log("El promedio de las estudiantes es : " + promedio);
-            resultTotalExercises.innerHTML += "El promedio de las estudiantes es : " + promedio*100 + "%";
+            resultTotalExercises.innerHTML += "Promedio de las estudiantes es en ejercicios : " + Math.round(promedio*100) + "%";
         }
         document.getElementById('prueba2').style.display = 'block';
     }
