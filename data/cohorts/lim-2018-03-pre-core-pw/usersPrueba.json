@@ -49,5 +49,29 @@
         "locale": "es-PE",
         "signupCohort": "lim-2018-03-pre-core-pw",
         "role": "student"
-    }
+    },
+{
+    "id": "0B5g5B7K9eWm7CGiyhM3ArTawzA2",
+    "name": "Roxana Faviola Flores Amarillo",
+    "locale": "es-PE",
+    "signupCohort": "lim-2018-03-pre-core-pw",
+    "timezone": "America/Lima",
+    "role": "student"
+},
+{
+    "id": "0CpOhInU40hseRGWHaS4x7ddRRt2",
+    "timezone": "America/Lima",
+    "name": "Andrea Ramirez Matos",
+    "locale": "es-PE",
+    "signupCohort": "lim-2018-03-pre-core-pw",
+    "role": "student"
+},
+{
+    "id": "0cUeUH7z8ASpdYDT7ntMuI28vtf1",
+    "timezone": "America/Lima",
+    "name": "laura jhamely",
+    "locale": "es-PE",
+    "signupCohort": "lim-2018-03-pre-core-pw",
+    "role": "student"
+}
 ]

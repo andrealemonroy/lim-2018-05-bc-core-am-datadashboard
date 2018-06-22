@@ -234,8 +234,11 @@ getExercisesByStudent = () => {
 // document.getElementById('mostrar').addEventListener('click', getPrueba);
 document.getElementById('mostrar2').addEventListener('click', ()=>{
   getPrueba2();
+  let buttonMostrar2=document.getElementById('mostrar2');
   let imageCircle = document.getElementById('imageCircle');
     imageCircle.style.display='none';
+    buttonMostrar2.style.display='none';
+    
 });
 
 // document.getElementById('exercisesByStudent').addEventListener('click', getExercisesByStudent);

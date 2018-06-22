@@ -178,7 +178,7 @@ ul{
     border-color:rgb(250, 224, 26);
     position:fixed;
     margin-left:30vw;
-    bottom:25vh;
+    bottom:20vh;
 }
 
 /* Botones */
@@ -214,7 +214,7 @@ button {
 }
 #infoTitle{
     font-family: Montserrat;
-    font-size: 1,5vw;
+    font-size: 2vw;
     margin-left:3vw;
     margin-top:3vh;
 }
@@ -223,6 +223,7 @@ button {
     font-size:1vw;
     font-family: Montserrat;
     position:relative;
+    font-weight: bold;
 }
 #prueba2 , #promExercises , #promTotalExercises{
     position: absolute;
