@@ -180,7 +180,17 @@ getPrueba2 = () => {
 
       let result = computeUsersStats(dataUsers, dataProgress, courses);
 
+
+
+      console.log(result);
+
+      // getExercisesByStudent();
+
+     let users = dataMerged(dataUsers, dataProgress);
      
+         console.log(users);
+
+         sortUsers(users, 'exercises', 'ASC');
     });
 
   });
@@ -190,39 +200,34 @@ getPrueba2 = () => {
 getExercisesByStudent = () => {
 
   getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, data) => {
-    let resultExerciseByStudent = document.getElementById("resultExerciseByStudent")
-    if (resultExerciseByStudent.innerHTML === "") {
-      const exer = [];
+    // let resultExerciseByStudent = document.getElementById("resultExerciseByStudent")
+    // if (resultExerciseByStudent.innerHTML === "") {
+        var sumNotas = 0;
+        var counter = 0;
         for (var id in data) {
           let course = data[id];
-
-          console.log(course);
           // try {
-            Object.keys(course).map((topic) => {
-              let unit = data[id][topic].units;
-              Object.keys(unit).map((leccion) => {
-                let parts_unit = data[id][topic].units[leccion].parts;
-                Object.keys(parts_unit).map((lectura) => {
-                  if (parts_unit[lectura].hasOwnProperty('exercises')) {
-                    exer.push(data[id][topic].units[leccion].parts[lectura].completed);
-                    console.log(data[id][topic].units[leccion].parts[lectura].completed);
-                  }
-                })
+          Object.keys(course).map((topic) => {
+            let unit = data[id][topic].units;
+            Object.keys(unit).map((leccion) => {
+              let parts_unit = data[id][topic].units[leccion].parts;
+              Object.keys(parts_unit).map((lectura) => {
+                if (parts_unit[lectura].hasOwnProperty('exercises')) {
+                  let sum= data[id][topic].units[leccion].parts[lectura].completed;
+                  sumNotas += Number(sum);
+                  counter ++;
+                }
               })
             })
-            console.log("---------------------------");
+          })
             
           // } catch (error) {
           //   console.log("no se "); 
           // }
-          
-
-
         }
-        const promedio = exer.reduce((sum, exer) => sum + exer, 0) /exer.length;
+        const promedio = sumNotas / counter;
         console.log("El promedio de las estudiantes es : " + promedio);
-
-    }
+    // }
   })
 }
 
