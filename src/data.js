@@ -1,90 +1,155 @@
-window.computeUsersStats = (users, progress, courses) => {
-    dataUsers = users;
-    dataProgress = progress;
-    let resultprueba2 = document.getElementById('prueba2');
-    let prueba2Style = document.getElementById('prueba2').style.display;
-    let resultExercises = document.getElementById('promExercises');
-    let resultTotalExercises = document.getElementById('promTotalExercises');
-    
+window.computerUsersStats = (users, progress, courses) => {
+  
+  const usersWithStats = [];
 
-    if (prueba2Style == 'block') {
-        document.getElementById('prueba2').style.display = 'none';
-        document.getElementById('promExercises').style.display = 'none';
+  getPercentByStudent = (id)=>{
+    let coursePercent = 0 ;
+    for(const i in progress){
+      // if(){
 
-    } else {
-        if (resultprueba2.innerHTML === "") {
-            resultExercises.innerHTML = "<h5>" + "PROMEDIO DE EXERCISES" + "<hr/>" + "</h5>";
-            resultprueba2.innerHTML += "<h5>" + "ALUMNAS" + "<hr/>" + "</h5>";
-           
-            const exer = [];
-            for (var i in dataUsers) {
-                for (var j in dataProgress) {
-
-                    if (dataUsers[i].id === j) {
-                        var course = dataProgress[j];
-                        console.log(course);
-
-                        resultprueba2.innerHTML += dataUsers[i].name + "<hr/>"  ;
-                        if( dataProgress[j] != undefined ){
-
-                            for (var k in course) {
-                                var a = 0 ;
-                                 // empieza
-                                // try {
-                                    // resultprueba2.innerHTML += dataUsers[i].name;
-                                Object.keys(course).map((topic) => {
-                                    let unit = dataProgress[j][topic].units;
-                                    Object.keys(unit).map((leccion) => {
-                                        let parts_unit = dataProgress[j][topic].units[leccion].parts;
-                                        Object.keys(parts_unit).map((lectura) => {
-                                            if (parts_unit[lectura].hasOwnProperty('exercises')) {
-                                                a = dataProgress[j][topic].units[leccion].parts[lectura].completed;
-                                                exer.push(a); 
-                                                console.log(a);
-                                                // resultExercises.innerHTML +=  "  su percent es :  " + course[k].percent +
-                                                // "  su prom exercises es :  " + a + "<hr/>";
-                                                resultExercises.innerHTML += a*100 +"%" + "<hr/>";
-                               
-                                            }
-                                        })
-                                    })
-                                })
-                                console.log("---------------------------");
-    
-                                // } catch (error) {
-                                //   console.log("no se "); 
-                                // }
-    
-    
-                                //Termina
-    
-                            }
-
-                        }else{
-                            resultprueba2.innerHTML += "  su percent es :  " +
-                                                "  su prom exercises es :  " + "<hr/>";
-
-                        }
-                        
-                    }
-                }
-            }
-            const promedio = exer.reduce((sum, exer) => sum + exer, 0) /exer.length;
-            console.log("El promedio de las estudiantes es : " + promedio);
-            resultTotalExercises.innerHTML += "Promedio de las estudiantes es en ejercicios : " + Math.round(promedio*100) + "%";
+      // }
+      let course = progress[i];
+      if(i == id){
+        for (var j in course) {
+           coursePercent = course[j].percent;
         }
-        document.getElementById('prueba2').style.display = 'block';
+      }  
     }
-    resu= courses ;
-    return resu ;
+    return  coursePercent ;
+  }
+
+  getExercisesByStudent = (id)=>{
+    let arrayExercises=[];
+    for(const i in progress){
+      if(i == id){
+        units = Object.keys(progress[i].intro.units);
+        for(let unit of units){
+          parts=Object.keys(progress[i].intro.units[unit].parts);
+          for(let part of parts){
+            if (progress[i].intro.units[unit].parts[part].hasOwnProperty('exercises')) {   
+              exercises=Object.keys(progress[i].intro.units[unit].parts[part].exercises);
+              numberExercises = exercises.length ;
+              percentExercises = progress[i].intro.units[unit].parts[part].completed ;
+              completedExercises =numberExercises*percentExercises ;
+              arrayExercises.push(numberExercises)
+              arrayExercises.push(completedExercises)
+              arrayExercises.push(percentExercises*100)
+
+            }
+          }
+        }
+      }
+    }
+    return arrayExercises
     
+  }
+
+  getQuizzesByStudent = (id) =>{
+    let numberQuizzes = 0 ;
+    let numberQuizzesCompleted = 0 ;
+    const scores = [];
+    let arrayQuizzes=[];
+    for(const i in progress){
+      if(i == id){
+        units = Object.keys(progress[i].intro.units);
+        for(let unit of units){
+          parts=Object.keys(progress[i].intro.units[unit].parts);
+          for(let part of parts){
+            if (progress[i].intro.units[unit].parts[part].type ==="quiz") {  
+              numberQuizzes=numberQuizzes+1;
+              if(progress[i].intro.units[unit].parts[part].score === undefined){
+                progress[i].intro.units[unit].parts[part].score = 0 ;
+                scores.push(progress[i].intro.units[unit].parts[part].score)
+              }else{
+                scores.push(progress[i].intro.units[unit].parts[part].score)
+              }
+              if(progress[i].intro.units[unit].parts[part].completed === 1){
+                numberQuizzesCompleted=numberQuizzesCompleted+1;
+              }
+            }
+          }
+        }
+      }
+    }
+    percentQuizzes =(numberQuizzesCompleted*100)/numberQuizzes ;
+    const sumaScores = scores.reduce((sum, score) => sum + score, 0);
+    const promedioScores = sumaScores / scores.length;
+    arrayQuizzes.push(numberQuizzes);
+    arrayQuizzes.push(numberQuizzesCompleted);
+    arrayQuizzes.push(percentQuizzes);
+    arrayQuizzes.push(sumaScores);
+    arrayQuizzes.push(promedioScores);
+    return arrayQuizzes
+  }
+
+  getReadsByStudent = (id) =>{
+
+    let numberReads = 0 ;
+    let numberReadsCompleted = 0 ;
+    let arrayReads=[];
+    for(const i in progress){
+      if(i == id){
+        units = Object.keys(progress[i].intro.units);
+        for(let unit of units){
+          parts=Object.keys(progress[i].intro.units[unit].parts);
+          for(let part of parts){
+            if (progress[i].intro.units[unit].parts[part].type ==="read") {  
+             numberReads = numberReads +1 ;
+             if(progress[i].intro.units[unit].parts[part].completed == 1){
+              numberReadsCompleted=numberReadsCompleted+1;
+             }
+            }
+          }
+        }
+      }
+    }
+    percentReads = (numberReadsCompleted*100) / numberReads ;
+    arrayReads.push(numberReads);
+    arrayReads.push(numberReadsCompleted);
+    arrayReads.push(percentReads);
+    return arrayReads ;
+
+  }
+
+ console.log("---------------------------------------------")
+
+  for (const i in users) {
+    if (users[i].role == "student") {
+      let objStudent = users[i];
+      objStudent["stats"] = {
+        percent: getPercentByStudent(users[i].id) ,
+        exercises: {
+          total : getExercisesByStudent(users[i].id)[0],
+          completed :getExercisesByStudent(users[i].id)[1],
+          percent: getExercisesByStudent(users[i].id)[2]
+        },
+        reads: {
+          total:getReadsByStudent(users[i].id)[0],
+          completed:getReadsByStudent(users[i].id)[1],
+          percent:getReadsByStudent(users[i].id)[2],
+        },
+        quizzes: {
+          total : getQuizzesByStudent(users[i].id)[0],
+          completed:getQuizzesByStudent(users[i].id)[1],
+          percent:getQuizzesByStudent(users[i].id)[2],
+          scoreSum:getQuizzesByStudent(users[i].id)[3],
+          scoreAvg:getQuizzesByStudent(users[i].id)[4]
+        }
+      };
+      usersWithStats.push(users[i]);
+    } else {
+      console.log(users[i].name + " -- " + users[i].role);
+    }
+  }
+  return usersWithStats
 }
+
 
 window.sortUsers = (users, orderBy, orderDirection) => {
 
 }
 
-window.filterUsers = (users, search) => {
+window.filterUser = (users, search) => {
 
 }
 
