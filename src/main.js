@@ -18,42 +18,6 @@ document.getElementById('lima').addEventListener('click', () => {
   citys.style.display = 'none';
 });
 
-document.getElementById('mostrar2').addEventListener('click', () => {
-  getPrueba2();
-  let imageCircle = document.getElementById('imageCircle');
-  imageCircle.style.display = 'none';
-});
-
-document.getElementById('buttonStart').addEventListener('click', () => {
-
-  const opcion = document.getElementById('fill');
-  const order = document.getElementById('order');
-  const exer = [];
-  let users = dataMerged(dataUsers, dataProgress);
-  let value = opcion.options[opcion.selectedIndex].value;
-  let valueOrder = order.options[order.selectedIndex].value;
-  if (valueOrder == 'ASC') {
-    if (value == 'name') {
-      sortUsers(users, 'name', 'ASC');
-    }
-    else if (value = 'exercises') {
-      sortUsers(users, 'exercises', 'ASC');
-    }
-    else
-      sortUsers(users, 'percent', 'ASC')
-  }
-  else {
-    if (value == 'name') {
-      sortUsers(users, 'name', 'DSC');
-    }
-    else if (value = 'exercises') {
-      sortUsers(users, 'exercises', 'DSC')
-    }
-    else
-      sortUsers(users, 'percent', 'DSC')
-  };
-});
-
 
 // Función para hacer las conexiones  XHR
 const getData = (url, callback) => {
@@ -69,47 +33,81 @@ const getData = (url, callback) => {
 }
 
 
-getArrayUsersStats=() =>{
-  getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json',(err, dataUsers) => {
-    getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json',(err, dataProgress) => {
-      getData('../data/cohortsPrueba.json',(err,dataCohorts)=>{
-        console.log(computerUsersStats(dataUsers,dataProgress,dataCohorts));
-      });  
-    });  
-  }); 
-}
-
-document.getElementById('btnArrayUserStats').addEventListener('click', ()=>{
-  getArrayUsersStats();
-  let btnArrayUserStats=document.getElementById('mostrar2');
-  let imageCircle = document.getElementById('imageCircle');
-    imageCircle.style.display='none';
-    btnArrayUserStats.style.display='none';
-});
-
-
-
-// Función para mostrar lista de dashboard
-document.getElementById('dashboard').addEventListener('click', () => {
-  let citys = document.getElementById('citys').style.display;
-  if (citys == 'block') {
-    document.getElementById('citys').style.display = 'none';
-  }
-  else {
-    document.getElementById('citys').style.display = 'block';
-  }
-});
-getPrueba2 = () => {
+getArrayUsersStats = () => {
   getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json', (err, dataUsers) => {
     getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, dataProgress) => {
-
-      let users = dataMerged(dataUsers, dataProgress);
-
-      sortUsers(users, 'name', 'ASC');
+      getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
+        console.log(computeUsersStats(dataUsers, dataProgress, dataCohorts));
+        const courses = ["intro"];
+        let user = computeUsersStats(dataUsers, dataProgress, courses);
+        sortUsers(user, "name", "ASC");
+      });
     });
-
   });
 }
 
+document.getElementById('btnArrayUserStats').addEventListener('click', () => {
+  getArrayUsersStats();
+  // let imageCircle = document.getElementById('imageCircle');
+  // imageCircle.style.display='none';
+  // btnArrayUserStats.style.display='none';
+});
 
-  
+
+document.getElementById('buttonStart').addEventListener('click', () => {
+  getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json', (err, dataUsers) => {
+    getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, dataProgress) => {
+      getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
+
+        let users = computeUsersStats(dataUsers, dataProgress, courses);
+
+        var i = 0;
+        var countdata = users.length;
+        var strhtml = '';
+        if (countdata > 0) {
+            while (i < countdata) {
+              strhtml += '<tr><td>' + users[i].name + '</td><td>'+ users[i].stats.percent+ '%' +'</td><td>'+ users[i].stats.exercises.percent + '%' +'</td><td>'+ Math.round(users[i].stats.reads.percent)+ '%' + '</td><td>' + Math.round(users[i].stats.quizzes.percent) + '%' +'</td><td>'+ Math.round(users[i].stats.quizzes.scoreAvg) + '</td></tr>'
+                ++i;
+            }
+            
+          document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
+        }
+
+
+
+
+
+
+
+        const opcion = document.getElementById('fill');
+        const order = document.getElementById('order');
+
+        let value = opcion.options[opcion.selectedIndex].value;
+        let valueOrder = order.options[order.selectedIndex].value;
+        if (valueOrder == 'ASC') {
+          if (value == 'name') {
+            sortUsers(users, 'name', 'ASC');
+          }
+          else if (value = 'exercises') {
+            sortUsers(users, 'exercises', 'ASC');
+          }
+          else
+            sortUsers(users, 'percent', 'ASC')
+        }
+        else {
+          if (value == 'name') {
+            sortUsers(users, 'name', 'DSC');
+          }
+          else if (value = 'exercises') {
+            sortUsers(users, 'exercises', 'DSC')
+          }
+          else
+            sortUsers(users, 'percent', 'DSC')
+        };
+
+
+      });
+    });
+  });
+})
+
