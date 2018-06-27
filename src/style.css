@@ -18,7 +18,7 @@ h1{
 }
 #titleOne{
     width:16%;
-    background-color:#FFFFFF;
+    background:#f1f1f1;;
     padding:2%;
     float:left;
     position:relative;
@@ -118,10 +118,6 @@ ul{
     padding:0;
 }
 
-
-/* ------- Pantalla que ira cambiando ----------  */
-/* Division INFO */
-
 #info{
     width:80%;
     height:100%;
@@ -132,28 +128,13 @@ ul{
 
 }
 
-/* #promo{
-    width:10%;
-    margin:1%;
-} */
 
-/* #student{
-    width:20%;
-} */
-
-
-/* Css de los graficos  */
-
-#imageCircle{
-    position: absolute;
-    margin:1vh;
-    margin-bottom:3%;
-    margin-left: 22%;
+.search{
+    float:right;
     margin-top:3%;
-    background-color: #FFFFFF;
-    border-style:solid;
-    padding-bottom:5vh;
+    margin-right:5%;
 }
+
 
 .titulo{
     font-family: Montserrat;
@@ -161,39 +142,6 @@ ul{
     position:relative;
 }
 
-#graphic{
-    width:15vw;
-    height:28vh;
-
-}
-
-#mostrar2{
-    font-family: Righteous;
-    font-size:bold;
-    display:block;
-    color:#161616;
-    background-color:#FFFFFF;
-    width:10vw;
-    height:4vh;
-    border-color:rgb(250, 224, 26);
-    position:fixed;
-    margin-left:30vw;
-    bottom:20vh;
-}
-
-/* Botones */
-
-/* #buttons{
-    display:none;
-    align-content: center;
-} */
-
-/* .align{
-    width:20%;
-    text-align:center;
-    display:block;
-    position: relative;
-} */
 
 button {
     transition-duration: 0.4s;
@@ -205,53 +153,12 @@ button {
     margin-top:1vh;
 }
 
-#resultTitle{
-    position: relative;
-    font-family: Righteous;
-    width:15vw;
-    height:4vh;
-    font-size:1vw;
-}
 #infoTitle{
     font-family: Montserrat;
     font-size: 2vw;
     margin-left:3vw;
     margin-top:3vh;
 }
-#promTotalExercises{
-    margin-left:50%;
-    font-size:1vw;
-    font-family: Montserrat;
-    position:relative;
-    font-weight: bold;
-}
-#prueba2 , #promExercises , #promTotalExercises{
-    position: absolute;
-}
-
-/* Tabla de lista de estudiantes */
-
-#tableauStudents{
-    height: 120px;
-    width: 100%;
-    position: absolute;
-}
-    
-.listStudents{
-    height: 100px;
-    width: 25%;
-    float:left;
-    margin: 2% 2% 2% 4% ;
-}
-    
-.averageExercises{
-    height: 100px;
-    width: 20%;
-    float:left;
-    margin: 2% 4% 2% 35% ;
-}
-
-/* Pie de Pagina */
 
 footer {
     position:fixed;
