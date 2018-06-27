@@ -119,20 +119,19 @@ ul{
 }
 
 #info{
-    width:80%;
+    width:78%;
     height:100%;
     text-align: left;
     float:right;
     display:none;
     margin-bottom: 2%;
+    margin-left:2%;
 
 }
 
 
 .search{
-    float:right;
-    margin-top:3%;
-    margin-right:5%;
+    float:left;
 }
 
 
@@ -141,7 +140,22 @@ ul{
     font-weight: bold;
     position:relative;
 }
+/* 
+#imageCircle{
+    position: absolute;
+    margin:1vh;
+    margin-bottom:3%;
+    margin-left: 22%;
+    margin-top:3%;
+    background-color: #FFFFFF;
+    border-style:solid;
+    padding-bottom:5vh;
+} */
+/* #graphic{
+    width:15vw;
+    height:28vh;
 
+} */
 
 button {
     transition-duration: 0.4s;
@@ -156,7 +170,6 @@ button {
 #infoTitle{
     font-family: Montserrat;
     font-size: 2vw;
-    margin-left:3vw;
     margin-top:3vh;
 }
 
