@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
@@ -7,6 +8,7 @@
   <title> Data Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
     <h1>
@@ -14,11 +16,15 @@
         <img id="logoLaboratoria" src="laboratoria.png" alt="logo_laboratoria">
       </span>
       <span id="titleTwo">
-        <span id="dash">DASHBOARD<span id="cohortsH">lim-2018-03-pre-core-pw</span></span>
+        <span id="dash">DASHBOARD
+          <span id="cohortsH">lim-2018-03-pre-core-pw</span>
+        </span>
       </span>
     </h1>
   </header>
+
   <section>
+
     <div id="options">
       <div id="loginInfo">
         <img id="imgUser" src="https://fotos.subefotos.com/42a631acc3f5c4f673e1004fa6855de1o.jpg" alt="Foto_alejandra">
@@ -27,88 +33,79 @@
           <span>Training Manager</span>
         </div>
       </div>
+
       <nav>
+
         <ul id="x">
+
           <li id="dashboard" class="op">DASHBOARD</li>
+
           <ul>
             <div id="citys">
               <li id="lima">Lima</li>
-              <li>Santiago de Chile</li>
-              <li>Ciudad de México</li>
-              <li>Sao Paulo</li>
+              <li id='santiago'>Santiago de Chile</li>
+              <li id='cdmx'>Ciudad de México</li>
+              <li id='saoPaulo'>Sao Paulo</li>
+
             </div>
           </ul>
+
           <li id="cohorts" class="op">COHORTS</li>
           <li id="courses" class="op">CURSOS</li>
+
         </ul>
+
       </nav>
+
     </div>
+
     <div id="info">
-<p id="infoTitle">General</p>
-      <!-- <select id="promo">
-        <option value="1">2018-1</option>
-        <option value="2">2017-2</option>
-        <option value="3">2017-1</option>
-      </select> -->
-      <!-- <input id="student" type="text" onkeyup="ajax_get_json(event.target)">
-      <div id="studentResult"></div> -->
-      <!-- <div id="buttons">
-        <button class="align" id="mostrarDatos">LISTA DE ESTUDIANTES</button>
-        <div id="listStudents"></div>
-        <button class="align" id="mostrarPercent">COMPLETITUD GENERAL</button>
-        <div id="percentStudents"></div>
-        <button class="align" id="mostrarPercentAlumna">COMPLETITUD POR ALUMNA</button>
-        <div id="percentByStudent"></div>
-        <button class="align" id="exercisesByStudent">EXERCISES</button>
-        <div id="resultExerciseByStudent"></div>
-        <div id="resultNo"></div>
-        <button class="align" id="mostrarQuizzesAlumna">QUIZ POR ALUMNA</button>
-        <div id="quizByStudent"></div>
-        <button class="align" id="mostrar">muestra</button>
-        <div id="prueba"></div>
-      </div> -->
-      
-     
-      
-      <!-- <div id="prueba3"></div> -->
-      <div id="imageCircle">
-          <figure>
-            <center>
-              <label for="" class="titulo">Exercises</label>
-            </center>
-            <img id="graphic" src="chartcircle.png" alt="grafico">
-            <hr>
-            <p id="resultTitle">Promedio de las estudiantes <br> en los ejercicios : 61 % <span id="percent"></span> </p>
-            <hr>
-          </figure>
-          
+
+      <p id="infoTitle">General</p>
+
+      <div class="search">
+        <input type="text" id="txtSearch" placeholder="Busca por nombre...">
+        <div id="results"></div>
       </div>
-      <button  id="mostrar2">VER DETALLE</button>
-      <!-- <div id = "prueba2"></div> -->
-      <!-- <div class="tableauStudents">
-        <div class="averageTotalExercise" id ="promTotalExercises" ></div>
-        <div class="listStudents" id = "prueba2"></div>
-        <div class="averageExercises" id ="promExercises" >
-        <div style="clear:both"></div> -->
-      </div>
-<div style="clear:both"></div>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-       <h4>Resultados xd</h4>
-    <table id="tablaxd">
-      <thead>
-        <th>Nombre</th>
-      </thead>
-      <tbody></tbody>
-    </table>
+
+      <select id="fill" class='tableClass'>
+        <option value="percent">Porcentaje</option>
+        <option value="name">Nombre</option>
+        <option value="exercises">Ejercicios</option>
+      </select>
+
+      <select id="order" class='tableClass'>
+        <option value="DSC">Descendente</option>
+        <option value="ASC" selected>Ascendente</option>
+      </select>
+
+      <input id="buttonStart" class='tableClass' type="button" value="->">
+
+      <button id="mostrar2">VER DETALLE</button>
+
+      <h4>Resultados</h4>
+
+      <table id="table">
+
+        <thead>
+          <th class='tableClass'>Nombre</th>
+          <th class='tableClass'>Avance</th>
+          <th class='tableClass'>Ejercicios</th>
+        </thead>
+
+        <tbody></tbody>
+
+      </table>
+  
     </div>
-    
- <br><br>
- <input type="text" id="txtSearch" placeholder="Busca por nombre...">
- <div id="results"></div>
-   
+
   </section>
+
   <footer>Made By Andrea & Heydy</footer>
+
   <script src="main.js"></script>
   <script src="data.js"></script>
+
 </body>
+
 </html>
