@@ -25,7 +25,7 @@ describe('data', () => {
     it('debería retornar arreglo de usuarios con propiedad stats', () => {
       const processed = computeUsersStats(users, progress, courses);
 
-      assert.equal(users.length, processed.length);
+      assert.equal(users.length - 8, processed.length);
 
       processed.forEach(user => {
         assert.ok(user.hasOwnProperty('stats'));
@@ -58,6 +58,7 @@ describe('data', () => {
           total: 3,
           completed: 2,
           percent: 67,
+          scoreSum: 57,
           scoreAvg: 29,
         });
       });
@@ -74,10 +75,13 @@ describe('data', () => {
 
   });
 
+
   describe('sortUsers(users, orderBy, orderDirection)', () => {
 
-    it('debería retornar arreglo de usuarios ordenado por nombre ASC');
-    it('debería retornar arreglo de usuarios ordenado por nombre DESC');
+    it('debería retornar arreglo de usuarios ordenado por nombre ASC',()=>{
+
+    });
+    it('debería retornar arreglo de usuarios ordenado por nombre DESC')
     it('debería retornar arreglo de usuarios ordenado por porcentaje general ASC');
     it('debería retornar arreglo de usuarios ordenado por porcentaje general DESC');
     it('debería retornar arreglo de usuarios ordenado por ejercicios completados ASC');

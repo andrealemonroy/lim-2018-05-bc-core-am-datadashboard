@@ -9,6 +9,8 @@ document.getElementById('dashboard').addEventListener('click', () => {
 });
 
 document.getElementById('lima').addEventListener('click', () => {
+  sede = "lim" ;
+  console.log(sede);
   let info = document.getElementById('info');
   let head2 = document.getElementById('dash');
   let cohort = document.getElementById('cohortsH')
@@ -17,6 +19,7 @@ document.getElementById('lima').addEventListener('click', () => {
   cohort.style.display = 'block';
   citys.style.display = 'none';
 });
+
 
 
 // Función para hacer las conexiones  XHR
@@ -32,10 +35,9 @@ const getData = (url, callback) => {
   xhr.send();
 }
 
-
 getArrayUsersStats = () => {
-  getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json', (err, dataUsers) => {
-    getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, dataProgress) => {
+  getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
+    getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
       getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
         console.log(computeUsersStats(dataUsers, dataProgress, dataCohorts));
         const courses = ["intro"];
@@ -72,12 +74,6 @@ document.getElementById('buttonStart').addEventListener('click', () => {
             
           document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
         }
-
-
-
-
-
-
 
         const opcion = document.getElementById('fill');
         const order = document.getElementById('order');

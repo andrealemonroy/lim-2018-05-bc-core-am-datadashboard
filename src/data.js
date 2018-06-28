@@ -3,20 +3,15 @@ window.computeUsersStats = (users, progress, courses) => {
   const usersWithStats = [];
 
   getPercentByStudent = (id)=>{
-    let coursePercent = 0 ;
+    let coursePercent = [] ;
     for(const i in progress){
-      let course = progress[i];
-      if(progress[i].hasOwnProperty(courses)){
-        if(i == id){
+      if(i == id){
+      if(progress[i].hasOwnProperty('intro')){
           if(progress[i].intro.hasOwnProperty('percent')){
-            for (var j in course) {
-              coursePercent = course[j].percent;
-            }  
-          }else{
-            coursePercent = 0 
-          } 
-        }
-      } 
+              coursePercent.push(progress[i].intro.percent);
+          }else coursePercent.push(0);
+        }else coursePercent.push(0);
+      }
     }
     return  coursePercent ;
   }
@@ -90,7 +85,11 @@ window.computeUsersStats = (users, progress, courses) => {
             }
             percentQuizzes =(numberQuizzesCompleted*100)/numberQuizzes ;
             sumaScores = scores.reduce((sum, score) => sum + score, 0);
-            promedioScores = sumaScores / numberQuizzesCompleted;
+            if(sumaScores == 0){
+              promedioScores = 0
+            }else{
+              promedioScores = sumaScores / numberQuizzesCompleted;
+            }
           } catch (error) {
             arrayQuizzes.push(numberQuizzes ,numberQuizzesCompleted ,percentQuizzes , sumaScores , promedioScores );
           } 
@@ -143,7 +142,7 @@ window.computeUsersStats = (users, progress, courses) => {
     if (users[i].role == "student") {
       let objStudent = users[i];
       objStudent["stats"] = {
-        percent: getPercentByStudent(users[i].id) ,
+        percent: getPercentByStudent(users[i].id)[0] ,
         exercises: {
           total : getExercisesByStudent(users[i].id)[0],
           completed :getExercisesByStudent(users[i].id)[1],
@@ -164,10 +163,9 @@ window.computeUsersStats = (users, progress, courses) => {
       };
       usersWithStats.push(users[i]);
     } else {
-      // console.log(users[i].name + " -- " + users[i].role);
+    //  console.log(users[i].name + " -- " + users[i].role); 
     }
   }
-
   return usersWithStats ;
 }
 
@@ -229,24 +227,24 @@ window.filterUsers = (users, search) => {
 
 window.processCohortData = (options) => {
 
-  const options = {
-    cohort : [{},{}],
-    cohortData : {
-      users: [{},{}],
-      progress: {},
-    },
-    orderBy: '',
-    orderDirection: 'ASC',
-    search: 'Alejandra'
-  }
-  const processCohortData = (options) => {
-    let estudiantes = computeUsersStats(options.cohortData.users, options.cohortData.progress, courses);
-    estudiantes = sortUsers(estudiantes, options.orderBy, options.orderDirection);
-    if (options.search !== '') {
-      estudiantes = filterUsers(users, search);
-    }
-    return estudiantes;
-  }
+  // const options = {
+  //   cohort : [{},{}],
+  //   cohortData : {
+  //     users: [{},{}],
+  //     progress: {},
+  //   },
+  //   orderBy: '',
+  //   orderDirection: 'ASC',
+  //   search: 'Alejandra'
+  // }
+  // const processCohortData = (options) => {
+  //   let estudiantes = computeUsersStats(options.cohortData.users, options.cohortData.progress, courses);
+  //   estudiantes = sortUsers(estudiantes, options.orderBy, options.orderDirection);
+  //   if (options.search !== '') {
+  //     estudiantes = filterUsers(users, search);
+  //   }
+  //   return estudiantes;
+  // }
 
 }
 
