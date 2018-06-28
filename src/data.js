@@ -155,7 +155,7 @@ window.computeUsersStats = (users, progress, courses) => {
         },
         quizzes: {
           total : getQuizzesByStudent(users[i].id)[0],
-          completed:getQuizzesByStudent(users[i].id)[1],
+          completed: getQuizzesByStudent(users[i].id)[1],
           percent:Math.round(getQuizzesByStudent(users[i].id)[2]),
           scoreSum:Math.round(getQuizzesByStudent(users[i].id)[3]),
           scoreAvg:Math.round(getQuizzesByStudent(users[i].id)[4]),
@@ -171,10 +171,6 @@ window.computeUsersStats = (users, progress, courses) => {
 
 
 window.sortUsers = (users, orderBy, orderDirection) => {
-  console.log(users);
-  console.log(orderBy);
-  console.log(orderDirection);
-
 
   let orden = orderDirection == 'ASC' ? false : true;
 
@@ -198,11 +194,21 @@ window.sortUsers = (users, orderBy, orderDirection) => {
         );
 
     }
-    else if (orderBy == 'complete') {
+    else if (orderBy == 'reads') {
         users.sort(
             by('stats.reads.percent', orden, parseFloat)
         );
 
+    }
+    else if (orderBy == 'quizzes'){
+      users.sort(
+        by('stats.quizzes.percent', orden, parseFloat)
+      );
+    }
+    else if (orderBy == 'quizzesAvg'){
+      users.sort(
+        by('stats.quizzes.scoreAvg', orden, parseFloat)
+      );
     }
 
     var i = 0;
@@ -210,15 +216,11 @@ window.sortUsers = (users, orderBy, orderDirection) => {
         var strhtml = '';
         if (countdata > 0) {
             while (i < countdata) {
-              strhtml += '<tr><td>' + users[i].name + '</td><td>'+ users[i].stats.percent+ '%' +'</td><td>'+ users[i].stats.exercises.percent + '%' +'</td><td>'+ Math.round(users[i].stats.reads.percent)+ '%' + '</td><td>' + Math.round(users[i].stats.quizzes.percent) + '%' +'</td><td>'+ Math.round(users[i].stats.quizzes.scoreAvg) + '</td></tr>'
+              strhtml += '<tr><td>' + users[i].name + '</td><td>'+ users[i].stats.percent + '%' +'</td><td>'+ users[i].stats.exercises.percent + '%' +'</td><td>'+ Math.round(users[i].stats.reads.percent)+ '%' + '</td><td>' + Math.round(users[i].stats.quizzes.percent) + '%' +'</td><td>'+ Math.round(users[i].stats.quizzes.scoreAvg) + '</td></tr>'
                 ++i;
             }
-            
+          }
           document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
-        }
-
-
-
 }
 
 window.filterUsers = (users, search) => {
@@ -262,11 +264,11 @@ window.by = (path, reverse, primer, then) => {
       prime = function (obj) {
           return primer ? primer(get(obj, path)) : get(obj, path);
       };
-  
+
   return function (a, b) {
       var A = prime(a),
           B = prime(b);
-      
+
       return (
           (A < B) ? -1 :
           (A > B) ?  1 :
