@@ -31,7 +31,6 @@ const getData = (url, callback) => {
     xhr.send();
 }
 
-
 getArrayUsersStats = () => {
     getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
         getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
