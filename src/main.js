@@ -33,8 +33,8 @@ const getData = (url, callback) => {
 
 
 getArrayUsersStats = () => {
-    getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json', (err, dataUsers) => {
-        getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, dataProgress) => {
+    getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
+        getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
             getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
                 console.log(computeUsersStats(dataUsers, dataProgress, dataCohorts));
                 const courses = ["intro"];
@@ -54,12 +54,12 @@ document.getElementById('btnArrayUserStats').addEventListener('click', () => {
 
 
 document.getElementById('buttonStart').addEventListener('click', () => {
-    getData('../data/cohorts/lim-2018-03-pre-core-pw/usersPrueba.json', (err, dataUsers) => {
-        getData('../data/cohorts/lim-2018-03-pre-core-pw/progressPrueba.json', (err, dataProgress) => {
+    getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
+        getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
             getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
 
                 let users = computeUsersStats(dataUsers, dataProgress, courses);
-                console.log(users);
+console.log(users)
                 var i = 0;
                 var countdata = users.length;
                 var strhtml = '';
