@@ -229,24 +229,17 @@ window.filterUsers = (users, search) => {
 
 window.processCohortData = (options) => {
 
-  // const options = {
-  //   cohort : [{},{}],
-  //   cohortData : {
-  //     users: [{},{}],
-  //     progress: {},
-  //   },
-  //   orderBy: '',
-  //   orderDirection: 'ASC',
-  //   search: 'Alejandra'
-  // }
-  // const processCohortData = (options) => {
-  //   let estudiantes = computeUsersStats(options.cohortData.users, options.cohortData.progress, courses);
-  //   estudiantes = sortUsers(estudiantes, options.orderBy, options.orderDirection);
-  //   if (options.search !== '') {
-  //     estudiantes = filterUsers(users, search);
-  //   }
-  //   return estudiantes;
-  // }
+
+  
+
+  const processCohortData = (options) => {
+    let estudiantes = computeUsersStats(options.cohortData.users, options.cohortData.progress,courses);
+    estudiantes = sortUsers(estudiantes, options.orderBy, options.orderDirection);
+    if (options.search !== '') {
+      estudiantes = filterUsers(users, search);
+    }
+    return estudiantes;
+  }
 
 }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
@@ -7,6 +8,7 @@
   <title> Data Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
     <h1>
@@ -21,6 +23,7 @@
     </h1>
   </header>
   <section>
+
     <div id="options">
       <div id="loginInfo">
         <img id="imgUser" src="https://fotos.subefotos.com/42a631acc3f5c4f673e1004fa6855de1o.jpg" alt="Foto_alejandra">
@@ -31,23 +34,31 @@
       </div>
       <nav>
         <ul id="x">
-          <li id="dashboard" class="op">DASHBOARD</li>
+          <li id="dashboard" class="op">Sedes</li>
           <ul>
             <div id="citys">
-              <li id="lima">Lima</li>
+              <li id="lim">Lima</li>
               <li id="arequipa">Arequipa</li>
-              <li id="ciudad de Mexico">Ciudad de México</li>
+              <li id="cdmx">Ciudad de México</li>
               <li id="guadalajara">Guadalajara</li>
               <li id="saoPablo">Sao Paulo</li>
               <li id="otros">Otras sedes</li>
             </div>
           </ul>
-          <li id="cohorts" class="op">COHORTS</li>
+          <select id="selectCohorts" name="selectCohorts">
+            <option value="cohort" selected>cohort</option>
+          </select>
+          <ul>
+            <div id="container"></div>
+          </ul>
           <li id="courses" class="op">CURSOS</li>
+
         </ul>
       </nav>
     </div>
+
     <div id="info">
+      <img id="enProceso" src="Enproceso.png" alt="">
       <p id="infoTitle">General</p>
       <!-- <div id="imageCircle">
         <figure>
@@ -96,9 +107,11 @@
         <tbody></tbody>
       </table>
     </div>
+
   </section>
   <!-- <footer>Made By Andrea & Heydy</footer> -->
   <script src="main.js"></script>
   <script src="data.js"></script>
 </body>
+
 </html>

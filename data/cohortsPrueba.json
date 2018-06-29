@@ -54,5 +54,45 @@
             }
         },
         "end": "2018-03-31"
+    },
+    {
+        "id": "lim-2016-01-bc-core-egresadas20161bootcamp",
+        "usersCount": 64,
+        "start": "2016-01-01",
+        "coursesIndex": {
+            "basic-programming": {
+                "title": "Programación básica"
+            },
+            "interactive-site": {
+                "title": "Creando un sitio web interactivo con JavaScript"
+            },
+            "spa": {
+                "title": "Construye una Single Page App (SPA) multi-usuario consumiendo data remota"
+            },
+            "intro": {
+                "title": "Introducción a la programación (con JavaScript)"
+            }
+        },
+        "end": "2016-06-30"
+    },
+    {
+        "id": "lim-2017-01-bc-core-egresadas20171bootcamp",
+        "usersCount": 47,
+        "start": "2017-01-01",
+        "coursesIndex": {
+            "basic-programming": {
+                "title": "Programación básica"
+            },
+            "interactive-site": {
+                "title": "Creando un sitio web interactivo con JavaScript"
+            },
+            "spa": {
+                "title": "Construye una Single Page App (SPA) multi-usuario consumiendo data remota"
+            },
+            "intro": {
+                "title": "Introducción a la programación (con JavaScript)"
+            }
+        },
+        "end": "2017-06-30"
     }
 ]
