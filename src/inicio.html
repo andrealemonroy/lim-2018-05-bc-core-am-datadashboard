@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Montserrat|Open+Sans|Raleway|Righteous|Comfortaa" rel="stylesheet">
+  <title> Data Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>
+      <span id="titleOne">
+        <img id="logoLaboratoria" src="laboratoria.png" alt="logo_laboratoria">
+      </span>
+      <span id="titleTwo">
+        <span id="dash">DASHBOARD
+          <span id="cohortsH">lim-2018-03-pre-core-pw</span>
+        </span>
+      </span>
+    </h1>
+  </header>
+  <section>
+
+    <div id="options">
+      <div id="loginInfo">
+        <img id="imgUser" src="https://fotos.subefotos.com/42a631acc3f5c4f673e1004fa6855de1o.jpg" alt="Foto_alejandra">
+        <div id="loginName">Alejandra Ramirez
+          <hr/>
+          <span>Training Manager</span>
+        </div>
+      </div>
+      <nav>
+        <ul id="x">
+          <li id="dashboard" class="op">Sedes</li>
+          <ul>
+            <div id="citys">
+              <li id="lim">Lima</li>
+              <li id="arequipa">Arequipa</li>
+              <li id="cdmx">Ciudad de México</li>
+              <li id="guadalajara">Guadalajara</li>
+              <li id="saoPablo">Sao Paulo</li>
+              <li id="otros">Otras sedes</li>
+            </div>
+          </ul>
+          <select id="selectCohorts" name="selectCohorts">
+            <option value="cohort" selected>cohort</option>
+          </select>
+          <ul>
+            <div id="container"></div>
+          </ul>
+          <li id="courses" class="op">CURSOS</li>
+
+        </ul>
+      </nav>
+    </div>
+
+    <div id="info">
+      <img id="enProceso" src="Enproceso.png" alt="">
+      <p id="infoTitle">General</p>
+      <!-- <div id="imageCircle">
+        <figure>
+          <center>
+            <label for="" class="titulo">Exercises</label>
+          </center>
+          <img id="graphic" src="chartcircle.png" alt="grafico">
+          <hr>
+          <p id="resultTitle">Promedio de las estudiantes
+            <br> en los ejercicios : 61 %
+            <span id="percent"></span>
+          </p>
+          <hr>
+        </figure>
+      </div> -->
+      <div id="arrayUserStats"></div>
+      <select id="fill" class="tableClass">
+        <option value="percent">Porcentaje</option>
+        <option value="name">Nombre</option>
+        <option value="exercises">Ejercicios</option>
+        <option value="reads">Lecturas</option>
+        <option value="quizzes">Quizzes</option>
+        <option value="quizzesAvg">Quizzes Promedio</option>
+      </select>
+      <select id="order" class="tableClass">
+        <option value="DSC">Descendente</option>
+        <option value="ASC" selected>Ascendente</option>
+      </select>
+      <input id="buttonStart" class="tableClass" type="button" value="->">
+      <button id="mostrar2">VER DETALLE</button>
+      <button id="btnArrayUserStats">Mostrar Datos</button>
+      <h4>Resultados</h4>
+      <div class="search">
+        <input type="text" id="txtSearch" placeholder="Busca por nombre...">
+        <div id="results"></div>
+      </div>
+      <table id="table">
+        <thead>
+          <th class="tableClass">Nombre</th>
+          <th class="tableClass">Avance</th>
+          <th class="tableClass">Ejercicios</th>
+          <th class="tableClass">Lecturas</th>
+          <th class="tableClass">Quizzes total</th>
+          <th class="tableClass">Quizzes promedio</th>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </section>
+  <!-- <footer>Made By Andrea & Heydy</footer> -->
+  <script src="main.js"></script>
+  <script src="data.js"></script>
+</body>
+
+</html>

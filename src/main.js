@@ -176,8 +176,6 @@ getCohorts = () => {
 }
 
 
-
-
 getCohorts1 = () => {
   // const section = document.getElementById('container');
 
@@ -204,3 +202,8 @@ getCohorts1 = () => {
 document.getElementById('lim').addEventListener('click', getCohorts);
 document.getElementById('cdmx').addEventListener('click', getCohorts1);
 
+document.getElementById('login').addEventListener('click', ()=>{
+  let string=document.getElementById("text").value;
+  console.log("hola");
+
+});
