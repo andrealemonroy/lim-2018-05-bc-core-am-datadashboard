@@ -11,6 +11,37 @@ const getData = (url, callback) => {
   xhr.send();
 }
 
+
+
+
+getAvgUsersStats=(arr)=>{
+
+  let sumPercent=0;
+  let sumQuizzes=0;
+  let sumExercises=0;
+  let i = 0;
+  arrayUsersAvg =[];
+
+  for (let student of arr){
+
+    sumPercent += student.stats.percent ;
+    sumQuizzes += student.stats.quizzes.percent;
+    sumExercises+= student.stats.exercises.percent;
+    i++;
+  }
+
+  avgPercent = sumPercent/i;
+  avgQuizzes = sumQuizzes/i;
+  avgExercises = sumExercises/i;
+  console.log("prom percent " +avgPercent);
+  console.log("prom quizzes " + avgQuizzes);
+  console.log("prom exercises " + avgExercises);
+
+  arrayUsersAvg.push(avgPercent , avgQuizzes ,  avgExercises);
+
+  return arrayUsersAvg
+}
+
 getArrayUsersStats = () => {
   getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
     getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
@@ -18,6 +49,12 @@ getArrayUsersStats = () => {
         console.log(computeUsersStats(dataUsers, dataProgress, dataCohorts));
         const courses = ["intro"];
         let user = computeUsersStats(dataUsers, dataProgress, courses);
+
+        arrayUsersAvg=getAvgUsersStats(user);
+
+        console.log(arrayUsersAvg)
+
+
         sortUsers(user, "name", "ASC");
         const options = {
           cohort: [{}, {}],

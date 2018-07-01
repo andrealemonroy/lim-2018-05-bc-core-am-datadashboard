@@ -167,6 +167,7 @@ window.computeUsersStats = (users, progress, courses) => {
     }
   }
   return usersWithStats ;
+  
 }
 
 
