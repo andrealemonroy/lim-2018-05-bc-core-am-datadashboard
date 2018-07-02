@@ -77,21 +77,59 @@ describe('data', () => {
 
 
   describe('sortUsers(users, orderBy, orderDirection)', () => {
+    const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+   const courses = Object.keys(cohort.coursesIndex);
+   const { users, progress } = fixtures;
+    const processed = computeUsersStats(users, progress, courses);
 
     it('debería retornar arreglo de usuarios ordenado por nombre ASC',()=>{
-
+      assert.deepEqual(sortUsers(processed, 'name', 'asc')[0].name, 'adriana vizcarra paitán');
+      assert.deepEqual(sortUsers(processed, 'name', 'asc')[727].name, 'Zurisadai Rosas Aramburú');
     });
-    it('debería retornar arreglo de usuarios ordenado por nombre DESC')
-    it('debería retornar arreglo de usuarios ordenado por porcentaje general ASC');
-    it('debería retornar arreglo de usuarios ordenado por porcentaje general DESC');
-    it('debería retornar arreglo de usuarios ordenado por ejercicios completados ASC');
-    it('debería retornar arreglo de usuarios ordenado por ejercicios completados DESC');
-    it('debería retornar arreglo de usuarios ordenado por quizzes completados ASC');
-    it('debería retornar arreglo de usuarios ordenado por quizzes completados DESC');
-    it('debería retornar arreglo de usuarios ordenado por score promedio en quizzes completados ASC');
-    it('debería retornar arreglo de usuarios ordenado por score promedio en quizzes completados DESC');
-    it('debería retornar arreglo de usuarios ordenado por lecturas (reads) completadas ASC');
-    it('debería retornar arreglo de usuarios ordenado por lecturas (reads) completadas DESC');
+    it('debería retornar arreglo de usuarios ordenado por nombre DESC', () =>{
+      assert.deepEqual(sortUsers(processed, 'name', 'dsc')[0].name, 'Zurisadai Rosas Aramburú');
+      assert.deepEqual(sortUsers(processed, 'name', 'dsc')[727].name, 'adriana vizcarra paitán');
+    })
+    it('debería retornar arreglo de usuarios ordenado por porcentaje general ASC', () =>{
+      assert.deepEqual(sortUsers(processed, 'percent', 'asc')[0].stats.percent, '0');
+      assert.deepEqual(sortUsers(processed, 'percent', 'asc')[727].stats.percent, '100');
+    });
+    it('debería retornar arreglo de usuarios ordenado por porcentaje general DESC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'percent', 'dsc')[0].stats.percent, '100');
+      assert.deepEqual(sortUsers(processed, 'percent', 'dsc')[727].stats.percent, '0');
+    });
+    it('debería retornar arreglo de usuarios ordenado por ejercicios completados ASC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'exercises', 'asc')[0].stats.exercises.completed, '0');
+      assert.deepEqual(sortUsers(processed, 'exercises', 'asc')[727].stats.exercises.completed, '2');
+    });
+    it('debería retornar arreglo de usuarios ordenado por ejercicios completados DESC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'exercises', 'dsc')[0].stats.exercises.completed, '2');
+      assert.deepEqual(sortUsers(processed, 'exercises', 'dsc')[727].stats.exercises.completed, '0');
+    });
+    it('debería retornar arreglo de usuarios ordenado por quizzes completados ASC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'quizzes', 'asc')[0].stats.quizzes.completed, '0');
+      assert.deepEqual(sortUsers(processed, 'quizzes', 'asc')[727].stats.quizzes.completed, '3');
+    });
+    it('debería retornar arreglo de usuarios ordenado por quizzes completados DESC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'quizzes', 'dsc')[0].stats.quizzes.completed, '3');
+      assert.deepEqual(sortUsers(processed, 'quizzes', 'dsc')[727].stats.quizzes.completed, '0');
+    });
+    it('debería retornar arreglo de usuarios ordenado por score promedio en quizzes completados ASC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'quizzesAvg', 'asc')[0].stats.quizzes.scoreAvg, '0');
+      assert.deepEqual(sortUsers(processed, 'quizzesAvg', 'asc')[727].stats.quizzes.scoreAvg, '100');
+    });
+    it('debería retornar arreglo de usuarios ordenado por score promedio en quizzes completados DESC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'quizzesAvg', 'dsc')[0].stats.quizzes.scoreAvg, '100');
+      assert.deepEqual(sortUsers(processed, 'quizzesAvg', 'dsc')[727].stats.quizzes.scoreAvg, '0');
+    });
+    it('debería retornar arreglo de usuarios ordenado por lecturas (reads) completadas ASC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'reads', 'asc')[0].stats.reads.completed, '0');
+      assert.deepEqual(sortUsers(processed, 'reads', 'asc')[727].stats.reads.completed, '100');
+    });
+    it('debería retornar arreglo de usuarios ordenado por lecturas (reads) completadas DESC', ()=>{
+      assert.deepEqual(sortUsers(processed, 'reads', 'dsc')[0].stats.reads.completed, '100');
+      assert.deepEqual(sortUsers(processed, 'reads', 'dsc')[727].stats.reads.completed, '0');
+    });
 
   });
 

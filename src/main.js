@@ -35,10 +35,11 @@ getArrayUsersStats = () => {
     getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
         getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
             getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
-                console.log(computeUsersStats(dataUsers, dataProgress, dataCohorts));
                 const courses = ["intro"];
+                let search = document.getElementById('txtSearch').value;
                 let user = computeUsersStats(dataUsers, dataProgress, courses);
                 sortUsers(user, "name", "ASC");
+                filterUsers(user, search);               
             });
         });
     });
@@ -46,78 +47,107 @@ getArrayUsersStats = () => {
 
 document.getElementById('btnArrayUserStats').addEventListener('click', () => {
     getArrayUsersStats();
-    // let imageCircle = document.getElementById('imageCircle');
-    // imageCircle.style.display='none';
-    // btnArrayUserStats.style.display='none';
 });
-
 
 document.getElementById('buttonStart').addEventListener('click', () => {
     getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
         getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
             getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
-
+                const options = {
+                    cohort : [{},{}],
+                    cohortData : {
+                      users: dataUsers,
+                      progress: dataProgress,
+                    },
+                    orderBy: '',
+                    orderDirection: '',
+                    search: ''
+                  }
+                  console.log(options);
                 let users = computeUsersStats(dataUsers, dataProgress, courses);
-console.log(users)
-                var i = 0;
-                var countdata = users.length;
-                var strhtml = '';
-                if (countdata > 0) {
-                    while (i < countdata) {
-                        strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.percent + '%' + '</td><td>' + Math.round(users[i].stats.reads.percent) + '%' + '</td><td>' + Math.round(users[i].stats.quizzes.percent) + '%' + '</td><td>' + Math.round(users[i].stats.quizzes.scoreAvg) + '</td></tr>'
-                        ++i;
-
-                    }
-
-                    document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
-                }
+                let oJSON = users; // oJSON contiene la misma información de la data agrupada sin ordenar todavía
+                let filter = document.getElementById('txtSearch').value.toUpperCase(); // tiene la cadena ingresada en mayúsculas 
                 const opcion = document.getElementById('fill');
                 const order = document.getElementById('order');
 
                 let value = opcion.options[opcion.selectedIndex].value;
                 let valueOrder = order.options[order.selectedIndex].value;
+
                 if (valueOrder == 'ASC') {
                     if (value == 'name') {
-                        sortUsers(users, 'name', 'ASC');
+                        options.orderBy = 'name';
+                        options.orderDirection= 'ASC';
                     }
                     else if (value == 'percent') {
-                        sortUsers(users, 'percent', 'ASC');
+                        options.orderBy = 'percent';
+                        options.orderDirection= 'ASC';
                     }
                     else if (value == 'exercises') {
-                        sortUsers(users, 'exercises', 'ASC');
+                        options.orderBy = 'exercises';
+                        options.orderDirection= 'ASC';
+    
                     }
                     else if (value == 'reads') {
-                        sortUsers(users, 'reads', 'ASC');
+                        options.orderBy = 'reads';
+                        options.orderDirection= 'ASC';
+    
                     }
                     else if (value == 'quizzes') {
-                        sortUsers(users, 'quizzes', 'ASC');
+                        options.orderBy = 'quizzes';
+                        options.orderDirection= 'ASC';
+    
                     }
                     else if (value == 'quizzesAvg') {
-                        sortUsers(users, 'quizzesAvg', 'ASC');
+                        options.orderBy = 'quizzesAvg';
+                        options.orderDirection= 'ASC';
+    
                     };
+                    let oJSON = sortUsers(users, options.orderBy, options.orderDirection);
                 }
                 else if (valueOrder == 'DSC') {
                     if (value == 'name') {
-                        sortUsers(users, 'name', 'DSC');
+                        options.orderBy = 'name';
+                        options.orderDirection= 'DSC';
+    
                     }
                     else if (value == 'percent') {
-                        sortUsers(users, 'percent', 'DSC');
+                        options.orderBy = 'percent';
+                        options.orderDirection= 'DSC';
+    
                     }
                     else if (value == 'exercises') {
-                        sortUsers(users, 'exercises', 'DSC');
+                        options.orderBy = 'exercises';
+                        options.orderDirection= 'DSC';
+    
                     }
                     else if (value == 'reads') {
-                        sortUsers(users, 'reads', 'DSC');
+                        options.orderBy = 'reads';
+                        options.orderDirection= 'DSC';
+    
                     }
                     else if (value == 'quizzes') {
-                        sortUsers(users, 'quizzes', 'DSC');
+                        options.orderBy = 'quizzes';
+                        options.orderDirection= 'DSC';
+    
                     }
                     else {
-                        sortUsers(users, 'quizzesAvg', 'DSC')
+                        options.orderBy = 'quizzesAvg';
+                        options.orderDirection= 'DSC';
+    
                     }
+                    let oJSON = sortUsers(users, options.orderBy, options.orderDirection);
                 }
+                // en oJSON estará la nueva data ordenada, lo se envía la data a mostrar a filter
+                filterUsers(oJSON,filter);
+
+
             });
+                
         });
     });
 });
 
+
+document.getElementById('txtSearch').addEventListener('keyup', () => {
+   document.getElementById("buttonStart").click();               
+});
