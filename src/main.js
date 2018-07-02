@@ -12,15 +12,18 @@ const getData = (url, callback) => {
 }
 
 
-
-
 getAvgUsersStats=(arr)=>{
 
+  
+  
   let sumPercent=0;
   let sumQuizzes=0;
   let sumExercises=0;
   let i = 0;
   arrayUsersAvg =[];
+
+
+ 
 
   for (let student of arr){
 
@@ -37,7 +40,11 @@ getAvgUsersStats=(arr)=>{
   console.log("prom quizzes " + avgQuizzes);
   console.log("prom exercises " + avgExercises);
 
+  document.getElementById('avgQuizzes').innerHTML = avgQuizzes;
+
   arrayUsersAvg.push(avgPercent , avgQuizzes ,  avgExercises);
+
+
 
   return arrayUsersAvg
 }
@@ -55,27 +62,40 @@ getArrayUsersStats = () => {
         console.log(arrayUsersAvg)
 
 
-        sortUsers(user, "name", "ASC");
+        // sortUsers(user, "name", "ASC");
         const options = {
-          cohort: [{}, {}],
+          cohort: ["intro"],
           cohortData: {
-            users: [{}, {}],
-            progress: {},
+            users: dataUsers,
+            progress: dataProgress,
           },
-          orderBy: 'nombre',
+          orderBy: order,
           orderDirection: 'ASC',
           search: ''
         }
+
+        processCohortData(options);
+
+
       });
     });
   });
 }
 
 document.getElementById('btnArrayUserStats').addEventListener('click', () => {
-  getArrayUsersStats();
-  // let imageCircle = document.getElementById('imageCircle');
-  // imageCircle.style.display='none';
-  // btnArrayUserStats.style.display='none';
+  // getArrayUsersStats();
+  let imageCircle = document.getElementById('imageCircle');
+  imageCircle.style.display='none';
+  btnArrayUserStats.style.display='none';
+
+        let info = document.getElementById('info');
+        let detailStudents = document.getElementById('studentsBox')
+
+
+        info.style.display = 'none';
+        citys.style.display = 'none';
+        detailStudents.style.display='block';
+
 });
 
 
@@ -143,6 +163,7 @@ document.getElementById('buttonStart').addEventListener('click', () => {
             sortUsers(users, 'quizzesAvg', 'DSC')
           }
         }
+
       });
     });
   });
@@ -182,13 +203,15 @@ getCohorts = () => {
         let info = document.getElementById('info');
         let head2 = document.getElementById('dash');
         let cohort = document.getElementById('cohortsH')
-        let notCohort = document.getElementById('enProceso')
+        let detailStudents = document.getElementById('studentsBox')
+        getArrayUsersStats();
+
 
         info.style.display = 'block';
         head2.style.display = 'block';
         cohort.style.display = 'block';
         citys.style.display = 'none';
-        notCohort.style.display = 'none';
+        detailStudents.style.display='none'
     
       } else {
         console.log("hola mundo " + select.value)
@@ -196,13 +219,13 @@ getCohorts = () => {
         let info = document.getElementById('info');
         let head2 = document.getElementById('dash');
         let cohort = document.getElementById('cohortsH')
-        let notCohort = document.getElementById('enProceso')
+        let detailStudents = document.getElementById('studentsBox')
 
         info.style.display = 'none';
         head2.style.display = 'none';
         cohort.style.display = 'none';
         citys.style.display = 'none';
-        notCohort.style.display = 'block';
+        detailStudents.style.display='none'
       }
     
     });
@@ -238,9 +261,3 @@ getCohorts1 = () => {
 
 document.getElementById('lim').addEventListener('click', getCohorts);
 document.getElementById('cdmx').addEventListener('click', getCohorts1);
-
-document.getElementById('login').addEventListener('click', ()=>{
-  let string=document.getElementById("text").value;
-  console.log("hola");
-
-});

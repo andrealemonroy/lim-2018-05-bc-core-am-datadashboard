@@ -103,7 +103,29 @@ describe('data', () => {
 
   describe('processCohortData({ cohortData, orderBy, orderDirection, filterBy })', () => {
 
-    it('debería retornar arreglo de usuarios con propiedad stats y aplicar sort y filter');
+    const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+    const courses = Object.keys(cohort.coursesIndex);
+    const { users, progress } = fixtures;
+
+    it('debería retornar arreglo de usuarios con propiedad stats y aplicar sort y filter',()=>{
+      const options = {
+        cohort: ["intro"],
+        cohortData: {
+          users: users,
+          progress: progress,
+        },
+        orderBy: 'Porcentaje',
+        orderDirection: 'DES',
+        search: 'andrea'
+      }
+
+      assert.equal(processCohortData(options)[0].name , 'Andrea');
+      assert.equal(processCohortData(options)[0].stats.percent , '100%');
+      assert.equal(processCohortData(options)[11].name , 'Andrea Bernal');
+      assert.equal(processCohortData(options)[11].stats.percent , '7%');
+      assert.equal(processCohortData(options).length , 11);
+
+    });
 
   });
 

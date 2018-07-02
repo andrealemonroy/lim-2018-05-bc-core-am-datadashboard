@@ -58,9 +58,11 @@
     </div>
 
     <div id="info">
-      <img id="enProceso" src="Enproceso.png" alt="">
+      
       <p id="infoTitle">General</p>
-      <!-- <div id="imageCircle">
+      <button id="btnArrayUserStats">Mostrar Datos</button>
+
+      <div id="imageCircle">
         <figure>
           <center>
             <label for="" class="titulo">Exercises</label>
@@ -70,10 +72,69 @@
           <p id="resultTitle">Promedio de las estudiantes
             <br> en los ejercicios : 61 %
             <span id="percent"></span>
+            <span id="avgPercent"></span>
           </p>
           <hr>
         </figure>
-      </div> -->
+      </div>
+
+      <div id="imageCircle2">
+          <figure>
+            <center>
+              <label for="" class="titulo">Exercises</label>
+            </center>
+            <img id="graphic" src="chartcircle.png" alt="grafico">
+            <hr>
+            <p id="resultTitle">Promedio de las estudiantes
+              <br> en los ejercicios : 61 %
+              <span id="percent"></span>
+              <span id="avgExercises"></span>
+            </p>
+            <hr>
+          </figure>
+      </div>
+
+      <div id="imageCircle3">
+          <figure>
+            <center>
+              <label for="" class="titulo">Exercises</label>
+            </center>
+            <img id="graphic" src="chartcircle.png" alt="grafico">
+            <hr>
+            <p id="resultTitle">Promedio de las estudiantes
+              <br> en los ejercicios : 61 %
+              <span id="percent"></span>
+              <span id="avgReadings"></span>
+            </p>
+            <hr>
+          </figure>
+      </div>
+
+      <div id="imageCircle4">
+          <figure>
+            <center>
+              <label for="" class="titulo">Exercises</label>
+            </center>
+            <img id="graphic" src="chartcircle.png" alt="grafico">
+            <hr>
+            <p id="resultTitle">Promedio de las estudiantes
+              <br> en los ejercicios : 61 %
+              <span id="percent"></span>
+              <span id="avgQuizzes"></span>
+            </p>
+            <hr>
+          </figure>
+      </div>
+
+
+
+
+
+    </div>
+
+
+    <div id="studentsBox">
+
       <div id="arrayUserStats"></div>
       <select id="fill" class="tableClass">
         <option value="percent">Porcentaje</option>
@@ -88,8 +149,7 @@
         <option value="ASC" selected>Ascendente</option>
       </select>
       <input id="buttonStart" class="tableClass" type="button" value="->">
-      <button id="mostrar2">VER DETALLE</button>
-      <button id="btnArrayUserStats">Mostrar Datos</button>
+
       <h4>Resultados</h4>
       <div class="search">
         <input type="text" id="txtSearch" placeholder="Busca por nombre...">
@@ -106,7 +166,11 @@
         </thead>
         <tbody></tbody>
       </table>
+
+
+
     </div>
+
 
   </section>
   <!-- <footer>Made By Andrea & Heydy</footer> -->
