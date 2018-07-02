@@ -165,7 +165,9 @@ window.computeUsersStats = (users, progress, courses) => {
     } else {
     }
   }
-  return usersWithStats;
+  
+  return usersWithStats ;
+  
 }
 
 
@@ -260,6 +262,9 @@ window.filterUsers = (users, search) => {
   }
   return arrayFilter;
 }
+
+
+
 window.processCohortData = (options) => {
 
   const processCohortData = (options) => {

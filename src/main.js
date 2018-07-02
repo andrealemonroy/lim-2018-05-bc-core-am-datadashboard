@@ -1,34 +1,52 @@
-document.getElementById('dashboard').addEventListener('click', () => {
-    let citys = document.getElementById('citys').style.display;
-    if (citys == 'block') {
-        document.getElementById('citys').style.display = 'none';
-    }
-    else {
-        document.getElementById('citys').style.display = 'block';
-    }
-});
-
-document.getElementById('lima').addEventListener('click', () => {
-    let info = document.getElementById('info');
-    let head2 = document.getElementById('dash');
-    let cohort = document.getElementById('cohortsH')
-    info.style.display = 'block';
-    head2.style.display = 'block';
-    cohort.style.display = 'block';
-    citys.style.display = 'none';
-});
-
 // Función para hacer las conexiones  XHR
 const getData = (url, callback) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var data1 = JSON.parse(xhr.responseText);
-            callback(null, data1);
-        }
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var data1 = JSON.parse(xhr.responseText);
+      callback(null, data1);
     }
-    xhr.send();
+  }
+  xhr.send();
+}
+
+
+getAvgUsersStats=(arr)=>{
+
+  
+  
+  let sumPercent=0;
+  let sumQuizzes=0;
+  let sumExercises=0;
+  let i = 0;
+  arrayUsersAvg =[];
+
+
+ 
+
+  for (let student of arr){
+
+    sumPercent += student.stats.percent ;
+    sumQuizzes += student.stats.quizzes.percent;
+    sumExercises+= student.stats.exercises.percent;
+    i++;
+  }
+
+  avgPercent = sumPercent/i;
+  avgQuizzes = sumQuizzes/i;
+  avgExercises = sumExercises/i;
+  console.log("prom percent " +avgPercent);
+  console.log("prom quizzes " + avgQuizzes);
+  console.log("prom exercises " + avgExercises);
+
+  document.getElementById('avgQuizzes').innerHTML = avgQuizzes;
+
+  arrayUsersAvg.push(avgPercent , avgQuizzes ,  avgExercises);
+
+
+
+  return arrayUsersAvg
 }
 
 getArrayUsersStats = () => {
@@ -46,7 +64,19 @@ getArrayUsersStats = () => {
 }
 
 document.getElementById('btnArrayUserStats').addEventListener('click', () => {
-    getArrayUsersStats();
+  // getArrayUsersStats();
+  let imageCircle = document.getElementById('imageCircle');
+  imageCircle.style.display='none';
+  btnArrayUserStats.style.display='none';
+
+        let info = document.getElementById('info');
+        let detailStudents = document.getElementById('studentsBox')
+
+
+        info.style.display = 'none';
+        citys.style.display = 'none';
+        detailStudents.style.display='block';
+
 });
 
 document.getElementById('buttonStart').addEventListener('click', () => {
@@ -145,9 +175,100 @@ document.getElementById('buttonStart').addEventListener('click', () => {
                 
         });
     });
+ });
+
+
+document.getElementById('dashboard').addEventListener('click', () => {
+  let citys = document.getElementById('citys').style.display;
+  if (citys == 'block') {
+    document.getElementById('citys').style.display = 'none';
+  }
+  else {
+    document.getElementById('citys').style.display = 'block';
+  }
 });
 
 
+getCohorts = () => {
+  // const section = document.getElementById('container');
+
+  getData('../data/cohorts.json', (err, dataCohorts) => {
+
+    cohorts = dataCohorts;
+    select = document.getElementById('selectCohorts')
+
+    for (var cohort of cohorts) {
+      nameCohorts = cohort.id;
+      if (nameCohorts.indexOf('lim') === 0) {
+        select.innerHTML += `<option value =${nameCohorts}> ${nameCohorts} </option>`;
+      }
+    }
+
+    select.addEventListener('change', () => {
+    
+      if (select.value == "lim-2018-03-pre-core-pw") {
+    
+        let info = document.getElementById('info');
+        let head2 = document.getElementById('dash');
+        let cohort = document.getElementById('cohortsH')
+        let detailStudents = document.getElementById('studentsBox')
+        getArrayUsersStats();
+
+
+        info.style.display = 'block';
+        head2.style.display = 'block';
+        cohort.style.display = 'block';
+        citys.style.display = 'none';
+        detailStudents.style.display='none'
+    
+      } else {
+        console.log("hola mundo " + select.value)
+
+        let info = document.getElementById('info');
+        let head2 = document.getElementById('dash');
+        let cohort = document.getElementById('cohortsH')
+        let detailStudents = document.getElementById('studentsBox')
+
+        info.style.display = 'none';
+        head2.style.display = 'none';
+        cohort.style.display = 'none';
+        citys.style.display = 'none';
+        detailStudents.style.display='none'
+      }
+    
+    });
+
+    
+
+  });
+}
+
+
+getCohorts1 = () => {
+  // const section = document.getElementById('container');
+
+  getData('../data/cohorts.json', (err, dataCohorts) => {
+
+    cohorts = dataCohorts;
+    select = document.getElementById('selectCohorts')
+
+    for (var cohort of cohorts) {
+      nameCohorts = cohort.id;
+      if (nameCohorts.indexOf('cdmx') === 0) {
+        select.innerHTML += `<option value =${nameCohorts}> ${nameCohorts} </option>`;
+      }
+    }
+
+    select.addEventListener('change', () => {
+      alert(select.value)
+
+    });
+
+  });
+}
+
+document.getElementById('lim').addEventListener('click', getCohorts);
+document.getElementById('cdmx').addEventListener('click', getCohorts1);
 document.getElementById('txtSearch').addEventListener('keyup', () => {
-   document.getElementById("buttonStart").click();               
+document.getElementById("buttonStart").click();               
 });
