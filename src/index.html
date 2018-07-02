@@ -1,21 +1,5 @@
+
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Login LABORATORIA</title>
-      <meta name="viewport" content="width=device-width, initial-scale= 1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-      <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <form>
-      <h2>Login</h2>
-      <input  type="text" name="usuario" placeholder="&#128103; Usuario">
-      <input  type="password" name="password" placeholder="&#128272; Pasword">
-      <a href="inicio.html"><input id="login" type="button" value="Ingresar"></a>
-      
-    </form>
-=======
 <html>
 <head>
   <meta charset="utf-8">
@@ -38,6 +22,7 @@
     </h1>
   </header>
   <section>
+
     <div id="options">
       <div id="loginInfo">
         <img id="imgUser" src="https://fotos.subefotos.com/42a631acc3f5c4f673e1004fa6855de1o.jpg" alt="Foto_alejandra">
@@ -48,38 +33,99 @@
       </div>
       <nav>
         <ul id="x">
-          <li id="dashboard" class="op">DASHBOARD</li>
+          <li id="dashboard" class="op">Sedes</li>
           <ul>
             <div id="citys">
-              <li id="lima">Lima</li>
+              <li id="lim">Lima</li>
               <li id="arequipa">Arequipa</li>
-              <li id="ciudad de Mexico">Ciudad de México</li>
+              <li id="cdmx">Ciudad de México</li>
               <li id="guadalajara">Guadalajara</li>
               <li id="saoPablo">Sao Paulo</li>
               <li id="otros">Otras sedes</li>
             </div>
           </ul>
-          <li id="cohorts" class="op">COHORTS</li>
+          <select id="selectCohorts" name="selectCohorts">
+            <option value="cohort" selected>cohort</option>
+          </select>
+          <ul>
+            <div id="container"></div>
+          </ul>
           <li id="courses" class="op">CURSOS</li>
+
         </ul>
       </nav>
     </div>
+
     <div id="info">
-      <p id="infoTitle">General</p>
-      <!-- <div id="imageCircle">
+
+      <p id="infoTitle">General
+      <button id="btnArrayUserStats">Mostrar Datos</button>
+    </p>
+      <div id="figures">
+      <div id="imageCircle">
         <figure>
           <center>
-            <label for="" class="titulo">Exercises</label>
+            <label for="" class="titulo">Quizzes</label>
           </center>
           <img id="graphic" src="chartcircle.png" alt="grafico">
           <hr>
-          <p id="resultTitle">Promedio de las estudiantes
-            <br> en los ejercicios : 61 %
-            <span id="percent"></span>
+          <p id="titleQuizzes">Porcentaje Total de avance
+            <br> en los quizzes : <span id="avgQuizzes"></span>
+            <br>Promedio de nota : 
+            <span id="scoreQuizzes"></span>
           </p>
           <hr>
         </figure>
-      </div> -->
+      </div>
+
+      <div id="imageCircle2">
+          <figure>
+            <center>
+              <label for="" class="titulo">Exercises</label>
+            </center>
+            <img id="graphicTwo" src="chartcircle.png" alt="grafico">
+            <hr>
+            <p id="titleExercises">Porcentaje Total de avance
+              <br> en los ejercicios :
+              <br><span id="avgExercises"></span> 
+            </p>
+            <hr>
+          </figure>
+      </div>
+
+      <div id="imageCircle3">
+          <figure>
+            <center>
+              <label for="" class="titulo">Lecturas</label>
+            </center>
+            <img id="graphicThree" src="chartcircle.png" alt="grafico">
+            <hr>
+            <p id="titleReads">Porcentaje Total de avance
+              <br> en las lecturas :
+              <span id="avgReadings"></span>
+            </p>
+            <hr>
+          </figure>
+      </div>
+
+      <div id="imageCircle4">
+          <figure>
+            <center>
+              <label for="" class="titulo">Porcentaje Total</label>
+            </center>
+            <img id="graphicFour" src="chartcircle.png" alt="grafico">
+            <hr>
+            <p id="titlePercentTotal">Porcentaje Total 
+              <br> de avance :
+              <span id="avgPercent"></span> 
+            </p>
+            <hr>
+          </figure>
+      </div>
+    </div>
+
+    <div id="studentsBox">
+      <div id = "select">
       <div id="arrayUserStats"></div>
       <select id="fill" class="tableClass">
         <option value="percent">Porcentaje</option>
@@ -94,11 +140,11 @@
         <option value="ASC" selected>Ascendente</option>
       </select>
       <input id="buttonStart" class="tableClass" type="button" value="->">
-      <button id="mostrar2">VER DETALLE</button>
-      <button id="btnArrayUserStats">Mostrar Datos</button>
-      <h4>Resultados</h4>
+    </div>
+
       <div class="search">
         <input type="text" id="txtSearch" placeholder="Busca por nombre...">
+        <div id="results"></div>
       </div>
       <table id="table">
         <thead>
@@ -111,10 +157,14 @@
         </thead>
         <tbody></tbody>
       </table>
-    </div>
+  </div>
+</div>
+
+
   </section>
   <!-- <footer>Made By Andrea & Heydy</footer> -->
->>>>>>> 3a08205e695cc928ddd69b934972077d5142a9d8
   <script src="main.js"></script>
-  </body>
+  <script src="data.js"></script>
+</body>
+
 </html>

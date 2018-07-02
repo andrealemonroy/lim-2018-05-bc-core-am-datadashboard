@@ -10,37 +10,34 @@ const getData = (url, callback) => {
   }
   xhr.send();
 }
-
-
 getAvgUsersStats=(arr)=>{
-
-  
-  
   let sumPercent=0;
   let sumQuizzes=0;
   let sumExercises=0;
+  let sumReadings=0;
+  let sumScoreQuizzes=0;
   let i = 0;
   arrayUsersAvg =[];
-
-
- 
-
   for (let student of arr){
-
     sumPercent += student.stats.percent ;
     sumQuizzes += student.stats.quizzes.percent;
     sumExercises+= student.stats.exercises.percent;
+    sumReadings += student.stats.reads.percent;
+    sumScoreQuizzes+= student.stats.quizzes.scoreAvg;
     i++;
   }
 
   avgPercent = sumPercent/i;
   avgQuizzes = sumQuizzes/i;
   avgExercises = sumExercises/i;
-  console.log("prom percent " +avgPercent);
-  console.log("prom quizzes " + avgQuizzes);
-  console.log("prom exercises " + avgExercises);
+  avgReadings = sumReadings/i;
+  avgScoreQuizzes = sumScoreQuizzes/i;
 
-  document.getElementById('avgQuizzes').innerHTML = avgQuizzes;
+  document.getElementById('avgQuizzes').innerHTML = Math.round(avgQuizzes)+'%';
+  document.getElementById('avgExercises').innerHTML =  Math.round(avgExercises)+'%';
+  document.getElementById('avgReadings').innerHTML =  Math.round(avgReadings)+'%';
+  document.getElementById('avgPercent').innerHTML =  Math.round(avgPercent)+'%';
+  document.getElementById('scoreQuizzes').innerHTML = Math.round(avgScoreQuizzes);
 
   arrayUsersAvg.push(avgPercent , avgQuizzes ,  avgExercises);
 
@@ -57,7 +54,8 @@ getArrayUsersStats = () => {
                 let search = document.getElementById('txtSearch').value;
                 let user = computeUsersStats(dataUsers, dataProgress, courses);
                 sortUsers(user, "name", "ASC");
-                filterUsers(user, search);               
+                filterUsers(user, search);
+                arrayUsersAvg=getAvgUsersStats(user);
             });
         });
     });
@@ -65,17 +63,12 @@ getArrayUsersStats = () => {
 
 document.getElementById('btnArrayUserStats').addEventListener('click', () => {
   // getArrayUsersStats();
-  let imageCircle = document.getElementById('imageCircle');
+  let imageCircle = document.getElementById('figures');
   imageCircle.style.display='none';
   btnArrayUserStats.style.display='none';
-
-        let info = document.getElementById('info');
-        let detailStudents = document.getElementById('studentsBox')
-
-
-        info.style.display = 'none';
-        citys.style.display = 'none';
-        detailStudents.style.display='block';
+  let info = document.getElementById('info');
+  let detailStudents = document.getElementById('studentsBox');
+  detailStudents.style.display='block';
 
 });
 
