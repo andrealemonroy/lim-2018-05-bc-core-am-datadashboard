@@ -211,18 +211,6 @@ window.sortUsers = (users, orderBy, orderDirection) => {
   }
   return users
  
-
-  var i = 0;
-  var countdata = users.length;
-  var strhtml = '';
-  if (countdata > 0) {
-    while (i < countdata) {
-      strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.percent + '%' + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed + '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
-      ++i;
-    }
-  }
-
-  document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
 }
 
 window.filterUsers = (users, search) => {
@@ -248,17 +236,7 @@ window.filterUsers = (users, search) => {
       }
   }
   else{ // en caso que no haiga nada el texto solo muestra la data en pantalla
-      var i = 0;
-      var countdata = users.length;
-      var strhtml = '';
-      document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML ="";
-      if (countdata > 0) {
-          while (i < countdata) {
-              strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + Math.round(users[i].stats.reads.completed) + '%' + '</td><td>' + users[i].stats.quizzes.completed+ '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
-              ++i;
-            }
-          document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
-      }
+      
   }
   return arrayFilter;
 }
