@@ -10,12 +10,20 @@ h2{
     color: rgba(0,0,0,0.5);
 }
 
-input{
+#buttonStart, #fill, #order {
     display: block;
-    padding:10px;
+    font-size:1vw;
+    width:15%;
+    position:relative;
+    float:left;
+    margin-bottom:5%;
+    margin-left:1%;
+}
+input{
+    font-size:1.3vw;
     width:100%;
-    margin : 30px 0;
-    font-size:20px;
+    margin-left:10%;
+
 }
 
 input[type="button"]{
@@ -108,7 +116,7 @@ h1{
 
 #options{
     width:20%;
-    height:80vh;
+    height:50vh;
     font-family:Righteous;
     text-align: left;
     position: static;
@@ -181,6 +189,12 @@ ul{
     margin-left:2%;
 
 }
+#infoTitle{
+    font-family: Montserrat;
+    font-size: 2vw 2vh;
+    margin-top:1%;
+    height:5%;
+}
 
 #studentsBox{
     display: none ;
@@ -198,20 +212,20 @@ ul{
     position:relative;
 }
 
-#imageCircle{
-    position: absolute;
-    margin:1vh;
+#imageCircle, #imageCircle2, #imageCircle3, #imageCircle4{
     margin-bottom:3%;
-    margin-left: 22%;
-    margin-top:3%;
+    margin-left: 2%;
+    margin-top:3%; 
     background-color: #FFFFFF;
     border-style:solid;
-    padding-bottom:5vh;
+    width:35%;
+    float:left;
+    margin-right:5%;
+    text-align: center;
 }
-#graphic{
-    width:15vw;
-    height:28vh;
-
+#graphic, #graphicTwo, #graphicThree, #graphicFour{
+    width:90%;
+    height:90%;
 }
 
 button {
@@ -224,12 +238,9 @@ button {
     margin-top:1vh;
 }
 
-#infoTitle{
-    font-family: Montserrat;
-    font-size: 2vw;
-    margin-top:3vh;
+#btnArrayUserStats{
+    width:30%;
 }
-
 footer {
     position:fixed;
     bottom:0;
@@ -261,7 +272,27 @@ footer {
     margin-top:1vh;
     text-align: center;
 }
+#table {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
+}
 
+#table th, #table td {
+    text-align: left; /* Left-align text */
+    padding: 12px; /* Add padding */
+}
+
+#table tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd; 
+}
+
+#table tr.header, #table tr:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+}
 @media (max-width:768px) {
     form{
       width:75%;

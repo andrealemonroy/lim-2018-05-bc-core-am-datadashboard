@@ -220,14 +220,13 @@ window.filterUsers = (users, search) => {
   if ( length > 0 ) { // esta condición determina si hay algo en el texto de búsqueda
       var i = 0;
       var countdata = users.length;
-      var strhtml = '';
-      document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML ="";
+strhtml='';
       if (countdata > 0) {
           while (i < countdata) {
               name = users[i].name.toUpperCase();  // obtiene el nombre de cada usuario
               ubication = name.indexOf(filter); // ubica la cadena en otra
-              if ( ubication > -1) { // si la variable tiene un número mayor a 0 la cadena existe en el nombre
-                  arrayFilter.push(users[i]);
+              if ( ubication >-1) { // si la variable tiene un número mayor a 0 la cadena existe en el nombre
+                arrayFilter.push(users[i]);
                 strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed+ '</td><td>' + Math.round(users[i].stats.quizzes.scoreAvg) + '</td></tr>';
               }
               ++i;
@@ -236,25 +235,34 @@ window.filterUsers = (users, search) => {
       }
   }
   else{ // en caso que no haiga nada el texto solo muestra la data en pantalla
-      
+      var i = 0;
+      var countdata = users.length;
+      var strhtml = '';
+      document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML ="";
+      if (countdata > 0) {
+          while (i < countdata) {
+
+              strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + Math.round(users[i].stats.reads.completed) + '%' + '</td><td>' + users[i].stats.quizzes.completed+ '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
+              ++i;
+            }
+          document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
+      }
   }
+
   return arrayFilter;
 }
 
 
 
-window.processCohortData = (options) => {
 
-  const processCohortData = (options) => {
-    let estudiantes = computeUsersStats(options.cohortData.users, options.cohortData.progress, courses);
-    estudiantes = sortUsers(estudiantes, options.orderBy, options.orderDirection);
-    if (options.search !== '') {
-      estudiantes = filterUsers(users, search);
-    }
-    return estudiantes;
-  }
-
-}
+window.processCohortData = (options)  => {
+  let users, sort; 
+    users = computeUsersStats (options.cohortData.users, options.cohortData.progress, options.cohort.coursesIndex);
+    users = sortUsers (users, options.orderBy, options.orderDirection);
+     users = filterUsers (users, options.search);
+  
+   return users;
+  } 
 
 window.by = (path, reverse, primer, then) => {
   var get = function (obj, path) {

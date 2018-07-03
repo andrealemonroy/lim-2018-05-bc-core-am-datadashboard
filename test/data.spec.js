@@ -16,6 +16,22 @@ describe('data', () => {
     assert.isFunction(processCohortData);
   });
 
+  it('debería exponer función computeUsersStats en objeto global', () => {
+    assert.isFunction(computeUsersStats);
+  });
+
+  it('debería exponer función sortUsers en objeto global', () => {
+    assert.isFunction(sortUsers);
+  });
+
+  it('debería exponer función filterUsers en objeto global', () => {
+    assert.isFunction(filterUsers);
+  });
+
+  it('debería exponer función processCohortData en objeto global', () => {
+    assert.isFunction(processCohortData);
+  });
+
   describe('computeUsersStats(users, progress, courses)', () => {
 
     const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
@@ -186,51 +202,64 @@ describe('data', () => {
 
   });
 
-
   describe('filterUsers(users, filterBy)', () => {
+    const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+    const courses = Object.keys(cohort.coursesIndex);
+    const { users, progress } = fixtures;
+    const processed = computeUsersStats(users, progress, courses);
 
-    it('debería retornar nuevo arreglo solo con usuarios con nombres que contengan string (case insensitive)', () => {
-      let array = [
-        {
-          "id": "LZZiC91B4NddpaPTBJ1XpT9Ox8V2",
-          "name": "Dorelly", "locale": "es-PE",
-          "timezone": "America/Lima", "role": "student"
-        },
-        {
-          "id": "mIyuhjFX4uhASyDcWReNE5dcd2I2",
-          "github": "",
-          "locale": "es-ES",
-          "timezone": "America/Lima",
-          "name": "Fiorella S",
-          "linkedin": "", "role": "student"
-        },
-        {
-          "id": "pHuZDr9WjBV1qrU66QZlq2yhGmC2",
-          "timezone": "America/Lima",
-          "name": "Dory",
-          "locale": "es-PE", "role": "student"
-        },
-        {
-          "id": "rosNOO9dNQQDo4TlClcMiFHEIfy2",
-          "name": "Dalia", "locale": "es-PE",
-          "timezone": "America/Lima", "role": "student"
+    it('debería retornar nuevo arreglo solo con usuarios con nombres que contengan string (case insensitive)' , () =>{
+
+      assert.deepEqual(filterUsers(processed, 'SOFIA')[0].name, 'Ana Sofia');
+      assert.deepEqual(filterUsers(processed, 'sofia')[0].name, 'Ana Sofia');
+      assert.deepEqual(filterUsers(processed, 'sofia').length, 2);
+    
+      
+    });
+
+  });
+
+  describe('processCohortData({ cohortData, orderBy, orderDirection, filterBy })', () => {
+    const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
+    const courses = Object.keys(cohort.coursesIndex);
+    const { users, progress } = fixtures;
+    
+    let options = {
+      cohort: "lim-2018-03-pre-core-pw",
+      cohortData : {
+        users,
+        progress,
+        coursesIndex : ["intro"]
+      },
+      orderBy:"name",
+      orderDirection:"ASC",
+      search : "made"
+    }
+    it('debería retornar arreglo de usuarios con propiedad stats y aplicar sort y filter',  () =>{
+
+      assert.deepEqual(processCohortData(options),[{
+        name : "Madeleine Sánchez",
+        stats: {
+          percent: 47,
+          exercises : {
+            total: 2,
+            completed: 0,
+            percent: 0
+          },
+          reads : {
+            total: 11,
+            completed: 6,
+            percent: 55
+          },
+          quizzes : {
+            total: 3,
+            completed: 1,
+            percent: 33,
+            scoreSum: 90,
+            scoreAvg: 90
+          }
         }
-      ]
-      const dorelly = [{
-        "id": "LZZiC91B4NddpaPTBJ1XpT9Ox8V2",
-        "name": "Dorelly", "locale": "es-PE",
-        "timezone": "America/Lima", "role": "student"
-      }
-      ];
-      const dalia = [
-        {
-          "id": "rosNOO9dNQQDo4TlClcMiFHEIfy2",
-          "name": "Dalia", "locale": "es-PE",
-          "timezone": "America/Lima", "role": "student"
-        }
-      ]
-      assert.deepEqual(window.filterUsers(array, "Dorelly"), dorelly);
-      assert.deepEqual(window.filterUsers(array, "Dalia"), dalia);
+      }]);
     });
   });
 
@@ -308,4 +337,3 @@ describe('data', () => {
   //   });
 
 });
-
