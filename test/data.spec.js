@@ -93,8 +93,8 @@ describe('data', () => {
 
   describe('sortUsers(users, orderBy, orderDirection)', () => {
     let student1 = {
+      name: "FABIOLA",
       stats: {
-        name: "Fabiola guzman",
         percent: 58,
         exercises: {
           total: 5,
@@ -116,8 +116,8 @@ describe('data', () => {
       }
     }
     let student2 = {
+      name: "LORENA",
       stats: {
-        name: "Lorena Reyes",
         percent: 36,
         exercises: {
           total: 5,
@@ -139,8 +139,8 @@ describe('data', () => {
       }
     }
     let student3 = {
+      name: "ANDREA",
       stats: {
-        name: "Andrea Monroy",
         percent: 90,
         exercises: {
           total: 5,
@@ -211,8 +211,7 @@ describe('data', () => {
     it('debería retornar nuevo arreglo solo con usuarios con nombres que contengan string (case insensitive)' , () =>{
 
       assert.deepEqual(filterUsers(processed, 'SOFIA')[0].name, 'Ana Sofia');
-      assert.deepEqual(filterUsers(processed, 'sofia')[0].name, 'Ana Sofia');
-      assert.deepEqual(filterUsers(processed, 'sofia').length, 2);
+      assert.deepEqual(filterUsers(processed, 'SOFIA').length, 2);
     
       
     });

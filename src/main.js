@@ -10,6 +10,7 @@ const getData = (url, callback) => {
   }
   xhr.send();
 }
+
 getAvgUsersStats=(arr)=>{
   let sumPercent=0;
   let sumQuizzes=0;
@@ -40,8 +41,6 @@ getAvgUsersStats=(arr)=>{
   document.getElementById('scoreQuizzes').innerHTML = Math.round(avgScoreQuizzes);
 
   arrayUsersAvg.push(avgPercent , avgQuizzes ,  avgExercises);
-
-
 
   return arrayUsersAvg
 }
@@ -77,92 +76,32 @@ document.getElementById('buttonStart').addEventListener('click', () => {
         getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
             getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
                 const options = {
-                    cohort : [{},{}],
+                    cohort : {
+                      coursesIndex: dataCohorts
+                    },
                     cohortData : {
                       users: dataUsers,
-                      progress: dataProgress,
+                      progress: dataProgress
                     },
                     orderBy: '',
                     orderDirection: '',
                     search: ''
                   }
-                  console.log(options);
-                let users = computeUsersStats(dataUsers, dataProgress, courses);
-                let oJSON = users; // oJSON contiene la misma información de la data agrupada sin ordenar todavía
-                let filter = document.getElementById('txtSearch').value.toUpperCase(); // tiene la cadena ingresada en mayúsculas 
+                
+                let filter = document.getElementById('txtSearch').value.toUpperCase(); 
                 const opcion = document.getElementById('fill');
                 const order = document.getElementById('order');
 
                 let value = opcion.options[opcion.selectedIndex].value;
                 let valueOrder = order.options[order.selectedIndex].value;
 
-                if (valueOrder == 'ASC') {
-                    if (value == 'name') {
-                        options.orderBy = 'name';
-                        options.orderDirection= 'ASC';
-                    }
-                    else if (value == 'percent') {
-                        options.orderBy = 'percent';
-                        options.orderDirection= 'ASC';
-                    }
-                    else if (value == 'exercises') {
-                        options.orderBy = 'exercises';
-                        options.orderDirection= 'ASC';
-    
-                    }
-                    else if (value == 'reads') {
-                        options.orderBy = 'reads';
-                        options.orderDirection= 'ASC';
-    
-                    }
-                    else if (value == 'quizzes') {
-                        options.orderBy = 'quizzes';
-                        options.orderDirection= 'ASC';
-    
-                    }
-                    else if (value == 'quizzesAvg') {
-                        options.orderBy = 'quizzesAvg';
-                        options.orderDirection= 'ASC';
-    
-                    };
-                    let oJSON = sortUsers(users, options.orderBy, options.orderDirection);
-                }
-                else if (valueOrder == 'DSC') {
-                    if (value == 'name') {
-                        options.orderBy = 'name';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else if (value == 'percent') {
-                        options.orderBy = 'percent';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else if (value == 'exercises') {
-                        options.orderBy = 'exercises';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else if (value == 'reads') {
-                        options.orderBy = 'reads';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else if (value == 'quizzes') {
-                        options.orderBy = 'quizzes';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else {
-                        options.orderBy = 'quizzesAvg';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    let oJSON = sortUsers(users, options.orderBy, options.orderDirection);
-                }
-                // en oJSON estará la nueva data ordenada, lo se envía la data a mostrar a filter
-                filterUsers(oJSON,filter);
+                options.orderBy = value;
+                options.orderDirection = valueOrder;
+                options.search = filter;
 
+                let users = processCohortData(options);
+
+                viewTable(users);
 
             });
                 

@@ -177,7 +177,7 @@ window.sortUsers = (users, orderBy, orderDirection) => {
 
   if (orderBy == 'name') {
     users.sort(
-      by('name', orden, function (x) {
+      by('name', orden, function(x){
         return x.toUpperCase().replace(/\W/g, '');
       })
     );
@@ -210,7 +210,41 @@ window.sortUsers = (users, orderBy, orderDirection) => {
     );
   }
   return users
- 
+}
+
+window.filterUsers = (users, search) => {
+  filter = search.trim(); // tiene la cadena ingresada sin espacios
+  length = filter.length;
+  arrayFilter = [];
+  if ( length > 0 ) { // esta condición determina si hay algo en el texto de búsqueda
+      var i = 0;
+      var countdata = users.length;
+      if (countdata > 0) {
+          while (i < countdata) {
+              name = users[i].name.toUpperCase();  // obtiene el nombre de cada usuario
+              ubication = name.indexOf(filter); // ubica la cadena en otra
+              if ( ubication >-1)  // si la variable tiene un número mayor a 0 la cadena existe en el nombre
+                arrayFilter.push(users[i]);
+              ++i;
+          }
+      }
+  }
+  else
+      arrayFilter = users;    
+      return arrayFilter;
+}
+
+
+window.processCohortData = (options)  => {
+  let users, sort; 
+    users = computeUsersStats (options.cohortData.users, options.cohortData.progress, options.cohort.coursesIndex);
+    users = sortUsers (users, options.orderBy, options.orderDirection);
+     users = filterUsers (users, options.search);
+   return users;
+  } 
+
+
+window.viewTable = (users) => {
 
   var i = 0;
   var countdata = users.length;
@@ -221,60 +255,8 @@ window.sortUsers = (users, orderBy, orderDirection) => {
       ++i;
     }
   }
-
   document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
 }
-
-window.filterUsers = (users, search) => {
-  filter = search.trim(); // tiene la cadena ingresada sin espacios
-  length = filter.length;
-  arrayFilter = [];
-  if ( length > 0 ) { // esta condición determina si hay algo en el texto de búsqueda
-      var i = 0;
-      var countdata = users.length;
-strhtml='';
-      if (countdata > 0) {
-          while (i < countdata) {
-              name = users[i].name.toUpperCase();  // obtiene el nombre de cada usuario
-              ubication = name.indexOf(filter); // ubica la cadena en otra
-              if ( ubication >-1) { // si la variable tiene un número mayor a 0 la cadena existe en el nombre
-                arrayFilter.push(users[i]);
-                strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed+ '</td><td>' + Math.round(users[i].stats.quizzes.scoreAvg) + '</td></tr>';
-              }
-              ++i;
-            }
-          document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
-      }
-  }
-  else{ // en caso que no haiga nada el texto solo muestra la data en pantalla
-      var i = 0;
-      var countdata = users.length;
-      var strhtml = '';
-      document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML ="";
-      if (countdata > 0) {
-          while (i < countdata) {
-
-              strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + Math.round(users[i].stats.reads.completed) + '%' + '</td><td>' + users[i].stats.quizzes.completed+ '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
-              ++i;
-            }
-          document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
-      }
-  }
-
-  return arrayFilter;
-}
-
-
-
-
-window.processCohortData = (options)  => {
-  let users, sort; 
-    users = computeUsersStats (options.cohortData.users, options.cohortData.progress, options.cohort.coursesIndex);
-    users = sortUsers (users, options.orderBy, options.orderDirection);
-     users = filterUsers (users, options.search);
-  
-   return users;
-  } 
 
 window.by = (path, reverse, primer, then) => {
   var get = function (obj, path) {
@@ -283,7 +265,6 @@ window.by = (path, reverse, primer, then) => {
       for (var i = 0, len = path.length - 1; i < len; i++) {
         obj = obj[path[i]];
       };
-
       return obj[path[len]];
     }
     return obj;
