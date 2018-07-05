@@ -203,64 +203,70 @@ describe('data', () => {
   });
 
   describe('filterUsers(users, filterBy)', () => {
+
     const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
     const courses = Object.keys(cohort.coursesIndex);
     const { users, progress } = fixtures;
     const processed = computeUsersStats(users, progress, courses);
 
     it('debería retornar nuevo arreglo solo con usuarios con nombres que contengan string (case insensitive)' , () =>{
-
-      assert.deepEqual(filterUsers(processed, 'SOFIA')[0].name, 'Ana Sofia');
-      assert.deepEqual(filterUsers(processed, 'SOFIA').length, 2);
-    
-      
+      assert.deepEqual(filterUsers(processed, 'TERESA')[0].name, 'Teresa Isabel castro castillo');
+      assert.deepEqual(filterUsers(processed, 'TERESA').length, 2); 
     });
 
   });
 
   describe('processCohortData({ cohortData, orderBy, orderDirection, filterBy })', () => {
+
     const cohort = fixtures.cohorts.find(item => item.id === 'lim-2018-03-pre-core-pw');
     const courses = Object.keys(cohort.coursesIndex);
     const { users, progress } = fixtures;
-    
+
     let options = {
       cohort: "lim-2018-03-pre-core-pw",
       cohortData : {
-        users,
-        progress,
+        users,//array en bruto users
+        progress,//objeto en bruto progress
         coursesIndex : ["intro"]
       },
-      orderBy:"name",
+      orderBy:"Nombre",
       orderDirection:"ASC",
-      search : "made"
+      search : "LESLIEANDREA"
     }
-    it('debería retornar arreglo de usuarios con propiedad stats y aplicar sort y filter',  () =>{
 
-      assert.deepEqual(processCohortData(options),[{
-        name : "Madeleine Sánchez",
-        stats: {
-          percent: 47,
-          exercises : {
-            total: 2,
-            completed: 0,
-            percent: 0
+    it('debería retornar arreglo de usuarios con propiedad stats y aplicar sort y filter', () => {
+      assert.deepEqual(window.processCohortData(options),[
+        {
+          id:"YolxWuYdppdWodRrE99p2GGvXLR2",
+          locale:"es-ES",
+          name:"Leslieandrea",
+          role:"student",
+          signupCohort:"lim-2018-03-pre-core-pw",
+          stats: {
+            exercises : {
+              total: 2,
+              completed: 2,
+              percent: 100
+            },
+            percent: 100,
+            quizzes : {
+              total: 3,
+              completed: 3,
+              percent: 100,
+              scoreSum: 262,
+              scoreAvg: 87
+            },
+            reads: {
+              total: 11,
+              completed: 11,
+              percent: 100
+            },
+            
           },
-          reads : {
-            total: 11,
-            completed: 6,
-            percent: 55
-          },
-          quizzes : {
-            total: 3,
-            completed: 1,
-            percent: 33,
-            scoreSum: 90,
-            scoreAvg: 90
-          }
+          timezone:"America/Lima"
         }
-      }]);
+      ]);
     });
-
   });
 
-});
+})

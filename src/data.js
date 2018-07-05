@@ -1,5 +1,5 @@
 window.computeUsersStats = (users, progress, courses) => {
-
+  console.log("ya entramos a computerUser");
   const usersWithStats = [];
 
   getPercentByStudent = (id) => {
@@ -165,14 +165,14 @@ window.computeUsersStats = (users, progress, courses) => {
     } else {
     }
   }
-  
+
   return usersWithStats ;
   
 }
 
 
 window.sortUsers = (users, orderBy, orderDirection) => {
-
+  console.log("ya entramos a sortUsers");
   let orden = orderDirection == 'ASC' ? false : true;
 
   if (orderBy == 'name') {
@@ -209,10 +209,12 @@ window.sortUsers = (users, orderBy, orderDirection) => {
       by('stats.quizzes.scoreAvg', orden, parseFloat)
     );
   }
+
   return users
 }
 
 window.filterUsers = (users, search) => {
+  console.log("ya entramos a filterUsers");
   filter = search.trim(); // tiene la cadena ingresada sin espacios
   length = filter.length;
   arrayFilter = [];
@@ -227,36 +229,25 @@ window.filterUsers = (users, search) => {
                 arrayFilter.push(users[i]);
               ++i;
           }
-      }
+      } 
   }
   else
-      arrayFilter = users;    
-      return arrayFilter;
+  
+  arrayFilter = users;  
+
+  return arrayFilter;
 }
 
 
 window.processCohortData = (options)  => {
+  console.log("ya entramos a processCohortData");
   let users, sort; 
     users = computeUsersStats (options.cohortData.users, options.cohortData.progress, options.cohort.coursesIndex);
     users = sortUsers (users, options.orderBy, options.orderDirection);
      users = filterUsers (users, options.search);
    return users;
-  } 
+} 
 
-
-window.viewTable = (users) => {
-
-  var i = 0;
-  var countdata = users.length;
-  var strhtml = '';
-  if (countdata > 0) {
-    while (i < countdata) {
-      strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.percent + '%' + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed + '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
-      ++i;
-    }
-  }
-  document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
-}
 
 window.by = (path, reverse, primer, then) => {
   var get = function (obj, path) {
