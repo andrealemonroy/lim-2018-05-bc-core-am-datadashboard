@@ -10,6 +10,7 @@ const getData = (url, callback) => {
   }
   xhr.send();
 }
+
 getAvgUsersStats=(arr)=>{
   let sumPercent=0;
   let sumQuizzes=0;
@@ -41,8 +42,6 @@ getAvgUsersStats=(arr)=>{
 
   arrayUsersAvg.push(avgPercent , avgQuizzes ,  avgExercises);
 
-
-
   return arrayUsersAvg
 }
 
@@ -53,9 +52,28 @@ getArrayUsersStats = () => {
                 const courses = ["intro"];
                 let search = document.getElementById('txtSearch').value;
                 let user = computeUsersStats(dataUsers, dataProgress, courses);
-                sortUsers(user, "name", "ASC");
-                filterUsers(user, search);
+                console.log(user);
+                // sortUsers(user, "name", "ASC");
+                // filterUsers(user, search);
                 arrayUsersAvg=getAvgUsersStats(user);
+
+                const options = {
+                  cohort : {
+                    coursesIndex: dataCohorts
+                  },
+                  cohortData : {
+                    users: dataUsers,
+                    progress: dataProgress
+                  },
+                  orderBy: 'Nombre',
+                  orderDirection: 'ASC',
+                  search: 'HEYDY'
+                }
+
+                console.log(options);
+                let usersProcess=processCohortData(options);
+                console.log(usersProcess);
+
             });
         });
     });
@@ -63,6 +81,9 @@ getArrayUsersStats = () => {
 
 document.getElementById('btnArrayUserStats').addEventListener('click', () => {
   // getArrayUsersStats();
+  console.log("Ahora veremos todos los datos");
+  document.getElementById("buttonStart").click();   
+  console.log("------------------------------");
   let imageCircle = document.getElementById('figures');
   imageCircle.style.display='none';
   btnArrayUserStats.style.display='none';
@@ -76,93 +97,36 @@ document.getElementById('buttonStart').addEventListener('click', () => {
     getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
         getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
             getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
+
+              console.log("entramos al button ->");
+
                 const options = {
-                    cohort : [{},{}],
+                    cohort : {
+                      coursesIndex: dataCohorts
+                    },
                     cohortData : {
                       users: dataUsers,
-                      progress: dataProgress,
+                      progress: dataProgress
                     },
                     orderBy: '',
                     orderDirection: '',
                     search: ''
-                  }
-                  console.log(options);
-                let users = computeUsersStats(dataUsers, dataProgress, courses);
-                let oJSON = users; // oJSON contiene la misma información de la data agrupada sin ordenar todavía
-                let filter = document.getElementById('txtSearch').value.toUpperCase(); // tiene la cadena ingresada en mayúsculas 
+                }
+                
+                let filter = document.getElementById('txtSearch').value.toUpperCase(); 
                 const opcion = document.getElementById('fill');
                 const order = document.getElementById('order');
 
                 let value = opcion.options[opcion.selectedIndex].value;
                 let valueOrder = order.options[order.selectedIndex].value;
 
-                if (valueOrder == 'ASC') {
-                    if (value == 'name') {
-                        options.orderBy = 'name';
-                        options.orderDirection= 'ASC';
-                    }
-                    else if (value == 'percent') {
-                        options.orderBy = 'percent';
-                        options.orderDirection= 'ASC';
-                    }
-                    else if (value == 'exercises') {
-                        options.orderBy = 'exercises';
-                        options.orderDirection= 'ASC';
-    
-                    }
-                    else if (value == 'reads') {
-                        options.orderBy = 'reads';
-                        options.orderDirection= 'ASC';
-    
-                    }
-                    else if (value == 'quizzes') {
-                        options.orderBy = 'quizzes';
-                        options.orderDirection= 'ASC';
-    
-                    }
-                    else if (value == 'quizzesAvg') {
-                        options.orderBy = 'quizzesAvg';
-                        options.orderDirection= 'ASC';
-    
-                    };
-                    let oJSON = sortUsers(users, options.orderBy, options.orderDirection);
-                }
-                else if (valueOrder == 'DSC') {
-                    if (value == 'name') {
-                        options.orderBy = 'name';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else if (value == 'percent') {
-                        options.orderBy = 'percent';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else if (value == 'exercises') {
-                        options.orderBy = 'exercises';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else if (value == 'reads') {
-                        options.orderBy = 'reads';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else if (value == 'quizzes') {
-                        options.orderBy = 'quizzes';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    else {
-                        options.orderBy = 'quizzesAvg';
-                        options.orderDirection= 'DSC';
-    
-                    }
-                    let oJSON = sortUsers(users, options.orderBy, options.orderDirection);
-                }
-                // en oJSON estará la nueva data ordenada, lo se envía la data a mostrar a filter
-                filterUsers(oJSON,filter);
+                options.orderBy = value;
+                options.orderDirection = valueOrder;
+                options.search = filter;
 
+                let users = processCohortData(options)
+
+                viewTable(users);
 
             });
                 
@@ -181,15 +145,12 @@ document.getElementById('dashboard').addEventListener('click', () => {
   }
 });
 
-
 getCohorts = () => {
   // const section = document.getElementById('container');
-
+  console.log("entre a lim")
   getData('../data/cohorts.json', (err, dataCohorts) => {
-
     cohorts = dataCohorts;
     select = document.getElementById('selectCohorts')
-
     for (var cohort of cohorts) {
       nameCohorts = cohort.id;
       if (nameCohorts.indexOf('lim') === 0) {
@@ -198,15 +159,14 @@ getCohorts = () => {
     }
 
     select.addEventListener('change', () => {
-    
       if (select.value == "lim-2018-03-pre-core-pw") {
-    
+        console.log("entre a lim-2018-03-pre-core-pw")
         let info = document.getElementById('info');
         let head2 = document.getElementById('dash');
-        let cohort = document.getElementById('cohortsH')
-        let detailStudents = document.getElementById('studentsBox')
-        getArrayUsersStats();
+        let cohort = document.getElementById('cohortsH');
+        let detailStudents = document.getElementById('studentsBox');
 
+        getArrayUsersStats();
 
         info.style.display = 'block';
         head2.style.display = 'block';
@@ -215,6 +175,7 @@ getCohorts = () => {
         detailStudents.style.display='none'
     
       } else {
+
         console.log("hola mundo " + select.value)
 
         let info = document.getElementById('info');
@@ -235,7 +196,6 @@ getCohorts = () => {
 
   });
 }
-
 
 getCohorts1 = () => {
   // const section = document.getElementById('container');
@@ -258,6 +218,21 @@ getCohorts1 = () => {
     });
 
   });
+}
+
+viewTable = (users) => {
+
+  var i = 0;
+  console.log(users)
+  var countdata = users.length;
+  var strhtml = '';
+  if (countdata > 0) {
+    while (i < countdata) {
+      strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.percent + '%' + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed + '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
+      ++i;
+    }
+  }
+  document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
 }
 
 document.getElementById('lim').addEventListener('click', getCohorts);
