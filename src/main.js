@@ -52,11 +52,7 @@ getArrayUsersStats = () => {
                 const courses = ["intro"];
                 let search = document.getElementById('txtSearch').value;
                 let user = computeUsersStats(dataUsers, dataProgress, courses);
-                console.log(user);
-                // sortUsers(user, "name", "ASC");
-                // filterUsers(user, search);
                 arrayUsersAvg=getAvgUsersStats(user);
-
                 const options = {
                   cohort : {
                     coursesIndex: dataCohorts
@@ -80,10 +76,7 @@ getArrayUsersStats = () => {
 }
 
 document.getElementById('btnArrayUserStats').addEventListener('click', () => {
-  // getArrayUsersStats();
-  console.log("Ahora veremos todos los datos");
   document.getElementById("buttonStart").click();   
-  console.log("------------------------------");
   let imageCircle = document.getElementById('figures');
   imageCircle.style.display='none';
   btnArrayUserStats.style.display='none';
@@ -97,9 +90,6 @@ document.getElementById('buttonStart').addEventListener('click', () => {
     getData('../data/cohorts/lim-2018-03-pre-core-pw/users.json', (err, dataUsers) => {
         getData('../data/cohorts/lim-2018-03-pre-core-pw/progress.json', (err, dataProgress) => {
             getData('../data/cohortsPrueba.json', (err, dataCohorts) => {
-
-              console.log("entramos al button ->");
-
                 const options = {
                     cohort : {
                       coursesIndex: dataCohorts
@@ -160,7 +150,6 @@ getCohorts = () => {
 
     select.addEventListener('change', () => {
       if (select.value == "lim-2018-03-pre-core-pw") {
-        console.log("entre a lim-2018-03-pre-core-pw")
         let info = document.getElementById('info');
         let head2 = document.getElementById('dash');
         let cohort = document.getElementById('cohortsH');
@@ -213,8 +202,6 @@ getCohorts1 = () => {
     }
 
     select.addEventListener('change', () => {
-      alert(select.value)
-
     });
 
   });
