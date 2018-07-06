@@ -129,6 +129,7 @@ h1{
     margin-right:3vw;
     margin-left:1vw;
     font-size:1vw;
+    margin-bottom:5vw;
 }
 #imgUser {
     border-radius: 6vw 10vh;
@@ -145,7 +146,11 @@ h1{
 
 
 nav{
-    margin-top:9vh;;
+    margin-top:15vh;;
+}
+
+#chooseCohort{
+    margin-top:34vh;
 }
 
 
