@@ -29,28 +29,24 @@
           <span>Training Manager</span>
         </div>
       </div>
-      <nav>
-        <ul id="x">
+      <div id="chooseChort">
           <li id="dashboard" class="op">Sedes</li>
+          <div id="citys">
           <ul>
-            <div id="citys">
-              <li id="lim">Lima</li>
-              <li id="arequipa">Arequipa</li>
-              <li id="cdmx">Ciudad de México</li>
-              <li id="guadalajara">Guadalajara</li>
-              <li id="saoPablo">Sao Paulo</li>
-              <li id="otros">Otras sedes</li>
-            </div>
-          </ul>
+            <li id="lim">Lima</li>
+            <li id="arequipa">Arequipa</li>
+            <li id="cdmx">Ciudad de México</li>
+            <li id="guadalajara">Guadalajara</li>
+            <li id="saoPablo">Sao Paulo</li>
+            <li id="otros">Otras sedes</li>
+          </ul>    
+          </div>
           <select id="selectCohorts" name="selectCohorts">
             <option value="cohort" selected>cohort</option>
           </select>
-          <ul>
-            <div id="container"></div>
-          </ul>
+          <div id="container"></div>
           <li id="courses" class="op">CURSOS</li>
-        </ul>
-      </nav>
+      </div>
     </div>
     <div id="info">
       <p id="infoTitle">General
@@ -59,9 +55,7 @@
       <div id="figures">
         <div id="imageCircle">
         <figure>
-          <center>
             <label class="titulo">Quizzes</label>
-          </center>
           <img id="graphic" src="chartcircle.png" alt="grafico">
           <hr>
           <p id="titleQuizzes">Porcentaje Total de avance
@@ -74,9 +68,7 @@
         </div>
         <div id="imageCircle2">
         <figure>
-            <center>
               <label  class="titulo">Exercises</label>
-            </center>
             <img id="graphicTwo" src="chartcircle.png" alt="grafico">
             <hr>
             <p id="titleExercises">Porcentaje Total de avance
@@ -88,9 +80,7 @@
         </div>
         <div id="imageCircle3">
         <figure>
-            <center>
               <label class="titulo">Lecturas</label>
-            </center>
             <img id="graphicThree" src="chartcircle.png" alt="grafico">
             <hr>
             <p id="titleReads">Porcentaje Total de avance
@@ -102,9 +92,7 @@
         </div>
         <div id="imageCircle4">
         <figure>
-            <center>
               <label  class="titulo">Porcentaje Total</label>
-            </center>
             <img id="graphicFour" src="chartcircle.png" alt="grafico">
             <hr>
             <p id="titlePercentTotal">Porcentaje Total 
@@ -138,12 +126,12 @@
       </div>
       <table id="table">
         <thead>
-          <th class="tableClass">Nombre</th>
-          <th class="tableClass">Avance</th>
-          <th class="tableClass">Ejercicios</th>
-          <th class="tableClass">Lecturas</th>
-          <th class="tableClass">Quizzes total</th>
-          <th class="tableClass">Quizzes promedio</th>
+        <th class="tableClass">Nombre</th>
+        <th class="tableClass">Avance</th>
+        <th class="tableClass">Ejercicios</th>
+        <th class="tableClass">Lecturas</th>
+        <th class="tableClass">Quizzes total</th>
+        <th class="tableClass">Quizzes promedio</th>
         </thead>
         <tbody></tbody>
       </table>
