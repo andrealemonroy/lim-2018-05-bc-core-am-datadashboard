@@ -1,5 +1,4 @@
 window.computeUsersStats = (users, progress, courses) => {
-  console.log("ya entramos a computerUser");
   const usersWithStats = [];
 
   getPercentByStudent = (id) => {
