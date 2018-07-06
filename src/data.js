@@ -219,8 +219,8 @@ window.filterUsers = (users, search) => {
   length = filter.length;
   arrayFilter = [];
   if ( length > 0 ) { // esta condición determina si hay algo en el texto de búsqueda
-      var i = 0;
-      var countdata = users.length;
+      let i = 0;
+      const countdata = users.length;
       if (countdata > 0) {
           while (i < countdata) {
               name = users[i].name.toUpperCase();  // obtiene el nombre de cada usuario
@@ -250,10 +250,11 @@ window.processCohortData = (options)  => {
 
 
 window.by = (path, reverse, primer, then) => {
-  var get = function (obj, path) {
+  const get = function (obj, path) {
     if (path) {
       path = path.split('.');
-      for (var i = 0, len = path.length - 1; i < len; i++) {
+      let len = (path.length - 1)
+      for (let i = 0 ; i < len; i++) {
         obj = obj[path[i]];
       };
       return obj[path[len]];
@@ -266,7 +267,7 @@ window.by = (path, reverse, primer, then) => {
     };
 
   return function (a, b) {
-    var A = prime(a),
+    let A = prime(a),
       B = prime(b);
 
     return (

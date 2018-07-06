@@ -4,7 +4,7 @@ const getData = (url, callback) => {
   xhr.open('GET', url, true);
   xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200) {
-      var data1 = JSON.parse(xhr.responseText);
+      const data1 = JSON.parse(xhr.responseText);
       callback(null, data1);
     }
   }
@@ -151,7 +151,7 @@ getCohorts = () => {
   getData('../data/cohorts.json', (err, dataCohorts) => {
     cohorts = dataCohorts;
     select = document.getElementById('selectCohorts')
-    for (var cohort of cohorts) {
+    for (let cohort of cohorts) {
       nameCohorts = cohort.id;
       if (nameCohorts.indexOf('lim') === 0) {
         select.innerHTML += `<option value =${nameCohorts}> ${nameCohorts} </option>`;
@@ -205,7 +205,7 @@ getCohorts1 = () => {
     cohorts = dataCohorts;
     select = document.getElementById('selectCohorts')
 
-    for (var cohort of cohorts) {
+    for (let cohort of cohorts) {
       nameCohorts = cohort.id;
       if (nameCohorts.indexOf('cdmx') === 0) {
         select.innerHTML += `<option value =${nameCohorts}> ${nameCohorts} </option>`;
@@ -222,10 +222,10 @@ getCohorts1 = () => {
 
 viewTable = (users) => {
 
-  var i = 0;
+  let i = 0;
   console.log(users)
-  var countdata = users.length;
-  var strhtml = '';
+  const countdata = users.length;
+  let strhtml = '';
   if (countdata > 0) {
     while (i < countdata) {
       strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.percent + '%' + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed + '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
