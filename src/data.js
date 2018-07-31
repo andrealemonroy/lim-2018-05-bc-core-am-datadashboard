@@ -171,43 +171,79 @@ window.computeUsersStats = (users, progress, courses) => {
 
 
 window.sortUsers = (users, orderBy, orderDirection) => {
-  console.log("ya entramos a sortUsers");
+
   let orden = orderDirection == 'ASC' ? false : true;
 
   if (orderBy == 'name') {
-    users.sort(
-      by('name', orden, function(x){
-        return x.toUpperCase().replace(/\W/g, '');
-      })
-    );
+    users.sort(function(a,b){
+        if (a.name > b.name){
+          return orden ? -1 : 1;  
+        }
+        if (a.name < b.name){
+          return orden ? 1 : -1;  
+        }
+        return 0;
+    });
   }
   else if (orderBy == 'percent') {
-    users.sort(
-      by('stats.percent', orden, parseFloat)
-    );
-  }
+    users.sort(function(a,b){
+        if (a.stats.percent > b.stats.percent){
+          return orden ? -1 : 1;  
+        }
+        if (a.stats.percent < b.stats.percent){
+          return orden ? 1 : -1;  
+        }
+        return 0;
+    });
+  } 
+
   else if (orderBy == 'exercises') {
+    users.sort(function(a,b){
+        if (a.stats.exercises.percent > b.stats.exercises.percent){
+          return orden ? -1 : 1;  
+        }
+        if (a.stats.exercises.percent < b.stats.exercises.percent){
+          return orden ? 1 : -1;  
+        }
+        return 0;
+    });
+  }  
 
-    users.sort(
-      by('stats.exercises.percent', orden, parseFloat)
-    );
-
-  }
   else if (orderBy == 'reads') {
-   users.sort(
-      by('stats.reads.completed', orden, parseFloat)
-    );
-  }
+    users.sort(function(a,b){
+        if (a.stats.reads.completed > b.stats.reads.completed){
+          return orden ? -1 : 1;  
+        }
+        if (a.stats.reads.completed < b.stats.reads.completed){
+          return orden ? 1 : -1;  
+        }
+        return 0;
+    });
+  }  
+
   else if (orderBy == 'quizzes') {
-    users.sort(
-      by('stats.quizzes.completed', orden, parseFloat)
-    );
-  }
+    users.sort(function(a,b){
+        if (a.stats.quizzes.completed > b.stats.quizzes.completed){
+          return orden ? -1 : 1;  
+        }
+        if (a.stats.quizzes.completed < b.stats.quizzes.completed){
+          return orden ? 1 : -1;  
+        }
+        return 0;
+    });
+  }  
+
   else if (orderBy == 'quizzesAvg') {
-    users.sort(
-      by('stats.quizzes.scoreAvg', orden, parseFloat)
-    );
-  }
+    users.sort(function(a,b){
+        if (a.stats.quizzes.scoreAvg > b.stats.quizzes.scoreAvg){
+          return orden ? -1 : 1;  
+        }
+        if (a.stats.quizzes.scoreAvg < b.stats.quizzes.scoreAvg){
+          return orden ? 1 : -1;  
+        }
+        return 0;
+    });
+  }  
 
   return users
 }
@@ -246,33 +282,3 @@ window.processCohortData = (options)  => {
      users = filterUsers (users, options.search);
    return users;
 } 
-
-
-window.by = (path, reverse, primer, then) => {
-  const get = function (obj, path) {
-    if (path) {
-      path = path.split('.');
-      let len = (path.length - 1)
-      for (let i = 0 ; i < len; i++) {
-        obj = obj[path[i]];
-      };
-      return obj[path[len]];
-    }
-    return obj;
-
-  },
-    prime = function (obj) {
-      return primer ? primer(get(obj, path)) : get(obj, path);
-    };
-
-  return function (a, b) {
-    let A = prime(a),
-      B = prime(b);
-
-    return (
-      (A < B) ? -1 :
-        (A > B) ? 1 :
-          (typeof then === 'function') ? then(a, b) : 0
-    ) * [1, -1][+!!reverse];
-  };
-};
