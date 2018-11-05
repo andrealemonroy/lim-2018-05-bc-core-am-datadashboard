@@ -162,12 +162,11 @@ window.computeUsersStats = (users, progress, courses) => {
         }
       };
       usersWithStats.push(users[i]);
-    } else {
-    }
+    } else {}
   }
-  
-  return usersWithStats ;
-  
+
+  return usersWithStats;
+
 }
 
 
@@ -176,75 +175,66 @@ window.sortUsers = (users, orderBy, orderDirection) => {
   let orden = orderDirection == 'ASC' ? false : true;
 
   if (orderBy == 'name') {
-    users.sort(function(a,b){
-        if (a.name > b.name){
-          return orden ? -1 : 1;  
-        }
-        if (a.name < b.name){
-          return orden ? 1 : -1;  
-        }
-        return 0;
+    users.sort(function (a, b) {
+      if (a.name > b.name) {
+        return orden ? -1 : 1;
+      }
+      if (a.name < b.name) {
+        return orden ? 1 : -1;
+      }
+      return 0;
+    });
+  } else if (orderBy == 'percent') {
+    users.sort(function (a, b) {
+      if (a.stats.percent > b.stats.percent) {
+        return orden ? -1 : 1;
+      }
+      if (a.stats.percent < b.stats.percent) {
+        return orden ? 1 : -1;
+      }
+      return 0;
+    });
+  } else if (orderBy == 'exercises') {
+    users.sort(function (a, b) {
+      if (a.stats.exercises.percent > b.stats.exercises.percent) {
+        return orden ? -1 : 1;
+      }
+      if (a.stats.exercises.percent < b.stats.exercises.percent) {
+        return orden ? 1 : -1;
+      }
+      return 0;
+    });
+  } else if (orderBy == 'reads') {
+    users.sort(function (a, b) {
+      if (a.stats.reads.completed > b.stats.reads.completed) {
+        return orden ? -1 : 1;
+      }
+      if (a.stats.reads.completed < b.stats.reads.completed) {
+        return orden ? 1 : -1;
+      }
+      return 0;
+    });
+  } else if (orderBy == 'quizzes') {
+    users.sort(function (a, b) {
+      if (a.stats.quizzes.completed > b.stats.quizzes.completed) {
+        return orden ? -1 : 1;
+      }
+      if (a.stats.quizzes.completed < b.stats.quizzes.completed) {
+        return orden ? 1 : -1;
+      }
+      return 0;
+    });
+  } else if (orderBy == 'quizzesAvg') {
+    users.sort(function (a, b) {
+      if (a.stats.quizzes.scoreAvg > b.stats.quizzes.scoreAvg) {
+        return orden ? -1 : 1;
+      }
+      if (a.stats.quizzes.scoreAvg < b.stats.quizzes.scoreAvg) {
+        return orden ? 1 : -1;
+      }
+      return 0;
     });
   }
-  else if (orderBy == 'percent') {
-    users.sort(function(a,b){
-        if (a.stats.percent > b.stats.percent){
-          return orden ? -1 : 1;  
-        }
-        if (a.stats.percent < b.stats.percent){
-          return orden ? 1 : -1;  
-        }
-        return 0;
-    });
-  } 
-
-  else if (orderBy == 'exercises') {
-    users.sort(function(a,b){
-        if (a.stats.exercises.percent > b.stats.exercises.percent){
-          return orden ? -1 : 1;  
-        }
-        if (a.stats.exercises.percent < b.stats.exercises.percent){
-          return orden ? 1 : -1;  
-        }
-        return 0;
-    });
-  }  
-
-  else if (orderBy == 'reads') {
-    users.sort(function(a,b){
-        if (a.stats.reads.completed > b.stats.reads.completed){
-          return orden ? -1 : 1;  
-        }
-        if (a.stats.reads.completed < b.stats.reads.completed){
-          return orden ? 1 : -1;  
-        }
-        return 0;
-    });
-  }  
-
-  else if (orderBy == 'quizzes') {
-    users.sort(function(a,b){
-        if (a.stats.quizzes.completed > b.stats.quizzes.completed){
-          return orden ? -1 : 1;  
-        }
-        if (a.stats.quizzes.completed < b.stats.quizzes.completed){
-          return orden ? 1 : -1;  
-        }
-        return 0;
-    });
-  }  
-
-  else if (orderBy == 'quizzesAvg') {
-    users.sort(function(a,b){
-        if (a.stats.quizzes.scoreAvg > b.stats.quizzes.scoreAvg){
-          return orden ? -1 : 1;  
-        }
-        if (a.stats.quizzes.scoreAvg < b.stats.quizzes.scoreAvg){
-          return orden ? 1 : -1;  
-        }
-        return 0;
-    });
-  }  
 
   return users
 
@@ -255,7 +245,7 @@ window.sortUsers = (users, orderBy, orderDirection) => {
   if (countdata > 0) {
     while (i < countdata) {
       strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.percent + '%' + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed + '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
-      ++i;
+        ++i;
     }
   }
 
@@ -266,36 +256,35 @@ window.filterUsers = (users, search) => {
   filter = search.trim(); // tiene la cadena ingresada sin espacios
   length = filter.length;
   arrayFilter = [];
-  if ( length > 0 ) { // esta condición determina si hay algo en el texto de búsqueda
-      var i = 0;
-      var countdata = users.length;
-strhtml='';
-      if (countdata > 0) {
-          while (i < countdata) {
-              name = users[i].name.toUpperCase();  // obtiene el nombre de cada usuario
-              ubication = name.indexOf(filter); // ubica la cadena en otra
-              if ( ubication >-1) { // si la variable tiene un número mayor a 0 la cadena existe en el nombre
-                arrayFilter.push(users[i]);
-                strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed+ '</td><td>' + Math.round(users[i].stats.quizzes.scoreAvg) + '</td></tr>';
-              }
-              ++i;
-            }
-          document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
+  if (length > 0) { // esta condición determina si hay algo en el texto de búsqueda
+    var i = 0;
+    var countdata = users.length;
+    strhtml = '';
+    if (countdata > 0) {
+      while (i < countdata) {
+        name = users[i].name.toUpperCase(); // obtiene el nombre de cada usuario
+        ubication = name.indexOf(filter); // ubica la cadena en otra
+        if (ubication > -1) { // si la variable tiene un número mayor a 0 la cadena existe en el nombre
+          arrayFilter.push(users[i]);
+          strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed + '</td><td>' + Math.round(users[i].stats.quizzes.scoreAvg) + '</td></tr>';
+        }
+        ++i;
       }
-  }
-  else{ // en caso que no haiga nada el texto solo muestra la data en pantalla
-      var i = 0;
-      var countdata = users.length;
-      var strhtml = '';
-      document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML ="";
-      if (countdata > 0) {
-          while (i < countdata) {
+      document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
+    }
+  } else { // en caso que no haiga nada el texto solo muestra la data en pantalla
+    var i = 0;
+    var countdata = users.length;
+    var strhtml = '';
+    document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = "";
+    if (countdata > 0) {
+      while (i < countdata) {
 
-              strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + Math.round(users[i].stats.reads.completed) + '%' + '</td><td>' + users[i].stats.quizzes.completed+ '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
-              ++i;
-            }
-          document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
+        strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.completed + '</td><td>' + Math.round(users[i].stats.reads.completed) + '%' + '</td><td>' + users[i].stats.quizzes.completed + '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
+          ++i;
       }
+      document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
+    }
   }
 
   return arrayFilter;
@@ -304,12 +293,11 @@ strhtml='';
 
 
 
-window.processCohortData = (options)  => {
-  let users, sort; 
-    users = computeUsersStats (options.cohortData.users, options.cohortData.progress, options.cohort.coursesIndex);
-    users = sortUsers (users, options.orderBy, options.orderDirection);
-     users = filterUsers (users, options.search);
-  
-   return users;
-  } 
+window.processCohortData = (options) => {
+  let users, sort;
+  users = computeUsersStats(options.cohortData.users, options.cohortData.progress, options.cohort.coursesIndex);
+  users = sortUsers(users, options.orderBy, options.orderDirection);
+  users = filterUsers(users, options.search);
 
+  return users;
+}

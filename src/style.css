@@ -9,6 +9,9 @@ h2{
     margin-bottom: 20px;
     color: rgba(0,0,0,0.5);
 }
+li{
+    list-style-type: none;
+}
 
 #buttonStart, #fill, #order {
     display: block;

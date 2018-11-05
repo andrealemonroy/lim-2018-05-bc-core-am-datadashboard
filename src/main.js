@@ -192,7 +192,7 @@ getCohorts = () => {
 
     for (var cohort of cohorts) {
       nameCohorts = cohort.id;
-      if (nameCohorts.indexOf('lim') === 0) {
+      if (nameCohorts.indexOf('lim-2018-03-pre-core-pw') === 0) {
         select.innerHTML += `<option value =${nameCohorts}> ${nameCohorts} </option>`;
       }
     }
