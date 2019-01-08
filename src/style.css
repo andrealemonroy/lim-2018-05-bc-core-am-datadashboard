@@ -9,9 +9,7 @@ h2{
     margin-bottom: 20px;
     color: rgba(0,0,0,0.5);
 }
-li{
-    list-style-type: none;
-}
+
 
 #buttonStart, #fill, #order {
     display: block;
@@ -51,8 +49,8 @@ form {
     margin:auto;
     width: 50%;
     max-width: 500px;
-    background: rgb(255, 229, 33);
-    padding : 30px;
+    background: rgb(196, 195, 195);
+    /* padding : 30px; */
     border: 1px solid rgba(0,0,0,0.2);
   }
   
@@ -65,7 +63,7 @@ header {
 h1{
     width:100%;
     position: relative;
-    margin-top:0;
+    margin-top:-20px;
 }
 #titleOne{
     width:16%;
@@ -94,10 +92,7 @@ h1{
     font-size:2vw;
     
 }
-#dash, #cohortsH{
-    display:none;
-    
-}
+
 #dash{
     width:98%;
     float:left;
@@ -119,7 +114,7 @@ h1{
 
 #options{
     width:20%;
-    height:50vh;
+    height:100%;
     font-family:Righteous;
     text-align: left;
     position: static;
@@ -127,10 +122,10 @@ h1{
     background-color: #FFFFFF;
 }
 #loginInfo{
-
+    float: left;
     padding:5vh 0;
     margin-right:3vw;
-    margin-left:1vw;
+    margin-left:1vw;     
     font-size:1vw;
     margin-bottom:5vw;
 }
@@ -148,15 +143,6 @@ h1{
 
 
 
-nav{
-    margin-top:15vh;;
-}
-
-#chooseCohort{
-    margin-top:34vh;
-}
-
-
 #courses:hover{background:rgb(255,229,33);}
 #selectCohorts:hover{background:rgb(255,229,33);}
 #dashboard:hover{background:rgb(255,229,33);}
@@ -166,16 +152,13 @@ nav{
     font-size:1.5vw;
     width:100%;
     padding:2vh 0;
-    margin-top:1vh;
     text-align: center;
 }
 ul li:hover {background: #555;}
 
-#citys{
-    display:none;
-}
+
 ul{
-    list-style-type: none;
+
     margin:0;
     padding:0;
 }
@@ -192,7 +175,6 @@ ul{
     height:100%;
     text-align: left;
     float:right;
-    display:none;
     margin-bottom: 2%;
     margin-left:2%;
 
@@ -200,37 +182,67 @@ ul{
 #infoTitle{
     font-family: Montserrat;
     font-size: 2vw 2vh;
-    margin-top:1%;
     height:5%;
 }
 
-#studentsBox{
-    display: none ;
-}
 
 
 .search{
     float:left;
 }
 
-
+#studentsBox{
+    display: none;
+}
 .titulo{
     font-family: Montserrat;
     font-weight: bold;
     position:relative;
 }
 
-#imageCircle, #imageCircle2, #imageCircle3, #imageCircle4{
-    margin-bottom:3%;
-    margin-left: 2%;
-    margin-top:3%; 
+#figures{
+    width:100%;
+    float:right;
+}
+#imageCircle{
+    margin-bottom:1vh;
+    /* margin-left: 2%; */
     background-color: #FFFFFF;
-    border-style:solid;
-    width:35%;
+    /* border-style:solid;   */
+    width:35vw;
     float:left;
-    margin-right:5%;
+    /* margin-right:5%; */
     text-align: center;
 }
+
+#imageCircle2{
+    margin-bottom:1vh;
+    /* margin-left: 2%; */
+    background-color: #FFFFFF;
+    /* border-style:solid; */
+    width:35vw;
+    float: right;
+    /* margin-right:5%; */
+    text-align: center;
+}
+
+#imageCircle3{  
+    background-color: #FFFFFF;
+    /* border-style:solid; */
+    width:35vw;
+    float:left;
+    /* margin-right:5%; */
+    text-align: center;
+}
+#imageCircle4{
+    background-color: #FFFFFF;
+    /* border-style:solid; */
+    width:35vw;
+    float: right;
+    /* margin-right:5%; */
+    text-align: center;
+}
+
 #graphic, #graphicTwo, #graphicThree, #graphicFour{
     width:90%;
     height:90%;
@@ -267,19 +279,7 @@ footer {
 }
 
 
-#tableClass{
-    display:none;
-}
 
-#selectCohorts {
-    width:100%;
-    background-color: #f1f1f1; 
-    border-radius: 2.5vh ;
-    font-size:1.5vw;
-    padding:2vh 0;
-    margin-top:1vh;
-    text-align: center;
-}
 #table {
     border-collapse: collapse; /* Collapse borders */
     width: 100%; /* Full-width */

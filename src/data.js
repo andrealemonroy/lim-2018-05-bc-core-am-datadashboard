@@ -1,4 +1,4 @@
-window.computeUsersStats = (users, progress, courses) => {
+window.computeUsersStats = (users, progress) => {
 
   const usersWithStats = [];
 
@@ -239,17 +239,6 @@ window.sortUsers = (users, orderBy, orderDirection) => {
   return users
 
 
-  var i = 0;
-  var countdata = users.length;
-  var strhtml = '';
-  if (countdata > 0) {
-    while (i < countdata) {
-      strhtml += '<tr><td>' + users[i].name + '</td><td>' + users[i].stats.percent + '%' + '</td><td>' + users[i].stats.exercises.percent + '%' + '</td><td>' + users[i].stats.reads.completed + '%' + '</td><td>' + users[i].stats.quizzes.completed + '</td><td>' + users[i].stats.quizzes.scoreAvg + '</td></tr>'
-        ++i;
-    }
-  }
-
-  document.getElementById('table').getElementsByTagName('tbody')[0].innerHTML = strhtml;
 }
 
 window.filterUsers = (users, search) => {
@@ -294,7 +283,7 @@ window.filterUsers = (users, search) => {
 
 
 window.processCohortData = (options) => {
-  let users, sort;
+  let users;
   users = computeUsersStats(options.cohortData.users, options.cohortData.progress, options.cohort.coursesIndex);
   users = sortUsers(users, options.orderBy, options.orderDirection);
   users = filterUsers(users, options.search);
